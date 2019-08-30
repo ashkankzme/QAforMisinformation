@@ -1,31 +1,48 @@
+import numpy as np
+import torch
+from pytorch_transformers import BertTokenizer, BertModel, BertForMaskedLM
+import logging
+
+tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
+model = BertModel.from_pretrained('bert-base-uncased')
+model.eval()
 
 
-# cosine similarity calculator between two vectors,
-# gets two vectors as input and return their
-# cosine similarity, a value between [-1, 1]
+# gets as input two numpy vectors
+# and returns the cosine similarity
+# between them.
 def cosine_similarity(a, b):
-    return
+    return (a.inner(b)) / (np.norm(a) * np.norm(b))
 
 
-# gets as input two paragraph of text
-# breaks them down into tokens, calculates
-# the word2vec word embeddings for all tokens
-# and then calculates the average of these
-# embeddings for each input. Then calculates
-# cosine similarity between the two vectors
-# and returns a number in range [-1, 1]
-def calculate_similarity(a, b):
-    # calculate average word embeddings
-    # for a and b
-    # return cosine_similarity(avg_embeddings_a, avg_embeddings_b)
-    return
+# returns the marked text for BERT
+# use, using the one sentence model
+def get_bert_marked_text(a):
+    return '[CLS] ' + a + ' [SEP]'
+
+
+# returns BERT embeddings of [CLS]
+# (the average of last 4 layers)
+# for the input text.
+def get_bert_embeddings(a):
+    marked_text = get_bert_marked_text(a)
+    tokenized_text = tokenizer.tokenize(marked_text)
+    indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
+    segment_ids = np.ones(len(tokenized_text))
+    tokens_tensor = torch.tensor([indexed_tokens])
+    segments_tensors = torch.tensor([segment_ids])
+    with torch.no_grad():
+        encoded_layers, _ = model(tokens_tensor, segments_tensors)
+    return encoded_layers[-1][0][0] # the last layer of first batch for first token, [CLS]
 
 
 # gets as input a body of text, including
 # \n separated paragraphs. Outputs those
 # paragraphs in a list of strings.
 def get_paragraphs(text):
-    return
+    paragraphs = text.split('\n')
+    paragraphs = [p for p in paragraphs if p]
+    return paragraphs
 
 
 # gets an input a list of paragraphs.
