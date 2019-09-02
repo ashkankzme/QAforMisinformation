@@ -11,7 +11,7 @@ model.eval()
 # and returns the cosine similarity
 # between them.
 def cosine_similarity(a, b):
-    return torch.nn.CosineSimilarity(dim=1, eps=1e-6)(a, b)
+    return torch.dot(a, b) / (torch.norm(a) * torch.norm(b))
 
 
 # returns the marked text for BERT
