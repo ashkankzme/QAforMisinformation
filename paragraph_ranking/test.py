@@ -3,4 +3,5 @@ from rank import rank_paragraphs
 
 ranks, paragraphs = rank_paragraphs(text, q, exp)
 
-print(zip(ranks, paragraphs))
+for rank, p in zip(ranks, paragraphs):
+    print(rank + ': ' + p)
