@@ -4,4 +4,4 @@ from rank import rank_paragraphs
 ranks, paragraphs = rank_paragraphs(text, q, exp)
 
 for rank, p in zip(ranks, paragraphs):
-    print('%rank : %par'.format(rank, p))
+    print('{} : {}'.format(rank, p))
