@@ -44,7 +44,7 @@ def pagerank(matrix):
     s = 0.85
     v = np.ones(len(matrix)) / len(matrix)
     scaled_matrix = s * matrix + (1 - s) / len(matrix)
-    iterations = 40
+    iterations = 20
     for i in range(iterations):
         v = scaled_matrix.dot(v)
     return v
