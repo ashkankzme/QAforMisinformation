@@ -1,40 +1,30 @@
 
 
 text = '''
-MADISON, Wis. -- More than 700 million adults and children worldwide are obese, according to a 2017 study that called the growing number and weight-related health problems a "rising pandemic."
+(Reuters) - Shares of Evofem Biosciences Inc jumped as much as 38 percent on Monday after its birth control gel showed effectiveness in a late-stage study, bringing the first hormone-free contraceptive close to approval.
 
-New battery-free, easily implantable weight-loss devices developed by engineers at the University of Wisconsin-Madison could offer a promising new weapon for battling the bulge.
+Male condoms and oral pills dominate the $5.5 billion contraceptive market in the United States. However, oral pills cause side effects such as bleeding between periods, mood swings and nausea in women.
 
-In laboratory testing, the devices helped rats shed almost 40 percent of their body weight. Results of the study were published today (Dec. 17, 2018) in the journal Nature Communications.
+“These results pave the way for Amphora’s disruption of the contraception market as a novel, highly effective, non-hormonal and woman-controlled method that finally answers women’s long-awaited desire to avoid hormones,” Roth Capital Partners analyst Yasmeen Rahimi said.
 
-Measuring less than 1 centimeter across, or about a third of the area of a U.S. penny, the tiny devices -- which are safe for use in the body and implantable via a minimally invasive procedure -- generate gentle electric pulses from the stomach's natural churning motions and deliver them to the vagus nerve, which links the brain and the stomach.
+Evofem’s Amphora gel works by regulating vaginal pH within the normal range of 3.5 to 4.5, creating a hostile environment for sperm and certain viral and bacterial pathogens that can cause sexually transmitted diseases.
 
-That gentle stimulation dupes the brain into thinking that the stomach is full after only a few nibbles of food.
+An estimated 16.5 million women in the United States do not use any method of contraception, according to the company, on fear of side effects, leaving them highly susceptible to unwanted pregnancies and sexually transmitted diseases.
 
-"The pulses correlate with the stomach's motions, enhancing a natural response to help control food intake," says Xudong Wang, a UW-Madison professor of materials science and engineering.
+Amphora was found to have an 86 percent efficacy rate in avoiding pregnancies and no serious side-effects were observed in the study, which evaluated about 1,400 healthy women belonging to the age group 18-35 years, Evofem said.
 
-Unlike gastric bypass, which permanently alters the capacity of the stomach, the effects of the new devices also are reversible. When Wang and his collaborators removed the devices after 12 weeks, the study's rats resumed their normal eating patterns and weight bounced right back on.
+Condoms, the most common non-hormonal method of contraception, have an efficacy rate of 82 percent. The rate stands at about 91 percent for oral pills and intrauterine devices, according to brokerage Roth Capital Partners.
 
-Wang's device has several advantages over an existing unit that stimulates the vagus nerve for weight loss. That existing unit, "Maestro," approved by the Food and Drug Administration in 2015, administers high-frequency zaps to the vagus nerve to shut down all communication between the brain and stomach. It requires a complicated control unit and bulky batteries which frequently must be recharged.
+“Our research and current understanding of women suggests the time is now for there to be a new non-hormonal category in contraception,” Chief Executive Saundra Pelletier said on a conference call with analysts.
 
-That ongoing maintenance can be a big barrier to use, says Luke Funk, a surgery professor in UW-Madison's Division of Minimally Invasive, Foregut and Bariatric Surgery. "One potential advantage of the new device over existing vagus nerve stimulators is that it does not require external battery charging, which is a significant advantage when you consider the inconvenience that patients experience when having to charge a battery multiple times a week for an hour or so."
+The company’s shares were up 22.6 percent at $4.28 in mid-morning trade after touching a high of $4.90.
 
-In fact, Wang's device contains no batteries, no electronics, and no complicated wiring. It relies instead on the undulations of the stomach walls to power its internal generators.
+Oppenheimer analyst Leland Gershell said he expects Amphora, the company’s lead product, to bring in sales of up to $415 million by 2032.
 
-That means the device only stimulates the vagus nerve when the stomach moves.
+The company plans to resubmit the marketing application for Amphora in the second quarter next year and if approved, plans to launch the product in January 2020.
 
-"It's automatically responsive to our body function, producing stimulation when needed," says Wang. "Our body knows best."
-
-Wang is a world expert in wearable and implantable capacitive electricity-generating devices, having previously created implantable nanogenerators that harvest energy from people's beating hearts and breathing, a motion-powered bandage for wound healing, and other such devices.
-
-He and his collaborators patented the weight-loss device through the Wisconsin Alumni Research Foundation and are moving forward with testing in larger animal models. If successful, they hope to move toward human trials.
-
-"Our expectation is that the device will be more effective and convenient to use than other technologies," says Wang.
-
-UW-Madison radiology professor Weibo Cai is also a senior author on the study.
-
-This research was supported by grants from the National Institutes of Health (R01EB021336 and P30CA014520).
+Evofem is also testing Amphora as a preventive treatment for chlamydia and gonorrhea - two of the world’s most common sexually transmitted infections.
 '''
-q = 'Does the news release adequately discuss the costs of the intervention?'
-exp = 'Although this device is still in early testing, the news release notes that it is intended to improve upon a similar device that is already available. The procedure to implant the existing device may cost more than $20,000. This release could have told readers what the current price range is for such a device. If the researchers have reason to expect their device to be more or less expensive than the existing device, that information should be included.'
+q = 'Does the story adequately explain/quantify the harms of the intervention?'
+exp = 'We’ll give this a just-passing satisfactory score because side effects were briefly mentioned: “no serious side effects were observed in the study.” Still we’d like to see mention of less serious side effects, especially for a birth control intervention, because they’re often a significant factor in women’s choices.'
 
