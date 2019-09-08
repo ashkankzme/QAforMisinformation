@@ -40,5 +40,5 @@ def get_bert_embeddings(a):
 # paragraphs in a list of strings.
 def get_paragraphs(text):
     paragraphs = text.split('\n')
-    paragraphs = [p for p in paragraphs if p]
+    paragraphs = [p for p in paragraphs if p and not p.isspace()]
     return paragraphs

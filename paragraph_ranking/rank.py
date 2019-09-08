@@ -1,4 +1,4 @@
-from textrank_utilities import get_paragraphs, get_bert_embeddings, cosine_similarity
+from utils import get_paragraphs, get_bert_embeddings, cosine_similarity
 import numpy as np
 
 
@@ -7,19 +7,21 @@ import numpy as np
 # ranks them by their similarities of their
 # BERT embeddings to the explanation and the
 # question.
-def rank_paragraphs(text, q, exp):
-    qexp = q + ' ' + exp.strip()
-    qexp_embeddings = get_bert_embeddings(qexp)
+def get_paragraph_similarities(text, q, exp):
+    exp_embeddings = get_bert_embeddings(exp.strip())
+    q_embeddings = get_bert_embeddings(q.strip())
 
     paragraphs = get_paragraphs(text)
     paragraphs_embeddings = [get_bert_embeddings(p) for p in paragraphs]
 
-    # calculate cosine similarities between articles paragraphs and qexp pair
-    similarities = np.zeros(len(paragraphs))
+    # calculate cosine similarities between articles paragraphs and explanations or questions
+    exp_similarities = [0] * len(paragraphs)
+    q_similarities = [0] * len(paragraphs)
     for i, pe in enumerate(paragraphs_embeddings):
-        similarities[i] = cosine_similarity(pe, qexp_embeddings)
+        exp_similarities[i] = cosine_similarity(pe, exp_embeddings)
+        q_similarities[i] = cosine_similarity(pe, q_embeddings)
 
-    return similarities, paragraphs
+    return exp_similarities, q_similarities, paragraphs_embeddings, paragraphs
 
 
 # gets as input a news article, a question and

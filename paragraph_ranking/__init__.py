@@ -1,1 +1,2 @@
-from .rank import rank_paragraphs, textrank
+from .rank import get_paragraph_similarities, textrank
+from .utils import get_paragraphs
