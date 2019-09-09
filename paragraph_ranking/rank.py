@@ -1,4 +1,4 @@
-from utils import get_paragraphs, get_bert_embeddings, cosine_similarity
+from .utils import get_paragraphs, get_bert_embeddings, cosine_similarity
 import numpy as np
 
 
@@ -34,7 +34,7 @@ def get_paragraph_similarities(text, q, exp):
 # the ranking of each paragraph as a score,
 # alongside the paragraph itself.
 def textrank(text, q, exp):
-    similarities, paragraphs = rank_paragraphs(text, q, exp)
+    similarities, paragraphs = get_paragraph_similarities(text, q, exp)
 
     # create text rank matrix
     matrix = np.zeros((len(paragraphs), len(paragraphs)))

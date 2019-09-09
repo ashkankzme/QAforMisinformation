@@ -1,5 +1,4 @@
-import torch
-import torch
+import torch, json
 import torch.nn as nn
 from torch.utils import data
 
@@ -9,20 +8,21 @@ from paragraph_ranking import get_paragraph_similarities
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # Hyper-parameters
-input_size = (768 + 1) * 50
+embeddings_size = 768
+input_size = (embeddings_size + 1) * 50
 hidden_size = 500
 num_classes = 50
 num_epochs = 5
-batch_size = 10
+batch_size = 1
 learning_rate = 0.001
 
-with open('../data/q1_train.json') as q1_train_file:
+with open('../data/ranking/q1_train.json') as q1_train_file:
     q1_train = json.load(q1_train_file)
 
-with open('../data/q1_test.json') as q1_test_file:
+with open('../data/ranking/q1_test.json') as q1_test_file:
     q1_test = json.load(q1_test_file)
 
-with open('../data/q1_dev.json') as q1_dev_file:
+with open('../data/ranking/q1_dev.json') as q1_dev_file:
     q1_test += json.load(q1_dev_file)
 
 
@@ -44,16 +44,18 @@ class Dataset(data.Dataset):
                                                                                                          a['question'],
                                                                                                          a[
                                                                                                              'explanation'])
-        X = []
-        for paragraph_embeddings in paragraphs_embeddings:
-            X += paragraph_embeddings
+        X = torch.zeros(input_size)
+        for i, paragraph_embeddings in enumerate(paragraphs_embeddings):
+            X[i * embeddings_size: (i + 1) * embeddings_size] = paragraph_embeddings
 
         # paddings
-        X += [-1] * (768 * num_classes - 768 * len(paragraphs_embeddings))
+        padding_length = embeddings_size * num_classes - embeddings_size * len(paragraphs_embeddings)
+        if padding_length > 0:
+            X[embeddings_size * len(paragraphs_embeddings): embeddings_size * num_classes] = torch.tensor([-1] * padding_length)
 
-        X += q_similarities + [-1] * (num_classes - len(paragraphs_embeddings))
+        X[embeddings_size * num_classes:] = torch.tensor(q_similarities + [-1] * (num_classes - len(paragraphs_embeddings)))
 
-        y = exp_similarities + [-1] * (num_classes - len(paragraphs_embeddings))
+        y = torch.tensor(exp_similarities + [-1] * (num_classes - len(paragraphs_embeddings)), dtype=torch.long)
 
         return X, y
 
@@ -110,8 +112,8 @@ for epoch in range(num_epochs):
         optimizer.step()
 
         if (i + 1) % 100 == 0:
-            print ('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'
-                   .format(epoch + 1, num_epochs, i + 1, total_step, loss.item()))
+            print('Epoch [{}/{}], Step [{}/{}], Loss: {:.4f}'
+                  .format(epoch + 1, num_epochs, i + 1, total_step, loss.item()))
 
 # Test the model
 # In test phase, we don't need to compute gradients (for memory efficiency)
