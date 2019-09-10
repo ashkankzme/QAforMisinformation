@@ -1,5 +1,6 @@
 from .utils import get_paragraphs, get_bert_embeddings, cosine_similarity
 import numpy as np
+import json
 
 
 # gets as input a news article, a question and
@@ -50,3 +51,25 @@ def textrank(text, q, exp):
     for i in range(iterations):
         v = scaled_matrix.dot(v)
     return v, paragraphs
+
+
+# takes as input a question id, which
+# is the number of the question its
+# trying to rank data on. We take the
+# cosine similarities of BERT embeddings
+# of paragraphs to the explanation and
+# the questions separately. We then train
+# a simple model that predicts the
+# Writes the rankings of test data
+def rank_train_data_for_question(qid):
+
+    with open('../data/ranking/q{}_train.json'.format(qid)) as train_file:
+        train = json.load(train_file)
+
+    with open('../data/ranking/q{}_test.json'.format(qid)) as test_file:
+        test = json.load(test_file)
+
+    with open('../data/ranking/q{}_dev.json'.format(qid)) as dev_file:
+        test += json.load(dev_file)
+
+

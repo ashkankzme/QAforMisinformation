@@ -28,7 +28,8 @@ for i in range(len(articles)):
     _article = articles[i]
     if 'rating' not in _article or _article['rating'] == -1 or 'criteria' not in _article or len(
             _article['criteria']) < len(news_criteria) or 'original_article' not in _article or _article[
-        'original_article'].isspace() or len(get_paragraphs(_article['original_article'])) > 50:
+        'original_article'].isspace() or len(get_paragraphs(_article['original_article'])) > 50 or len(
+        [1 for p in get_paragraphs(_article['original_article']) if len(p.split()) > 500]) > 0:
         to_be_deleted.append(i)
     elif _article['original_article'] not in original_articles_map:
         original_articles_map[_article['original_article']] = [i]
@@ -62,18 +63,18 @@ for i in range(10):
     seed = i  # for getting the same random results every time
     random.Random(seed).shuffle(qi)
 
-    first_split_idnex = math.floor(0.7 * len(qi))
-    second_split_index = math.floor(0.85 * len(qi))
+    first_split_idnex = math.floor(0.8 * len(qi))
+    second_split_index = math.floor(0.9 * len(qi))
 
     qi_train = qi[:first_split_idnex]
     qi_dev = qi[first_split_idnex:second_split_index]
     qi_test = qi[second_split_index:]
 
-    with open('../data/q{}_train.json'.format(i + 1), 'w') as f:
+    with open('../data/ranking/q{}_train.json'.format(i + 1), 'w') as f:
         f.write(json.dumps(qi_train))
 
-    with open('../data/q{}_dev.json'.format(i + 1), 'w') as f:
+    with open('../data/ranking/q{}_dev.json'.format(i + 1), 'w') as f:
         f.write(json.dumps(qi_dev))
 
-    with open('../data/q{}_test.json'.format(i + 1), 'w') as f:
+    with open('../data/ranking/q{}_test.json'.format(i + 1), 'w') as f:
         f.write(json.dumps(qi_test))

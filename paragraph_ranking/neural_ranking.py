@@ -13,7 +13,7 @@ input_size = (embeddings_size + 1) * 50
 hidden_size = 500
 num_classes = 50
 num_epochs = 5
-batch_size = 1
+batch_size = 10
 learning_rate = 0.001
 
 with open('../data/ranking/q1_train.json') as q1_train_file:
@@ -55,7 +55,7 @@ class Dataset(data.Dataset):
 
         X[embeddings_size * num_classes:] = torch.tensor(q_similarities + [-1] * (num_classes - len(paragraphs_embeddings)))
 
-        y = torch.tensor(exp_similarities + [-1] * (num_classes - len(paragraphs_embeddings)), dtype=torch.long)
+        y = torch.tensor(exp_similarities + [-1] * (num_classes - len(paragraphs_embeddings)))
 
         return X, y
 
@@ -91,7 +91,7 @@ class NeuralNet(nn.Module):
 model = NeuralNet(input_size, hidden_size, num_classes).to(device)
 
 # Loss and optimizer
-criterion = nn.CrossEntropyLoss()
+criterion = nn.MSELoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=learning_rate)
 
 # Train the model
