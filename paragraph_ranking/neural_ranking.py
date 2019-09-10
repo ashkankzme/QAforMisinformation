@@ -2,7 +2,7 @@ import torch, json
 import torch.nn as nn
 from torch.utils import data
 
-from paragraph_ranking import get_paragraph_similarities
+from rank import get_paragraph_similarities
 
 # Device configuration
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
