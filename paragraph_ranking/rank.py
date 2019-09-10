@@ -1,4 +1,4 @@
-from .utils import get_paragraphs, get_bert_embeddings, cosine_similarity
+from utils import get_paragraphs, get_bert_embeddings, cosine_similarity
 import numpy as np
 import json
 
