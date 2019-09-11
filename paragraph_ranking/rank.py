@@ -1,6 +1,9 @@
-from utils import get_paragraphs, get_bert_embeddings, cosine_similarity
-import numpy as np
 import json
+import math
+from random import sample
+
+import numpy as np
+from utils import get_paragraphs, get_bert_embeddings, cosine_similarity
 
 
 # gets as input a news article, a question and
@@ -23,6 +26,21 @@ def get_paragraph_similarities(text, q, exp):
         q_similarities[i] = cosine_similarity(pe, q_embeddings)
 
     return exp_similarities, q_similarities, paragraphs_embeddings, paragraphs
+
+
+# takes as input a paragraph, plus a set of
+# paragraphs and their ranking return a
+# weighted average of the rankings, with the
+# weights being the cosine similarity of
+# the given paragraph and the ranked paragraphs.
+def get_relative_ranking(paragraph, source_paragraphs_embeddings, rankings):
+    paragraph_embedding = get_bert_embeddings(paragraph)
+
+    result = 0
+    for p_embedding, ranking in zip(source_paragraphs_embeddings, rankings):
+        result += cosine_similarity(paragraph_embedding, p_embedding) * ranking
+
+    return result / len(rankings)
 
 
 # gets as input a news article, a question and
@@ -62,7 +80,6 @@ def textrank(text, q, exp):
 # a simple model that predicts the
 # Writes the rankings of test data
 def rank_train_data_for_question(qid):
-
     with open('../data/ranking/q{}_train.json'.format(qid)) as train_file:
         train = json.load(train_file)
 
@@ -72,4 +89,57 @@ def rank_train_data_for_question(qid):
     with open('../data/ranking/q{}_dev.json'.format(qid)) as dev_file:
         test += json.load(dev_file)
 
+    NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE = 3
+    training_rankings = []
+    for article in train:
+        exp_similarities, _, paragraphs_embeddings, paragraphs = get_paragraph_similarities(article['article'],
+                                                                                            article['question'],
+                                                                                            article['explanation'])
 
+        training_rankings.append([paragraphs_embeddings, exp_similarities])
+        sorted_rankings = [x for _, x in sorted(zip(exp_similarities, paragraphs), key=lambda pair: pair[0])]
+
+        new_text = ''
+        for i in range(NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE):
+            new_text += sorted_rankings[-i] + '\n'
+
+        article['article'] = new_text
+
+    for article in test:
+        sampled_training_instances = sample(training_rankings, math.floor(0.1 * len(training_rankings)))
+        paragraphs = get_paragraphs(article['article'])
+
+        paragraph_rankings = []
+
+        for p in paragraphs:
+            ranking = 0
+            for training_paragraph in sampled_training_instances:
+                ranking += get_relative_ranking(p, training_paragraph[0], training_paragraph[1])
+            ranking /= len(sampled_training_instances)
+            paragraph_rankings.append([ranking, p])
+
+        sorted_rankings = [x for _, x in sorted(paragraph_rankings, key=lambda pair: pair[0])]
+        new_text = ''
+        for i in range(NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE):
+            new_text += sorted_rankings[-i] + '\n'
+
+        article['article'] = new_text
+
+    dev, test = test[:math.floor(len(test)/2)], test[math.floor(len(test)/2):]
+
+    with open('../data/question_answering/q{}_train.json'.format(qid), 'w') as f:
+        f.write(json.dumps(train))
+
+    with open('../data/question_answering/q{}_dev.json'.format(qid), 'w') as f:
+        f.write(json.dumps(dev))
+
+    with open('../data/question_answering/q{}_test.json'.format(qid), 'w') as f:
+        f.write(json.dumps(test))
+
+
+def main():
+    for i in range(1, 11):
+        rank_train_data_for_question(i)
+
+if __name__ == "__main__":
+    main()
