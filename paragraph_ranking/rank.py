@@ -96,35 +96,36 @@ def rank_train_data_for_question(qid):
                                                                                             article['question'],
                                                                                             article['explanation'])
 
-        training_rankings.append([paragraphs_embeddings, exp_similarities])
-        sorted_rankings = [x for _, x in sorted(zip(exp_similarities, paragraphs), key=lambda pair: pair[0])]
+        if len(sorted_rankings) > NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE:
+            training_rankings.append([paragraphs_embeddings, exp_similarities])
+            sorted_rankings = [x for _, x in sorted(zip(exp_similarities, paragraphs), key=lambda pair: pair[0])]
 
-        new_text = ''
-        print('pooo' + str(len(sorted_rankings)))
-        for i in range(NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE):
-            new_text += sorted_rankings[-i] + '\n'
+            new_text = ''
+            for i in range(NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE):
+                new_text += sorted_rankings[-i] + '\n'
 
-        article['article'] = new_text
+            article['article'] = new_text
 
     for article in test:
         sampled_training_instances = sample(training_rankings, math.floor(0.1 * len(training_rankings)))
         paragraphs = get_paragraphs(article['article'])
 
-        paragraph_rankings = []
+        if len(paragraphs) > NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE:
+            paragraph_rankings = []
 
-        for p in paragraphs:
-            ranking = 0
-            for training_paragraph in sampled_training_instances:
-                ranking += get_relative_ranking(p, training_paragraph[0], training_paragraph[1])
-            ranking /= len(sampled_training_instances)
-            paragraph_rankings.append([ranking, p])
+            for p in paragraphs:
+                ranking = 0
+                for training_paragraph in sampled_training_instances:
+                    ranking += get_relative_ranking(p, training_paragraph[0], training_paragraph[1])
+                ranking /= len(sampled_training_instances)
+                paragraph_rankings.append([ranking, p])
 
-        sorted_rankings = [x for _, x in sorted(paragraph_rankings, key=lambda pair: pair[0])]
-        new_text = ''
-        for i in range(NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE):
-            new_text += sorted_rankings[-i] + '\n'
+            sorted_rankings = [x for _, x in sorted(paragraph_rankings, key=lambda pair: pair[0])]
+            new_text = ''
+            for i in range(NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE):
+                new_text += sorted_rankings[-i] + '\n'
 
-        article['article'] = new_text
+            article['article'] = new_text
 
     dev, test = test[:math.floor(len(test)/2)], test[math.floor(len(test)/2):]
 
