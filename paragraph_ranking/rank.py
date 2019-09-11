@@ -120,6 +120,7 @@ def rank_train_data_for_question(qid):
 
         sorted_rankings = [x for _, x in sorted(paragraph_rankings, key=lambda pair: pair[0])]
         new_text = ''
+        print(len(sorted_rankings))
         for i in range(NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE):
             new_text += sorted_rankings[-i] + '\n'
 
