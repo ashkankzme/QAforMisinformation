@@ -96,7 +96,7 @@ def rank_train_data_for_question(qid):
                                                                                             article['question'],
                                                                                             article['explanation'])
 
-        if len(sorted_rankings) > NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE:
+        if len(paragraphs) > NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE:
             training_rankings.append([paragraphs_embeddings, exp_similarities])
             sorted_rankings = [x for _, x in sorted(zip(exp_similarities, paragraphs), key=lambda pair: pair[0])]
 
