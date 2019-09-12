@@ -1,8 +1,8 @@
 import json
 import math
 import random
+from paragraph_ranking import get_paragraphs, get_bert_marked_text, tokenizer
 
-from paragraph_ranking import get_paragraphs
 
 with open('../data/news.json') as news_file:
     news = json.load(news_file)
@@ -29,7 +29,7 @@ for i in range(len(articles)):
     if 'rating' not in _article or _article['rating'] == -1 or 'criteria' not in _article or len(
             _article['criteria']) < len(news_criteria) or 'original_article' not in _article or _article[
         'original_article'].isspace() or len(get_paragraphs(_article['original_article'])) > 50 or len(
-        [1 for p in get_paragraphs(_article['original_article']) if len(p.split()) > 500]) > 0:
+        [1 for p in get_paragraphs(_article['original_article']) if len(tokenizer.tokenize(get_bert_marked_text(p))) > 512]) > 0:
         to_be_deleted.append(i)
     elif _article['original_article'] not in original_articles_map:
         original_articles_map[_article['original_article']] = [i]
