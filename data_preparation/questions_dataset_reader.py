@@ -1,5 +1,5 @@
 from allennlp.data.dataset_readers import DatasetReader
-from allennlp.data import Instance
+from allennlp.data.instance import Instance
 from allennlp.data.token_indexers import TokenIndexer
 from allennlp.data.tokenizers import Token
 from allennlp.data.token_indexers import SingleIdTokenIndexer
@@ -8,6 +8,7 @@ from typing import Iterator, List, Dict, Callable
 import json
 
 
+@DatasetReader.register('questions')
 class QuestionsDatasetReader(DatasetReader):
     """
     DatasetReader for Question Asnwering Task
@@ -20,11 +21,10 @@ class QuestionsDatasetReader(DatasetReader):
         self.token_indexers = token_indexers or {"tokens": SingleIdTokenIndexer()}
 
     def text_to_instance(self, tokens: List[Token], label: int = None) -> Instance:
-        sentence_field = TextField(tokens, self.token_indexers)
-        fields = {"tokens": sentence_field}
-
-        label_field = LabelField(label=label)
-        fields["label"] = label_field
+        fields = {
+            'tokens': TextField(tokens, self.token_indexers),
+            'label': LabelField(label=label)
+        }
 
         return Instance(fields)
 
