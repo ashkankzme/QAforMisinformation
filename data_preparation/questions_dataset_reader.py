@@ -5,13 +5,12 @@ from allennlp.data.tokenizers import Token
 from allennlp.data.token_indexers import SingleIdTokenIndexer
 from allennlp.data.fields import TextField, LabelField
 from typing import Iterator, List, Dict, Callable
+import json
 
 
 class QuestionsDatasetReader(DatasetReader):
     """
-    DatasetReader for PoS tagging data, one sentence per line, like
-
-        The###DET dog###NN ate###V the###DET apple###NN
+    DatasetReader for Question Asnwering Task
     """
 
     def __init__(self, tokenizer: Callable[[str], List[str]] = lambda x: x.split(),
@@ -30,8 +29,9 @@ class QuestionsDatasetReader(DatasetReader):
         return Instance(fields)
 
     def _read(self, file_path: str) -> Iterator[Instance]:
-        with open(file_path) as f:
-            for line in f:
-                pairs = line.strip().split()
-                sentence, tags = zip(*(pair.split("###") for pair in pairs))
-                yield self.text_to_instance([Token(word) for word in sentence], tags)
+        with open(file_path) as question_file:
+            articles = json.load(question_file)
+
+        for article in articles:
+            yield self.text_to_instance([Token(x) for x in self.tokenizer(article['article'])],
+                                        article['answer'])
