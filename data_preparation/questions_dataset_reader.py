@@ -5,6 +5,7 @@ from allennlp.data.tokenizers import Token
 from allennlp.data.token_indexers import SingleIdTokenIndexer
 from allennlp.data.fields import TextField, LabelField
 from typing import Iterator, List, Dict, Callable
+from allennlp.data.tokenizers import WordTokenizer
 import json
 
 
@@ -17,7 +18,7 @@ class QuestionsDatasetReader(DatasetReader):
     def __init__(self, tokenizer: Callable[[str], List[str]] = lambda x: x.split(),
                  token_indexers: Dict[str, TokenIndexer] = None, lazy=False) -> None:
         super().__init__(lazy)
-        self.tokenizer = tokenizer
+        self.tokenizer = tokenizer or WordTokenizer()
         self.token_indexers = token_indexers or {"tokens": SingleIdTokenIndexer()}
 
     def text_to_instance(self, tokens: List[Token], label: int = None) -> Instance:
@@ -33,5 +34,5 @@ class QuestionsDatasetReader(DatasetReader):
             articles = json.load(question_file)
 
         for article in articles:
-            yield self.text_to_instance([Token(x) for x in self.tokenizer(article['article'])],
+            yield self.text_to_instance([Token(x) for x in self.tokenizer.tokenize(article['article'])],
                                         article['answer'])
