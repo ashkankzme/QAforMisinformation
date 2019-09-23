@@ -23,7 +23,7 @@ class QuestionsDatasetReader(DatasetReader):
     def text_to_instance(self, tokens: List[Token], label: int = None) -> Instance:
         fields = {
             'tokens': TextField(tokens, self.token_indexers),
-            'label': LabelField(label=label)
+            'label': LabelField(label=label, skip_indexing=True)
         }
 
         return Instance(fields)
