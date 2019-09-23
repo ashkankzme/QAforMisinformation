@@ -1,11 +1,10 @@
 from allennlp.data.dataset_readers import DatasetReader
 from allennlp.data.instance import Instance
 from allennlp.data.token_indexers import TokenIndexer
-from allennlp.data.tokenizers import Token
+from allennlp.data.tokenizers import Token, WordTokenizer, Tokenizer
 from allennlp.data.token_indexers import SingleIdTokenIndexer
 from allennlp.data.fields import TextField, LabelField
-from typing import Iterator, List, Dict, Callable
-from allennlp.data.tokenizers import WordTokenizer
+from typing import Iterator, List, Dict, Optional
 import json
 
 
@@ -15,7 +14,7 @@ class QuestionsDatasetReader(DatasetReader):
     DatasetReader for Question Asnwering Task
     """
 
-    def __init__(self, tokenizer: Callable[[str], List[str]] = lambda x: x.split(),
+    def __init__(self, tokenizer: Optional[Tokenizer] = None,
                  token_indexers: Dict[str, TokenIndexer] = None, lazy=False) -> None:
         super().__init__(lazy)
         self.tokenizer = tokenizer or WordTokenizer()
