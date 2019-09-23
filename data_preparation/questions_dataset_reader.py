@@ -33,5 +33,5 @@ class QuestionsDatasetReader(DatasetReader):
             articles = json.load(question_file)
 
         for article in articles:
-            yield self.text_to_instance([Token(x) for x in self.tokenizer.tokenize(article['article'])],
+            yield self.text_to_instance([x for x in self.tokenizer.tokenize(article['article'])],
                                         article['answer'])
