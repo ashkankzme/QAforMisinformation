@@ -28,25 +28,28 @@ print("Data loading completed.")
 
 to_be_deleted = []
 for i, a in enumerate(train_set):
-    if len(a['article'].split()) > 4000:
+    if len(a['article'].split()) > 1000:
        to_be_deleted.append(i)
 
+print(len(to_be_deleted))
 for i in reversed(to_be_deleted):
     del(train_set[i])
 
 to_be_deleted = []
 for i, a in enumerate(dev_set):
-    if len(a['article'].split()) > 4000:
+    if len(a['article'].split()) > 1000:
        to_be_deleted.append(i)
 
+print(len(to_be_deleted))
 for i in reversed(to_be_deleted):
     del(dev_set[i])
 
 to_be_deleted = []
 for i, a in enumerate(test_set):
-    if len(a['article'].split()) > 4000:
+    if len(a['article'].split()) > 1000:
        to_be_deleted.append(i)
 
+print(len(to_be_deleted))
 for i in reversed(to_be_deleted):
     del(test_set[i])
 
