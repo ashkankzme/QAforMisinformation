@@ -148,6 +148,10 @@ validation_dataloader = DataLoader(validation_data, sampler=validation_sampler, 
 # Load XLNEtForSequenceClassification, the pretrained XLNet model with a single linear classification layer on top.
 
 model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=3)
+if n_gpu > 1:
+  print("Let's use", torch.cuda.device_count(), "GPUs!")
+  # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
+  model = torch.nn.DataParallel(model)
 model.cuda()
 
 param_optimizer = list(model.named_parameters())
