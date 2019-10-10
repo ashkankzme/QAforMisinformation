@@ -282,8 +282,8 @@ for batch in prediction_dataloader:
     label_ids = b_labels.to('cpu').numpy()
 
     # Store predictions and true labels
-    predictions.append(logits)
-    true_labels.append(label_ids)
+    predictions.append(logits.mean())
+    true_labels.append(label_ids.mean())
 
 print(predictions)
 print(true_labels)
