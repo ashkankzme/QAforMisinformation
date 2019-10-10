@@ -175,7 +175,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 4
+epochs = 1
 
 # trange is a tqdm wrapper around the normal python range
 for _ in trange(epochs, desc="Epoch"):
@@ -278,7 +278,7 @@ for batch in prediction_dataloader:
         logits = outputs[0]
 
     # Move logits and labels to CPU
-    logits = logits.detach().cpu().numpy()
+    logits = logits.mean().detach().cpu().numpy()
     label_ids = b_labels.to('cpu').numpy()
 
     # Store predictions and true labels
