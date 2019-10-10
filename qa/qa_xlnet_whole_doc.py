@@ -174,9 +174,6 @@ def flat_accuracy(preds, labels):
     return np.sum(pred_flat == labels_flat) / len(labels_flat)
 
 
-# Store our loss and accuracy for plotting
-train_loss_set = []
-
 # Number of training epochs (authors recommend between 2 and 4)
 epochs = 4
 
@@ -202,10 +199,8 @@ for _ in trange(epochs, desc="Epoch"):
         optimizer.zero_grad()
         # Forward pass
         outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask, labels=b_labels)
-        print(outputs)
         loss = outputs[0]
         logits = outputs[1]
-        train_loss_set.append(loss.item())
         # Backward pass
         loss.backward()
         # Update parameters and take a step using the computed gradient
