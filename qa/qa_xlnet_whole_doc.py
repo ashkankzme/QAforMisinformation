@@ -26,32 +26,32 @@ with open('../data/question_answering/q1_test.json') as test_file:
 
 print("Data loading completed.")
 
-to_be_deleted = []
-for i, a in enumerate(train_set):
-    if len(a['article'].split()) > 300:
-       to_be_deleted.append(i)
-
-print(len(to_be_deleted))
-for i in reversed(to_be_deleted):
-    del(train_set[i])
-
-to_be_deleted = []
-for i, a in enumerate(dev_set):
-    if len(a['article'].split()) > 300:
-       to_be_deleted.append(i)
-
-print(len(to_be_deleted))
-for i in reversed(to_be_deleted):
-    del(dev_set[i])
-
-to_be_deleted = []
-for i, a in enumerate(test_set):
-    if len(a['article'].split()) > 300:
-       to_be_deleted.append(i)
-
-print(len(to_be_deleted))
-for i in reversed(to_be_deleted):
-    del(test_set[i])
+# to_be_deleted = []
+# for i, a in enumerate(train_set):
+#     if len(a['article'].split()) > 300:
+#        to_be_deleted.append(i)
+#
+# print(len(to_be_deleted))
+# for i in reversed(to_be_deleted):
+#     del(train_set[i])
+#
+# to_be_deleted = []
+# for i, a in enumerate(dev_set):
+#     if len(a['article'].split()) > 300:
+#        to_be_deleted.append(i)
+#
+# print(len(to_be_deleted))
+# for i in reversed(to_be_deleted):
+#     del(dev_set[i])
+#
+# to_be_deleted = []
+# for i, a in enumerate(test_set):
+#     if len(a['article'].split()) > 300:
+#        to_be_deleted.append(i)
+#
+# print(len(to_be_deleted))
+# for i in reversed(to_be_deleted):
+#     del(test_set[i])
 
 # Create sentence and label lists
 sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
@@ -71,12 +71,12 @@ print ("Tokenize the first sentence:")
 print (tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
-MAX_LEN = -1
+MAX_LEN = 256
 average_len = 0
 for tokens in tokenized_texts_train + tokenized_texts_dev + tokenized_texts_test:
     average_len += len(tokens)
-    if len(tokens) > MAX_LEN:
-        MAX_LEN = len(tokens)
+    # if len(tokens) > MAX_LEN:
+    #     MAX_LEN = len(tokens)
 
 average_len /= len(tokenized_texts_train + tokenized_texts_dev + tokenized_texts_test)
 
