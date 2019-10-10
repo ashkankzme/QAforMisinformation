@@ -278,12 +278,14 @@ for batch in prediction_dataloader:
         logits = outputs[0]
 
     # Move logits and labels to CPU
-    logits = logits.mean().detach().cpu().numpy()
+    logits = logits.detach().cpu().numpy()
     label_ids = b_labels.to('cpu').numpy()
 
     # Store predictions and true labels
     predictions.append(logits)
     true_labels.append(label_ids)
 
+print(predictions)
+print(true_labels)
 print("Test accuracy is: {}".format(flat_accuracy(true_labels, predictions)))
 print("F1 macro score is: {}".format(f1_score(true_labels, predictions, average='macro')))
