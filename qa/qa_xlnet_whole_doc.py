@@ -207,7 +207,7 @@ for _ in trange(epochs, desc="Epoch"):
         optimizer.step()
 
         # Update tracking variables
-        tr_loss += loss.item()
+        tr_loss += loss.mean().item()
         nb_tr_examples += b_input_ids.size(0)
         nb_tr_steps += 1
 
