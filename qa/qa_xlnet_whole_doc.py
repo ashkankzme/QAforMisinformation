@@ -28,7 +28,7 @@ print("Data loading completed.")
 
 to_be_deleted = []
 for i, a in enumerate(train_set):
-    if len(a['article'].split()) > 700:
+    if len(a['article'].split()) > 400:
        to_be_deleted.append(i)
 
 print(len(to_be_deleted))
@@ -37,7 +37,7 @@ for i in reversed(to_be_deleted):
 
 to_be_deleted = []
 for i, a in enumerate(dev_set):
-    if len(a['article'].split()) > 700:
+    if len(a['article'].split()) > 400:
        to_be_deleted.append(i)
 
 print(len(to_be_deleted))
@@ -46,7 +46,7 @@ for i in reversed(to_be_deleted):
 
 to_be_deleted = []
 for i, a in enumerate(test_set):
-    if len(a['article'].split()) > 700:
+    if len(a['article'].split()) > 400:
        to_be_deleted.append(i)
 
 print(len(to_be_deleted))
@@ -62,7 +62,7 @@ labels_train = [article['answer'] for article in train_set]
 labels_dev = [article['answer'] for article in dev_set]
 labels_test = [article['answer'] for article in test_set]
 
-tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-uncased', do_lower_case=True)
+tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=True)
 
 tokenized_texts_train = [tokenizer.tokenize(sent) for sent in sentences_train]
 tokenized_texts_dev = [tokenizer.tokenize(sent) for sent in sentences_dev]
