@@ -202,7 +202,7 @@ for _ in trange(epochs, desc="Epoch"):
         loss = outputs[0]
         logits = outputs[1]
         # Backward pass
-        loss.backward()
+        loss.sum().backward()
         # Update parameters and take a step using the computed gradient
         optimizer.step()
 
