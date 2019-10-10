@@ -62,7 +62,7 @@ labels_train = [article['answer'] for article in train_set]
 labels_dev = [article['answer'] for article in dev_set]
 labels_test = [article['answer'] for article in test_set]
 
-tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
+tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-uncased', do_lower_case=True)
 
 tokenized_texts_train = [tokenizer.tokenize(sent) for sent in sentences_train]
 tokenized_texts_dev = [tokenizer.tokenize(sent) for sent in sentences_dev]
