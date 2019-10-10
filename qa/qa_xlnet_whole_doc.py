@@ -202,6 +202,7 @@ for _ in trange(epochs, desc="Epoch"):
         optimizer.zero_grad()
         # Forward pass
         outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask, labels=b_labels)
+        print(outputs)
         loss = outputs[0]
         logits = outputs[1]
         train_loss_set.append(loss.item())
