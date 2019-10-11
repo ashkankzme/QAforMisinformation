@@ -18,10 +18,10 @@ print("Loading data...")
 with open('../data/question_answering_gold_standard/q1_train.json') as train_file:
     train_set = json.load(train_file)
 
-with open('../data/question_answering_gold_standard/q1_test.json') as dev_file:
+with open('../data/question_answering_gold_standard/q1_dev.json') as dev_file:
     dev_set = json.load(dev_file)
 
-with open('../data/question_answering_gold_standard/q1_dev.json') as test_file:
+with open('../data/question_answering_gold_standard/q1_test.json') as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
@@ -138,7 +138,7 @@ optimizer_grouped_parameters = [
 
 # This variable contains all of the hyperparemeter information our training loop needs
 optimizer = AdamW(optimizer_grouped_parameters,
-                     lr=2e-5)
+                     lr=2e-4)
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
