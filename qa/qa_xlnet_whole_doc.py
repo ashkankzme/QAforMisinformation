@@ -44,7 +44,7 @@ print ("Tokenize the first sentence:")
 print (tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
-MAX_LEN = 256
+MAX_LEN = 384
 average_len = 0
 for tokens in tokenized_texts_train + tokenized_texts_dev + tokenized_texts_test:
     average_len += len(tokens)
@@ -105,7 +105,7 @@ train_masks = torch.tensor(train_masks)
 validation_masks = torch.tensor(validation_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 32
+batch_size = 1
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
@@ -138,7 +138,7 @@ optimizer_grouped_parameters = [
 
 # This variable contains all of the hyperparemeter information our training loop needs
 optimizer = AdamW(optimizer_grouped_parameters,
-                     lr=2e-5)
+                     lr=2e-4)
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
@@ -224,7 +224,7 @@ prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
 prediction_labels = torch.tensor(labels_test)
 
-batch_size = 32
+batch_size = 1
 
 prediction_data = TensorDataset(prediction_inputs, prediction_masks, prediction_labels)
 prediction_sampler = SequentialSampler(prediction_data)
@@ -269,3 +269,4 @@ print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 # print(true_labels)
 # print("Test accuracy is: {}".format(flat_accuracy(true_labels, predictions)))
 # print("F1 macro score is: {}".format(f1_score(true_labels, predictions, average='macro')))
+
