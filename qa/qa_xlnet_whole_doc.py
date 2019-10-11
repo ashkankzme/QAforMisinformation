@@ -175,7 +175,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 4
+epochs = 1
 
 # trange is a tqdm wrapper around the normal python range
 for _ in trange(epochs, desc="Epoch"):
@@ -266,6 +266,7 @@ model.eval()
 predictions, true_labels = [], []
 
 # Predict
+eval_accuracy, nb_eval_examples = 0, 0
 for batch in prediction_dataloader:
     # Add batch to GPU
     batch = tuple(t.to(device) for t in batch)
@@ -281,11 +282,18 @@ for batch in prediction_dataloader:
     logits = logits.detach().cpu().numpy()
     label_ids = b_labels.to('cpu').numpy()
 
-    # Store predictions and true labels
-    predictions.append(logits.mean())
-    true_labels.append(label_ids.mean())
+    tmp_eval_accuracy = flat_accuracy(logits, label_ids)
 
-print(predictions)
-print(true_labels)
-print("Test accuracy is: {}".format(flat_accuracy(true_labels, predictions)))
-print("F1 macro score is: {}".format(f1_score(true_labels, predictions, average='macro')))
+    eval_accuracy += tmp_eval_accuracy
+    nb_eval_steps += 1
+
+print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
+
+# # Store predictions and true labels TODO has error
+    # predictions.append(logits.mean())
+    # true_labels.append(label_ids.mean())
+
+# print(predictions)
+# print(true_labels)
+# print("Test accuracy is: {}".format(flat_accuracy(true_labels, predictions)))
+# print("F1 macro score is: {}".format(f1_score(true_labels, predictions, average='macro')))
