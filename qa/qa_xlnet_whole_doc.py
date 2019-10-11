@@ -18,40 +18,13 @@ print("Loading data...")
 with open('../data/question_answering_gold_standard/q1_train.json') as train_file:
     train_set = json.load(train_file)
 
-with open('../data/question_answering_gold_standard/q1_dev.json') as dev_file:
+with open('../data/question_answering_gold_standard/q1_test.json') as dev_file:
     dev_set = json.load(dev_file)
 
-with open('../data/question_answering_gold_standard/q1_test.json') as test_file:
+with open('../data/question_answering_gold_standard/q1_dev.json') as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
-
-# to_be_deleted = []
-# for i, a in enumerate(train_set):
-#     if len(a['article'].split()) > 300:
-#        to_be_deleted.append(i)
-#
-# print(len(to_be_deleted))
-# for i in reversed(to_be_deleted):
-#     del(train_set[i])
-#
-# to_be_deleted = []
-# for i, a in enumerate(dev_set):
-#     if len(a['article'].split()) > 300:
-#        to_be_deleted.append(i)
-#
-# print(len(to_be_deleted))
-# for i in reversed(to_be_deleted):
-#     del(dev_set[i])
-#
-# to_be_deleted = []
-# for i, a in enumerate(test_set):
-#     if len(a['article'].split()) > 300:
-#        to_be_deleted.append(i)
-#
-# print(len(to_be_deleted))
-# for i in reversed(to_be_deleted):
-#     del(test_set[i])
 
 # Create sentence and label lists
 sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
