@@ -138,7 +138,7 @@ optimizer_grouped_parameters = [
 
 # This variable contains all of the hyperparemeter information our training loop needs
 optimizer = AdamW(optimizer_grouped_parameters,
-                     lr=2e-4)
+                     lr=2e-5)
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
