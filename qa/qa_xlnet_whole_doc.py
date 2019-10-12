@@ -225,7 +225,7 @@ prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
 prediction_labels = torch.tensor(labels_test)
 
-# batch_size = 1
+batch_size = 1
 
 prediction_data = TensorDataset(prediction_inputs, prediction_masks, prediction_labels)
 prediction_sampler = SequentialSampler(prediction_data)
@@ -240,7 +240,7 @@ model.eval()
 predictions, true_labels = [], []
 
 # Predict
-eval_accuracy, nb_eval_examples = 0, 0
+eval_accuracy, nb_eval_steps = 0, 0
 for batch in prediction_dataloader:
     # Add batch to GPU
     batch = tuple(t.to(device) for t in batch)
@@ -255,6 +255,7 @@ for batch in prediction_dataloader:
     # Move logits and labels to CPU
     logits = logits.detach().cpu().numpy()
     label_ids = b_labels.to('cpu').numpy()
+
     tmp_eval_accuracy = flat_accuracy(logits, label_ids)
 
     eval_accuracy += tmp_eval_accuracy
