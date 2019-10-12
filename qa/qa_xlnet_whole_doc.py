@@ -225,13 +225,9 @@ prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
 prediction_labels = torch.tensor(labels_test)
 
-# batch_size = 1
-
 prediction_data = TensorDataset(prediction_inputs, prediction_masks, prediction_labels)
 prediction_sampler = SequentialSampler(prediction_data)
 prediction_dataloader = DataLoader(prediction_data, sampler=prediction_sampler, batch_size=batch_size)
-
-# Prediction on test set
 
 # Put model in evaluation mode
 model.eval()
@@ -265,14 +261,3 @@ for batch in prediction_dataloader:
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
-
-# # Store predictions and true labels TODO has error
-    # predictions.append(logits.mean())
-    # true_labels.append(label_ids.mean())
-
-# print(predictions)
-# print(true_labels)
-# print("Test accuracy is: {}".format(flat_accuracy(true_labels, predictions)))
-# print("F1 macro score is: {}".format(f1_score(true_labels, predictions, average='macro')))
-
-
