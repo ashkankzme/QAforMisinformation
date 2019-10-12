@@ -270,3 +270,4 @@ print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 # print("Test accuracy is: {}".format(flat_accuracy(true_labels, predictions)))
 # print("F1 macro score is: {}".format(f1_score(true_labels, predictions, average='macro')))
 
+
