@@ -44,16 +44,17 @@ print ("Tokenize the first sentence:")
 print (tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
-MAX_LEN = 290
+MAX_LEN = 280
 average_len = 0
+reduced_inputs = 0
 for tokens in tokenized_texts_train + tokenized_texts_dev + tokenized_texts_test:
     average_len += len(tokens)
-    # if len(tokens) > MAX_LEN:
-    #     MAX_LEN = len(tokens)
+    if len(tokens) > MAX_LEN:
+        reduced_inputs += 1
 
 average_len /= len(tokenized_texts_train + tokenized_texts_dev + tokenized_texts_test)
 
-print("MAX_LEN is: {}".format(MAX_LEN))
+print("reduced input is: {}".format(reduced_inputs))
 print("average_len is: {}".format(average_len))
 
 # Use the XLNet tokenizer to convert the tokens to their index numbers in the XLNet vocabulary
