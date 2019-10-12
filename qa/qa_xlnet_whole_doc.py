@@ -264,6 +264,8 @@ for batch in prediction_dataloader:
     true_labels.append(label_ids.flatten())
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
+print(true_labels)
+print(predictions)
 print("F1 Macro: {}".format(f1_score(true_labels, predictions)))
 
 # # Store predictions and true labels TODO has error
