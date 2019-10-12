@@ -44,7 +44,7 @@ print ("Tokenize the first sentence:")
 print (tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
-MAX_LEN = 280
+MAX_LEN = 352
 average_len = 0
 reduced_inputs = 0
 for tokens in tokenized_texts_train + tokenized_texts_dev + tokenized_texts_test:
@@ -106,7 +106,7 @@ train_masks = torch.tensor(train_masks)
 validation_masks = torch.tensor(validation_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 32
+batch_size = 24
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
@@ -149,7 +149,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 15
+epochs = 20
 
 # trange is a tqdm wrapper around the normal python range
 for _ in trange(epochs, desc="Epoch"):
