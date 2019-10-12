@@ -149,7 +149,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 1
+epochs = 35
 
 # trange is a tqdm wrapper around the normal python range
 for _ in trange(epochs, desc="Epoch"):
@@ -264,9 +264,7 @@ for batch in prediction_dataloader:
     true_labels += [a for a in label_ids.flatten()]
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
-print(true_labels)
-print(predictions)
-print("F1 Macro: {}".format(f1_score(true_labels, predictions)))
+print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
 
 # # Store predictions and true labels TODO has error
     # predictions.append(logits.mean())
