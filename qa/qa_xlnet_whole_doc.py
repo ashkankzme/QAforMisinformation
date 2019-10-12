@@ -260,8 +260,8 @@ for batch in prediction_dataloader:
 
     eval_accuracy += tmp_eval_accuracy
     nb_eval_steps += 1
-    predictions.append(np.argmax(logits, axis=1).flatten())
-    true_labels.append(label_ids.flatten())
+    predictions += np.argmax(logits, axis=1).flatten()
+    true_labels += label_ids.flatten()
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 print(true_labels)
