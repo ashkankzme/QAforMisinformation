@@ -3,7 +3,7 @@ import math
 from random import sample
 
 import numpy as np
-from utils import get_paragraphs, get_bert_embeddings, cosine_similarity
+from utils import get_paragraphs, get_sentences, get_bert_embeddings, cosine_similarity
 
 
 # gets as input a news article, a question and
@@ -15,7 +15,7 @@ def get_paragraph_similarities(text, q, exp):
     exp_embeddings = get_bert_embeddings(exp.strip())
     q_embeddings = get_bert_embeddings(q.strip())
 
-    paragraphs = get_paragraphs(text)
+    paragraphs = get_sentences(text)
     paragraphs_embeddings = [get_bert_embeddings(p) for p in paragraphs]
 
     # calculate cosine similarities between articles paragraphs and explanations or questions
@@ -104,13 +104,13 @@ def rank_train_data_for_question(qid):
 
             article['article'] = new_text
 
-    with open('../data/question_answering_gold_standard/q{}_train.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained/q{}_train.json'.format(qid), 'w') as f:
         f.write(json.dumps(train))
 
-    with open('../data/question_answering_gold_standard/q{}_dev.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained/q{}_dev.json'.format(qid), 'w') as f:
         f.write(json.dumps(dev))
 
-    with open('../data/question_answering_gold_standard/q{}_test.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained/q{}_test.json'.format(qid), 'w') as f:
         f.write(json.dumps(test))
 
 

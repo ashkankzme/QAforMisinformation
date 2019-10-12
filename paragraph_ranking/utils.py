@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 from pytorch_transformers import BertTokenizer, BertModel, BertForMaskedLM
 import logging
+import nltk
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -50,3 +51,12 @@ def get_paragraphs(text):
     paragraphs = text.split('\n')
     paragraphs = [p for p in paragraphs if p and not p.isspace()]
     return paragraphs
+
+
+# gets as input a body of text, including
+# \n separated paragraphs. Outputs sentences
+# detected in text in a list of strings.
+def get_sentences(text):
+    sentences = nltk.sent_tokenize(text)
+    sentences = [s for s in sentences if s and not s.isspace()]
+    return sentences
