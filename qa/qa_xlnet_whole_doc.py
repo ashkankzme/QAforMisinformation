@@ -149,7 +149,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 35
+epochs = 1
 
 # trange is a tqdm wrapper around the normal python range
 for _ in trange(epochs, desc="Epoch"):
@@ -225,7 +225,7 @@ prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
 prediction_labels = torch.tensor(labels_test)
 
-batch_size = 1
+# batch_size = 1
 
 prediction_data = TensorDataset(prediction_inputs, prediction_masks, prediction_labels)
 prediction_sampler = SequentialSampler(prediction_data)
@@ -260,8 +260,11 @@ for batch in prediction_dataloader:
 
     eval_accuracy += tmp_eval_accuracy
     nb_eval_steps += 1
+    predictions.append(np.argmax(logits, axis=1).flatten())
+    true_labels.append(label_ids.flatten())
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
+print("F1 Macro: {}".format(f1_score(true_labels, predictions)))
 
 # # Store predictions and true labels TODO has error
     # predictions.append(logits.mean())
