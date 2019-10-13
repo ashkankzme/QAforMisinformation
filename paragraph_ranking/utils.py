@@ -60,11 +60,10 @@ def get_bert_embeddings(a):
 def get_xlnet_embeddings(a):
     marked_text = get_xlnet_marked_text(a)
     input_ids = torch.tensor(tokenizer.encode(marked_text)).unsqueeze(0)
-    print('input ids len: ')
-    print(input_ids)
     with torch.no_grad():
         outputs = model(input_ids)
 
+    print(outputs[0].shape)
     return outputs[0][-1]  # the last layer of first batch for the last token, [CLS]
 
 
