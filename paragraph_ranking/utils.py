@@ -22,6 +22,8 @@ model.to(device)
 # and returns the cosine similarity
 # between them.
 def cosine_similarity(a, b):
+    print(len(a))
+    print(len(a[0]))
     print(a)
     return torch.dot(a, b) / (torch.norm(a) * torch.norm(b))
 
