@@ -60,9 +60,7 @@ def get_xlnet_embeddings(a):
     with torch.no_grad():
         outputs = model(input_ids)
 
-    print(outputs)
-    print(outputs[-1])
-    return outputs[-1][-1]  # the last layer of first batch for the last token, [CLS]
+    return outputs[0][-1]  # the last layer of first batch for the last token, [CLS]
 
 
 # gets as input a body of text, including
