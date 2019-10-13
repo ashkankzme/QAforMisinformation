@@ -61,7 +61,7 @@ def get_xlnet_embeddings(a):
     marked_text = get_xlnet_marked_text(a)
     input_ids = torch.tensor(tokenizer.encode(marked_text)).unsqueeze(0)
     print('input ids len: ')
-    print(len(input_ids))
+    print(input_ids)
     with torch.no_grad():
         outputs = model(input_ids)
 
