@@ -22,9 +22,6 @@ model.to(device)
 # and returns the cosine similarity
 # between them.
 def cosine_similarity(a, b):
-    print(len(a))
-    print(len(a[0]))
-    print(a)
     return torch.dot(a, b) / (torch.norm(a) * torch.norm(b))
 
 
@@ -63,8 +60,7 @@ def get_xlnet_embeddings(a):
     with torch.no_grad():
         outputs = model(input_ids)
 
-    print(outputs[0].shape)
-    return outputs[0][-1]  # the last layer of first batch for the last token, [CLS]
+    return outputs[0][0][-1]  # the last layer of first batch for the last token, [CLS]
 
 
 # gets as input a body of text, including
