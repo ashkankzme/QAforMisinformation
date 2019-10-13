@@ -1,13 +1,15 @@
 import torch
 import torch.nn as nn
-from pytorch_transformers import BertTokenizer, BertModel, BertForMaskedLM
+from pytorch_transformers import BertTokenizer, BertModel
 import logging
 import nltk
 
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
-model = BertModel.from_pretrained('bert-base-uncased')
+# tokenizer = BertTokenizer.from_pretrained('xlnet-base-cased')
+# model = BertModel.from_pretrained('xlnet-base-cased')
+tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased')
+model = XLNetModel.from_pretrained('xlnet-base-cased')
 if torch.cuda.device_count() > 1:
   print("Let's use", torch.cuda.device_count(), "GPUs!")
   # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
@@ -28,9 +30,14 @@ def cosine_similarity(a, b):
 def get_bert_marked_text(a):
     return '[CLS] ' + a + ' [SEP]'
 
+# returns the marked text for XLNet
+# use, using the one sentence model
+def get_xlnet_marked_text(a):
+    return a + " [SEP] [CLS]"
+
 
 # returns BERT embeddings of [CLS]
-# (the average of last 4 layers)
+# (the last layer)
 # for the input text.
 def get_bert_embeddings(a):
     marked_text = get_bert_marked_text(a)
@@ -42,6 +49,17 @@ def get_bert_embeddings(a):
     with torch.no_grad():
         encoded_layers, _ = model(tokens_tensor, segments_tensors)
     return encoded_layers[-1][0]  # the last layer of first batch for first token, [CLS]
+
+
+# returns XLNet embeddings of [CLS]
+# (the last layer)
+# for the input text.
+def get_xlnet_embeddings(a):
+    marked_text = get_xlnet_marked_text(a)
+    input_ids = torch.tensor(tokenizer.encode(marked_text)).unsqueeze(0)
+    with torch.no_grad():
+        outputs = model(input_ids)
+    return outputs[-1][-1]  # the last layer of first batch for the last token, [CLS]
 
 
 # gets as input a body of text, including
