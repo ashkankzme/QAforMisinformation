@@ -89,7 +89,7 @@ def rank_train_data_for_question(qid):
     with open('../data/ranking/q{}_dev.json'.format(qid)) as dev_file:
         dev = json.load(dev_file)
 
-    NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE = 3
+    NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE = 5
     for article in train + dev + test:
         exp_similarities, _, paragraphs_embeddings, paragraphs = get_similarities(article['article'],
                                                                                   article['question'],
