@@ -17,6 +17,7 @@ def get_similarities(text, q, exp):
 
     texts = get_sentences(text)
     texts_embeddings = [get_xlnet_embeddings(p) for p in texts]
+    print(texts_embeddings)
 
     # calculate cosine similarities between articles paragraphs and explanations or questions
     exp_similarities = [0] * len(texts)
