@@ -12,8 +12,8 @@ from utils import get_paragraphs, get_sentences, get_bert_embeddings, cosine_sim
 # BERT embeddings to the explanation and the
 # question.
 def get_similarities(text, q, exp):
-    exp_embeddings = get_bert_embeddings(exp.strip())
-    q_embeddings = get_bert_embeddings(q.strip())
+    exp_embeddings = get_xlnet_embeddings(exp.strip())
+    q_embeddings = get_xlnet_embeddings(q.strip())
 
     texts = get_sentences(text)
     texts_embeddings = [get_xlnet_embeddings(p) for p in texts]
