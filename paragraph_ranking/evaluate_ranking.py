@@ -4,6 +4,7 @@ import re, json
 # in the input text as a list.
 def get_text_between_qoutations(text):
     matches = re.findall(r'\"(.+?)\"', text)
+    matches += re.findall(r'\“(.+?)\”', text)
     # matches is now ['String 1', 'String 2', 'String3']
     return matches
 
@@ -33,13 +34,13 @@ def get_ranking_recall(articles):
 
 def main():
     for qid in range(1, 11):
-        with open('../data/question_answering_gold_standard/q{}_train.json'.format(qid)) as train_file:
+        with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_train.json'.format(qid)) as train_file:
             articles = json.load(train_file)
 
-        with open('../data/question_answering_gold_standard/q{}_test.json'.format(qid)) as test_file:
+        with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_test.json'.format(qid)) as test_file:
             articles += json.load(test_file)
 
-        with open('../data/question_answering_gold_standard/q{}_dev.json'.format(qid)) as dev_file:
+        with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_dev.json'.format(qid)) as dev_file:
             articles += json.load(dev_file)
 
         found, total = get_ranking_recall(articles)
