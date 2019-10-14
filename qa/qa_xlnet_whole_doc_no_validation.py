@@ -3,8 +3,8 @@ from torch.utils.data import TensorDataset, DataLoader, RandomSampler, Sequentia
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score
 
-from pytorch_transformers import XLNetModel, XLNetTokenizer, XLNetForSequenceClassification
-from pytorch_transformers import AdamW
+from transformers import XLNetModel, XLNetTokenizer, XLNetForSequenceClassification
+from transformers import AdamW
 
 from tqdm import tqdm, trange
 import numpy as np

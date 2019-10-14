@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from pytorch_transformers import BertTokenizer, BertModel, XLNetModel, XLNetTokenizer
+from transformers import BertTokenizer, BertModel, XLNetModel, XLNetTokenizer
 import logging
 import nltk
 
