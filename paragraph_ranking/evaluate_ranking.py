@@ -1,4 +1,4 @@
-import re
+import re, json
 
 # returns all the text between qoutations
 # in the input text as a list.
@@ -22,26 +22,28 @@ def get_ranking_recall(articles):
 
     found = 0
     for a in selected_articles:
-        qoutes = get_text_between_qoutations(a['explanation'])
+        qoutes = [q.lower().strip() for q in get_text_between_qoutations(a['explanation'])]
         for qoute in qoutes:
-            if qoute in a['article']:
+            if qoute in a['article'].lower().strip():
                 found += 1
                 break
 
-    return found/len(selected_articles)
+    return found, len(selected_articles)
 
 
 def main():
-    for i in range(1, 11):
-        with open('../data/ranking/q{}_train.json'.format(qid)) as train_file:
-            train = json.load(train_file)
+    for qid in range(1, 11):
+        with open('../data/question_answering_gold_standard/q{}_train.json'.format(qid)) as train_file:
+            articles = json.load(train_file)
 
-        with open('../data/ranking/q{}_test.json'.format(qid)) as test_file:
-            test = json.load(test_file)
+        with open('../data/question_answering_gold_standard/q{}_test.json'.format(qid)) as test_file:
+            articles += json.load(test_file)
 
-        with open('../data/ranking/q{}_dev.json'.format(qid)) as dev_file:
-            dev = json.load(dev_file)
-        get_ranking_recall(i)
+        with open('../data/question_answering_gold_standard/q{}_dev.json'.format(qid)) as dev_file:
+            articles += json.load(dev_file)
+
+        found, total = get_ranking_recall(articles)
+        print('found: {}, total: {}, percentage: {}'.format(found, total, found/total))
 
 if __name__ == "__main__":
     main()
