@@ -9,14 +9,14 @@ from utils import get_paragraphs, get_sentences, get_bert_embeddings, cosine_sim
 # gets as input a news article, a question and
 # the explanation for the questions answer.
 # ranks them by their similarities of their
-# BERT embeddings to the explanation and the
-# question.
+# XLNet or BERT embeddings to the explanation
+# and the question.
 def get_similarities(text, q, exp):
-    exp_embeddings = get_xlnet_embeddings(exp.strip())
-    q_embeddings = get_xlnet_embeddings(q.strip())
+    exp_embeddings = get_bert_embeddings(exp.strip())
+    q_embeddings = get_bert_embeddings(q.strip())
 
     texts = get_sentences(text)
-    texts_embeddings = [get_xlnet_embeddings(p) for p in texts]
+    texts_embeddings = [get_bert_embeddings(p) for p in texts]
 
     # calculate cosine similarities between articles paragraphs and explanations or questions
     exp_similarities = [0] * len(texts)
@@ -104,13 +104,13 @@ def rank_train_data_for_question(qid):
 
             article['article'] = new_text
 
-    with open('../data/question_answering_gold_standard_fine_grained/q{}_train.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_train.json'.format(qid), 'w') as f:
         f.write(json.dumps(train))
 
-    with open('../data/question_answering_gold_standard_fine_grained/q{}_dev.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_dev.json'.format(qid), 'w') as f:
         f.write(json.dumps(dev))
 
-    with open('../data/question_answering_gold_standard_fine_grained/q{}_test.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_test.json'.format(qid), 'w') as f:
         f.write(json.dumps(test))
 
 
