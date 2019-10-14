@@ -44,7 +44,7 @@ def get_bert_embeddings(a):
     tokenized_text = tokenizer.tokenize(marked_text)
     if len(tokenized_text) > 512:
         print("Warning: Long sequence input for BERT. Truncating anything larger than 512th token. Actual size: {}".format(len(tokenized_text)))
-        tokenized_text = tokenized_text[:509] + tokenizer.tokenize('[SEP]')
+        tokenized_text = tokenized_text[:511] + tokenizer.tokenize('[SEP]')
     indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
     segment_ids = [1] * len(tokenized_text)
     tokens_tensor = torch.tensor([indexed_tokens])
