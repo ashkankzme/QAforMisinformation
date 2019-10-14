@@ -115,7 +115,7 @@ def rank_train_data_for_question(qid):
 
 
 def main():
-    for i in range(1, 11):
+    for i in range(2, 11):
         rank_train_data_for_question(i)
 
 if __name__ == "__main__":
