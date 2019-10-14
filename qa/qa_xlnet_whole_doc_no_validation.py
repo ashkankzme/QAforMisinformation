@@ -15,13 +15,13 @@ print("GPU name: " + torch.cuda.get_device_name(0))
 
 print("Loading data...")
 
-with open('../data/question_answering_gold_standard/q2_train.json') as train_file:
+with open('../data/question_answering_gold_standard_fine_grained_bert/q1_train.json') as train_file:
     train_set = json.load(train_file)
 
-with open('../data/question_answering_gold_standard/q2_dev.json') as dev_file:
+with open('../data/question_answering_gold_standard_fine_grained_bert/q1_dev.json') as dev_file:
     dev_set = json.load(dev_file)
 
-with open('../data/question_answering_gold_standard/q2_test.json') as test_file:
+with open('../data/question_answering_gold_standard_fine_grained_bert/q1_test.json') as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
