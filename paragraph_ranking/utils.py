@@ -42,6 +42,9 @@ def get_xlnet_marked_text(a):
 def get_bert_embeddings(a):
     marked_text = get_bert_marked_text(a)
     tokenized_text = tokenizer.tokenize(marked_text)
+    if len(tokenized_text) > 512:
+        print("Warning: Long sequence input for BERT. Truncating anything larger than 512th token. Actual size: {}".format(len(tokenized_text)))
+        tokenized_text = tokenized_text[:512]
     indexed_tokens = tokenizer.convert_tokens_to_ids(tokenized_text)
     segment_ids = [1] * len(tokenized_text)
     tokens_tensor = torch.tensor([indexed_tokens])
