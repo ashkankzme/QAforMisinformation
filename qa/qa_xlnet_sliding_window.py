@@ -30,14 +30,14 @@ X_train = np.zeros((len(train_set), 768))
 y_train = np.zeros(len(train_set))
 for i, a in enumerate(train_set):
     article = a['article']
-    X_train[i] = np.array(get_xlnet_embeddings(article))
+    X_train[i] = get_xlnet_embeddings(article).detach().cpu().numpy()
     y_train[i] = a['answer']
 
 X_test = np.zeros((len(test_set), 768))
 y_test = np.zeros(len(test_set))
 for i, a in enumerate(test_set):
     article = a['article']
-    X_test[i] = np.array(get_xlnet_embeddings(article))
+    X_test[i] = get_xlnet_embeddings(article).detach().cpu().numpy()
     y_test[i] = a['answer']
 
 print("Feature extraction completed.")
