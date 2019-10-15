@@ -16,13 +16,13 @@ print("GPU name: " + torch.cuda.get_device_name(0))
 
 print("Loading data...")
 
-with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_train.json'.format(sys.argv[1])) as train_file:
+with open('../data/question_answering_gold_standard/q{}_train.json'.format(sys.argv[1])) as train_file:
     train_set = json.load(train_file)
 
-with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_dev.json'.format(sys.argv[1])) as dev_file:
+with open('../data/question_answering_gold_standard/q{}_dev.json'.format(sys.argv[1])) as dev_file:
     dev_set = json.load(dev_file)
 
-with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_test.json'.format(sys.argv[1])) as test_file:
+with open('../data/question_answering_gold_standard/q{}_test.json'.format(sys.argv[1])) as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
@@ -46,7 +46,7 @@ print ("Tokenize the first sentence:")
 print (tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
-MAX_LEN = 352
+MAX_LEN = 340
 average_len = 0
 reduced_inputs = 0
 for tokens in tokenized_texts_train + tokenized_texts_test:
