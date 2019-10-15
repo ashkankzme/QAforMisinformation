@@ -13,9 +13,9 @@ import numpy as np
 sys.path.insert(1, '../paragraph_ranking')
 from utils import get_xlnet_embeddings
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-n_gpu = torch.cuda.device_count()
-print("GPU count: " + n_gpu)
+# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+# n_gpu = torch.cuda.device_count()
+# print("GPU count: " + n_gpu)
 
 print("Loading data...")
 
