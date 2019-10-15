@@ -11,7 +11,7 @@ import numpy as np
 
 # insert at 1, 0 is the script path (or '' in REPL)
 sys.path.insert(1, '../paragraph_ranking')
-from utils import get_xlnet_embeddings
+from paragraph_ranking import get_xlnet_embeddings
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = torch.cuda.device_count()
