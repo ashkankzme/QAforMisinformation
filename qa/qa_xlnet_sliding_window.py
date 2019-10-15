@@ -9,7 +9,7 @@ from transformers import AdamW
 from tqdm import tqdm, trange
 import numpy as np
 
-from .paragraph_ranking import get_xlnet_embeddings
+from paragraph_ranking import get_xlnet_embeddings
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = torch.cuda.device_count()
