@@ -9,6 +9,8 @@ from transformers import AdamW
 from tqdm import tqdm, trange
 import numpy as np
 
+# insert at 1, 0 is the script path (or '' in REPL)
+sys.path.insert(1, '../paragraph_ranking')
 from paragraph_ranking import get_xlnet_embeddings
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
