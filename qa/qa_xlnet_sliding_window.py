@@ -1,21 +1,11 @@
-import torch, json, io, sys
-from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
-from keras.preprocessing.sequence import pad_sequences
-from sklearn.metrics import f1_score
-
-from transformers import XLNetModel, XLNetTokenizer, XLNetForSequenceClassification
-from transformers import AdamW
-
-from tqdm import tqdm, trange
+import torch, json, sys
+from sklearn.metrics import f1_score, accuracy_score
+from sklearn.linear_model import LogisticRegression
 import numpy as np
 
 # insert at 1, 0 is the script path (or '' in REPL)
 sys.path.insert(1, '../paragraph_ranking')
 from utils import get_xlnet_embeddings
-
-# device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-# n_gpu = torch.cuda.device_count()
-# print("GPU count: " + n_gpu)
 
 print("Loading data...")
 
@@ -34,4 +24,29 @@ dev_len = len(dev_set)
 train_set += dev_set[:(2*dev_len)//3]
 test_set += dev_set[(2*dev_len)//3:]
 
-print(get_xlnet_embeddings(train_set[0]['article']))
+print("Extracting features...")
+
+X_train = np.zeros((len(train_set), 768))
+y_train = np.zeros(len(train_set))
+for i, a in enumerate(train_set):
+    article = a['article']
+    X_train[i] = np.array(get_xlnet_embeddings(article))
+    y_train[i] = a['answer']
+
+X_test = np.zeros((len(test_set), 768))
+y_test = np.zeros(len(test_set))
+for i, a in enumerate(test_set):
+    article = a['article']
+    X_test[i] = np.array(get_xlnet_embeddings(article))
+    y_test[i] = a['answer']
+
+print("Feature extraction completed.")
+
+print("Fitting model...")
+model = LogisticRegression()
+model.fit(X_train, y_train)
+print("Model fitted.")
+
+predicted = model.predict(X_test)
+print("Accuracy: {}".format(accuracy_score(y_test, predicted)))
+print("F1 Macro: {}".format(f1_score(y_test, predicted, average='macro')))
