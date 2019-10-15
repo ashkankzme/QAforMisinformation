@@ -9,7 +9,7 @@ from transformers import AdamW
 from tqdm import tqdm, trange
 import numpy as np
 
-import paragraph_ranking
+from .paragraph_ranking import get_xlnet_embeddings
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = torch.cuda.device_count()
@@ -32,4 +32,4 @@ dev_len = len(dev_set)
 train_set += dev_set[:(2*dev_len)//3]
 test_set += dev_set[(2*dev_len)//3:]
 
-print(paragraph_ranking.get_xlnet_embeddings(train_set[0]['article']))
+print(get_xlnet_embeddings(train_set[0]['article']))
