@@ -52,19 +52,29 @@ def get_relative_ranking(text, source_paragraphs_embeddings, rankings):
 # runs the textrank algorithm on it and returns
 # the ranking of each text as a score,
 # alongside the text itself.
-def textrank(text, q, exp):
-    similarities, texts = get_similarities(text, q, exp)
+def biased_textrank(text, q, exp):
+    exp_similarities, _, text_embeddings, texts  = get_similarities(text, q, exp)
+
+    text_similarities = {}
+    for i, text in enumerate(texts):
+        similarities = {}
+        for j, embedding in enumerate(text_embeddings):
+            if embedding != text_embeddings[i]:
+                similarities[texts[j]] = cosine_similarity(embedding, text_embeddings[i])
+
+        text_similarities[text] = similarities
 
     # create text rank matrix
     matrix = np.zeros((len(texts), len(texts)))
-    for i, i_similarity in enumerate(similarities):
-        for j, j_similarity in enumerate(similarities):
-            if i_similarity < j_similarity:
-                matrix[i][j] = j_similarity - i_similarity
+    for i, i_text in enumerate(texts):
+        for j, j_text in enumerate(texts):
+            if i != j:
+                matrix[i][j] = text_similarities[i_text][j_text]
 
-    s = 0.9
+    s = 0.75
+    bias = np.array(exp_similarities)
+    scaled_matrix = s * matrix + (1 - s) * bias
     v = np.ones(len(matrix)) / len(matrix)
-    scaled_matrix = s * matrix + (1 - s) / len(matrix)
     iterations = 20
     for i in range(iterations):
         v = scaled_matrix.dot(v)
