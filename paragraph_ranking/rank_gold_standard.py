@@ -76,6 +76,7 @@ def biased_textrank(text, q, exp):
     scaled_matrix = s * matrix + (1 - s) * bias
     for row in scaled_matrix:
         row /= np.sum(row)
+    print('poop')
     v = np.ones(len(matrix)) / len(matrix)
     iterations = 20
     for i in range(iterations):
