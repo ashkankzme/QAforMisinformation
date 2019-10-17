@@ -91,7 +91,7 @@ def biased_textrank(text, q, exp):
 # the questions separately. We then train
 # a simple model that predicts the
 # Writes the rankings of test data
-def prepare_data_for_qa(qid):
+def prepare_data_for_qa_textrank(qid):
     with open('../data/ranking/q{}_train.json'.format(qid)) as train_file:
         train = json.load(train_file)
 
@@ -103,9 +103,7 @@ def prepare_data_for_qa(qid):
 
     NUMBER_OF_TOP_ITEMS_TO_INCLUDE = 5
     for article in train + dev + test:
-        ranks, texts = biased_textrank(article['article'],
-                                                                                  article['question'],
-                                                                                  article['explanation'])
+        ranks, texts = biased_textrank(article['article'], article['question'], article['explanation'])
 
         if len(texts) > NUMBER_OF_TOP_ITEMS_TO_INCLUDE:
             sorted_rankings = [x for _, x in sorted(zip(ranks, texts), key=lambda pair: pair[0])]
@@ -116,13 +114,13 @@ def prepare_data_for_qa(qid):
 
             article['article'] = new_text
 
-    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_train.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_train.json'.format(qid), 'w') as f:
         f.write(json.dumps(train))
 
-    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_dev.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_dev.json'.format(qid), 'w') as f:
         f.write(json.dumps(dev))
 
-    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_test.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_test.json'.format(qid), 'w') as f:
         f.write(json.dumps(test))
 
 
@@ -134,7 +132,7 @@ def prepare_data_for_qa(qid):
 # the questions separately. We then train
 # a simple model that predicts the
 # Writes the rankings of test data
-def prepare_data_for_qa_textrank(qid):
+def prepare_data_for_qa(qid):
     with open('../data/ranking/q{}_train.json'.format(qid)) as train_file:
         train = json.load(train_file)
 
@@ -159,13 +157,13 @@ def prepare_data_for_qa_textrank(qid):
 
             article['article'] = new_text
 
-    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_train.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_train.json'.format(qid), 'w') as f:
         f.write(json.dumps(train))
 
-    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_dev.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_dev.json'.format(qid), 'w') as f:
         f.write(json.dumps(dev))
 
-    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_test.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_test.json'.format(qid), 'w') as f:
         f.write(json.dumps(test))
 
 
