@@ -60,7 +60,7 @@ def biased_textrank(text, q, exp):
         similarities = {}
         for j, embedding in enumerate(text_embeddings):
             if i != j:
-                similarities[texts[j]] = cosine_similarity(embedding, text_embeddings[i]).detach().cpu().numpy()
+                similarities[texts[j]] = np.array(cosine_similarity(embedding, text_embeddings[i]).detach().cpu().numpy())
 
         text_similarities[text] = similarities
 
