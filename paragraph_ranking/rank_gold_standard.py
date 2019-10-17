@@ -59,7 +59,7 @@ def biased_textrank(text, q, exp):
     for i, text in enumerate(texts):
         similarities = {}
         for j, embedding in enumerate(text_embeddings):
-            if embedding != text_embeddings[i]:
+            if i != j:
                 similarities[texts[j]] = cosine_similarity(embedding, text_embeddings[i])
 
         text_similarities[text] = similarities
@@ -71,13 +71,15 @@ def biased_textrank(text, q, exp):
             if i != j:
                 matrix[i][j] = text_similarities[i_text][j_text]
 
-    s = 0.75
+    s = 0.7
     bias = np.array(exp_similarities)
     scaled_matrix = s * matrix + (1 - s) * bias
+    for row in scaled_matrix:
+        row /= np.sum(row)
     v = np.ones(len(matrix)) / len(matrix)
     iterations = 20
     for i in range(iterations):
-        v = scaled_matrix.dot(v)
+        v = scaled_matrix.T.dot(v)
     return v, texts
 
 
@@ -89,7 +91,50 @@ def biased_textrank(text, q, exp):
 # the questions separately. We then train
 # a simple model that predicts the
 # Writes the rankings of test data
-def rank_train_data_for_question(qid):
+def prepare_data_for_qa(qid):
+    with open('../data/ranking/q{}_train.json'.format(qid)) as train_file:
+        train = json.load(train_file)
+
+    with open('../data/ranking/q{}_test.json'.format(qid)) as test_file:
+        test = json.load(test_file)
+
+    with open('../data/ranking/q{}_dev.json'.format(qid)) as dev_file:
+        dev = json.load(dev_file)
+
+    NUMBER_OF_TOP_ITEMS_TO_INCLUDE = 5
+    for article in train + dev + test:
+        ranks, texts = biased_textrank(article['article'],
+                                                                                  article['question'],
+                                                                                  article['explanation'])
+
+        if len(texts) > NUMBER_OF_TOP_ITEMS_TO_INCLUDE:
+            sorted_rankings = [x for _, x in sorted(zip(ranks, texts), key=lambda pair: pair[0])]
+
+            new_text = ''
+            for i in range(NUMBER_OF_TOP_ITEMS_TO_INCLUDE):
+                new_text += sorted_rankings[-i] + '\n'
+
+            article['article'] = new_text
+
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_train.json'.format(qid), 'w') as f:
+        f.write(json.dumps(train))
+
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_dev.json'.format(qid), 'w') as f:
+        f.write(json.dumps(dev))
+
+    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_test.json'.format(qid), 'w') as f:
+        f.write(json.dumps(test))
+
+
+# takes as input a question id, which
+# is the number of the question its
+# trying to rank data on. We take the
+# cosine similarities of BERT embeddings
+# of paragraphs to the explanation and
+# the questions separately. We then train
+# a simple model that predicts the
+# Writes the rankings of test data
+def prepare_data_for_qa_textrank(qid):
     with open('../data/ranking/q{}_train.json'.format(qid)) as train_file:
         train = json.load(train_file)
 
@@ -114,19 +159,19 @@ def rank_train_data_for_question(qid):
 
             article['article'] = new_text
 
-    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_train.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_train.json'.format(qid), 'w') as f:
         f.write(json.dumps(train))
 
-    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_dev.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_dev.json'.format(qid), 'w') as f:
         f.write(json.dumps(dev))
 
-    with open('../data/question_answering_gold_standard_fine_grained_bert/q{}_test.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_test.json'.format(qid), 'w') as f:
         f.write(json.dumps(test))
 
 
 def main():
-    for i in range(6, 11):
-        rank_train_data_for_question(i)
+    for i in range(1, 11):
+        prepare_data_for_qa_textrank(i)
 
 if __name__ == "__main__":
     main()
