@@ -3,6 +3,7 @@ import math
 from random import sample
 
 import numpy as np
+import torch
 from utils import get_paragraphs, get_sentences, get_bert_embeddings, cosine_similarity, get_xlnet_embeddings
 
 
@@ -60,26 +61,26 @@ def biased_textrank(text, q, exp):
         similarities = {}
         for j, embedding in enumerate(text_embeddings):
             if i != j:
-                similarities[texts[j]] = np.array(cosine_similarity(embedding, text_embeddings[i]).detach().cpu().numpy())
+                similarities[texts[j]] = cosine_similarity(embedding, text_embeddings[i])
 
         text_similarities[text] = similarities
 
     # create text rank matrix
-    matrix = np.zeros((len(texts), len(texts)))
+    matrix = torch.zeros((len(texts), len(texts)))
     for i, i_text in enumerate(texts):
         for j, j_text in enumerate(texts):
             if i != j:
                 matrix[i][j] = text_similarities[i_text][j_text]
 
     s = 0.7
-    bias = np.array(exp_similarities)
+    bias = torch.tensor(exp_similarities)
     scaled_matrix = s * matrix + (1 - s) * bias
     for row in scaled_matrix:
-        row /= np.sum(row)
-    v = np.ones(len(matrix)) / len(matrix)
+        row /= torch.sum(row)
+    v = torch.ones((len(matrix), 1)) / len(matrix)
     iterations = 20
     for i in range(iterations):
-        v = scaled_matrix.T.dot(v)
+        v = torch.mm(scaled_matrix.t(), v)
     return v, texts
 
 
