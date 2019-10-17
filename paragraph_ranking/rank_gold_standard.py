@@ -60,7 +60,7 @@ def biased_textrank(text, q, exp):
         similarities = {}
         for j, embedding in enumerate(text_embeddings):
             if i != j:
-                similarities[texts[j]] = cosine_similarity(embedding, text_embeddings[i]).to('cpu').numpy()
+                similarities[texts[j]] = cosine_similarity(embedding, text_embeddings[i]).detach().cpu().numpy()
 
         text_similarities[text] = similarities
 
@@ -76,7 +76,6 @@ def biased_textrank(text, q, exp):
     scaled_matrix = s * matrix + (1 - s) * bias
     for row in scaled_matrix:
         row /= np.sum(row)
-    print('poop')
     v = np.ones(len(matrix)) / len(matrix)
     iterations = 20
     for i in range(iterations):
