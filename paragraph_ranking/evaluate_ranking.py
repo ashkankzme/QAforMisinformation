@@ -1,4 +1,5 @@
-import re, json
+import re, json, string
+translator = str.maketrans('', '', string.punctuation)
 
 # returns all the text between qoutations
 # in the input text as a list.
@@ -23,7 +24,8 @@ def get_ranking_recall(articles):
 
     found = 0
     for a in selected_articles:
-        qoutes = [q.lower().strip() for q in get_text_between_qoutations(a['explanation'])]
+        qoutes = [q.lower().strip().translate(translator) for q in get_text_between_qoutations(a['explanation'])]
+        a['article'] = a['article'].translate(translator)
         for qoute in qoutes:
             if qoute in a['article'].lower().strip():
                 found += 1
