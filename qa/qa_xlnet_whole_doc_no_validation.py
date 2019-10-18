@@ -38,7 +38,7 @@ sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
 labels_train = [article['answer'] for article in train_set]
 labels_test = [article['answer'] for article in test_set]
 
-tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=True)
+tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
 tokenized_texts_train = [tokenizer.tokenize(sent) for sent in sentences_train]
 tokenized_texts_test = [tokenizer.tokenize(sent) for sent in sentences_test]
