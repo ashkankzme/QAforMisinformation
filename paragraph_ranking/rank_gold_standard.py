@@ -75,10 +75,11 @@ def biased_textrank(text, q, exp):
     s = 0.5
     bias = torch.tensor(exp_similarities)
     scaled_matrix = s * matrix + (1 - s) * bias
+    # scaled_matrix = s * matrix + (1 - s) / len(matrix)
     for row in scaled_matrix:
         row /= torch.sum(row)
     v = torch.ones((len(matrix), 1)) / len(matrix)
-    iterations = 20
+    iterations = 40
     for i in range(iterations):
         v = torch.mm(scaled_matrix.t(), v)
     return v, texts
@@ -169,7 +170,7 @@ def prepare_data_for_qa(qid):
 
 
 def main():
-    for i in range(1, 11):
+    for i in range(8, 11):
         prepare_data_for_qa_textrank(i)
 
 if __name__ == "__main__":
