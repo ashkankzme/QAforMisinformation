@@ -72,7 +72,7 @@ def biased_textrank(text, q, exp):
             if i != j:
                 matrix[i][j] = text_similarities[i_text][j_text]
 
-    s = 0.7
+    s = 0.5
     bias = torch.tensor(exp_similarities)
     scaled_matrix = s * matrix + (1 - s) * bias
     for row in scaled_matrix:
@@ -115,13 +115,13 @@ def prepare_data_for_qa_textrank(qid):
 
             article['article'] = new_text
 
-    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_train.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_train.json'.format(qid), 'w') as f:
         f.write(json.dumps(train))
 
-    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_dev.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_dev.json'.format(qid), 'w') as f:
         f.write(json.dumps(dev))
 
-    with open('../data/question_answering_gold_standard_fine_grained_textrank/q{}_test.json'.format(qid), 'w') as f:
+    with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_test.json'.format(qid), 'w') as f:
         f.write(json.dumps(test))
 
 
