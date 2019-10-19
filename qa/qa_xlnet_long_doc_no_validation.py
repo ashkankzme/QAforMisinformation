@@ -165,7 +165,10 @@ for _ in trange(epochs, desc="Epoch"):
         loss += outputs[0]
         logits = outputs[1]
         # Backward pass
-        loss.sum().backward()
+        if i % batch_size//small_batch_size == 0:
+            loss.sum().backward()
+        else:
+            loss.sum().backward(retain_graph=True)
         tr_loss += loss.mean().item()
         nb_tr_examples += b_input_ids.size(0)
         nb_tr_steps += 1
