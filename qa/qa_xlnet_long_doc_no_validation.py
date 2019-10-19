@@ -9,7 +9,6 @@ from transformers import AdamW
 from tqdm import tqdm, trange
 import numpy as np
 
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = torch.cuda.device_count()
 print("GPU name: " + torch.cuda.get_device_name(0))
@@ -28,8 +27,8 @@ with open('../data/ranking/q{}_test.json'.format(sys.argv[1])) as test_file:
 print("Data loading completed.")
 
 dev_len = len(dev_set)
-train_set += dev_set[:(2*dev_len)//3]
-test_set += dev_set[(2*dev_len)//3:]
+train_set += dev_set[:(2 * dev_len) // 3]
+test_set += dev_set[(2 * dev_len) // 3:]
 
 # Create sentence and label lists
 sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
@@ -42,8 +41,8 @@ tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=Fal
 
 tokenized_texts_train = [tokenizer.tokenize(sent) for sent in sentences_train]
 tokenized_texts_test = [tokenizer.tokenize(sent) for sent in sentences_test]
-print ("Tokenize the first sentence:")
-print (tokenized_texts_train[0])
+print("Tokenize the first sentence:")
+print(tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
 MAX_LEN = 1500
@@ -72,16 +71,16 @@ attention_masks_train = []
 
 # Create a mask of 1s for each token followed by 0s for padding
 for seq in input_ids_train:
-  seq_mask = [float(i>0) for i in seq]
-  attention_masks_train.append(seq_mask)
+    seq_mask = [float(i > 0) for i in seq]
+    attention_masks_train.append(seq_mask)
 
 # Create attention masks
 attention_masks_test = []
 
 # Create a mask of 1s for each token followed by 0s for padding
 for seq in input_ids_test:
-  seq_mask = [float(i>0) for i in seq]
-  attention_masks_test.append(seq_mask)
+    seq_mask = [float(i > 0) for i in seq]
+    attention_masks_test.append(seq_mask)
 
 # Use train_test_split to split our data into train and validation sets for training
 
@@ -95,23 +94,23 @@ train_labels = torch.tensor(train_labels)
 train_masks = torch.tensor(train_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 1
-small_batch_size = 1
+batch_size = 32
+small_batch_size = 8
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
 
 train_data = TensorDataset(train_inputs, train_masks, train_labels)
 train_sampler = RandomSampler(train_data)
-train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=batch_size)
+train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=small_batch_size)
 
 # Load XLNEtForSequenceClassification, the pretrained XLNet model with a single linear classification layer on top.
 
 model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=3)
 if n_gpu > 1:
-  print("Let's use", torch.cuda.device_count(), "GPUs!")
-  # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
-  model = torch.nn.DataParallel(model)
+    print("Let's use", torch.cuda.device_count(), "GPUs!")
+    # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
+    model = torch.nn.DataParallel(model)
 model.cuda()
 
 param_optimizer = list(model.named_parameters())
@@ -125,7 +124,8 @@ optimizer_grouped_parameters = [
 
 # This variable contains all of the hyperparemeter information our training loop needs
 optimizer = AdamW(optimizer_grouped_parameters,
-                     lr=2e-5)
+                  lr=2e-5)
+
 
 # Function to calculate the accuracy of our predictions vs labels
 def flat_accuracy(preds, labels):
@@ -150,31 +150,31 @@ for _ in trange(epochs, desc="Epoch"):
     nb_tr_examples, nb_tr_steps = 0, 0
 
     # Train the data for one epoch
-    for step, big_batch in enumerate(train_dataloader):
-        optimizer.zero_grad()
-        loss = 0
-        print(big_batch)
-        for i in range(batch_size//small_batch_size):
-            batch = big_batch[i*small_batch_size: (i+1)*small_batch_size]
-            # Add batch to GPU
-            batch = tuple(t.to(device) for t in batch)
-            # Unpack the inputs from our dataloader
-            b_input_ids, b_input_mask, b_labels = batch
-            # Clear out the gradients (by default they accumulate)
+    optimizer.zero_grad()
+    loss = 0
+    i = 1
+    for step, batch in enumerate(train_dataloader):
+        # Add batch to GPU
+        batch = tuple(t.to(device) for t in batch)
+        # Unpack the inputs from our dataloader
+        b_input_ids, b_input_mask, b_labels = batch
+        # Clear out the gradients (by default they accumulate)
 
-            # Forward pass
-            outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask, labels=b_labels)
-            loss += outputs[0]
-            logits = outputs[1]
-            # Backward pass
-            loss.sum().backward()
-            tr_loss += loss.mean().item()
-            nb_tr_examples += b_input_ids.size(0)
-            nb_tr_steps += 1
-            # Update parameters and take a step using the computed gradient
-
-        optimizer.step()
-
+        # Forward pass
+        outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask, labels=b_labels)
+        loss += outputs[0]
+        logits = outputs[1]
+        # Backward pass
+        loss.sum().backward()
+        tr_loss += loss.mean().item()
+        nb_tr_examples += b_input_ids.size(0)
+        nb_tr_steps += 1
+        # Update parameters and take a step using the computed gradient
+        if i % batch_size//small_batch_size == 0:
+            optimizer.step()
+            optimizer.zero_grad()
+            loss = 0
+        i += 1
 
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
 
