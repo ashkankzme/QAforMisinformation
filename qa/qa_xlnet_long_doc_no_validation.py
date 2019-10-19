@@ -153,7 +153,7 @@ for _ in trange(epochs, desc="Epoch"):
     for step, big_batch in enumerate(train_dataloader):
         optimizer.zero_grad()
         loss = 0
-        for i in range(batch_size/small_batch_size):
+        for i in range(batch_size//small_batch_size):
             batch = big_batch[i*small_batch_size: (i+1)*small_batch_size]
             # Add batch to GPU
             batch = tuple(t.to(device) for t in batch)
