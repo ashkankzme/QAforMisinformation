@@ -36,13 +36,13 @@ def get_ranking_recall(articles):
 
 def main():
     for qid in range(1, 11):
-        with open('../data/question_answering_gold_standard_fine_grained_textrank_70/q{}_train.json'.format(qid)) as train_file:
+        with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_train.json'.format(qid)) as train_file:
             articles = json.load(train_file)
 
-        with open('../data/question_answering_gold_standard_fine_grained_textrank_70/q{}_test.json'.format(qid)) as test_file:
+        with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_test.json'.format(qid)) as test_file:
             articles += json.load(test_file)
 
-        with open('../data/question_answering_gold_standard_fine_grained_textrank_70/q{}_dev.json'.format(qid)) as dev_file:
+        with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_dev.json'.format(qid)) as dev_file:
             articles += json.load(dev_file)
 
         found, total = get_ranking_recall(articles)
