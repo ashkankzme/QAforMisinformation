@@ -162,13 +162,10 @@ for _ in trange(epochs, desc="Epoch"):
 
         # Forward pass
         outputs = model(b_input_ids, token_type_ids=None, attention_mask=b_input_mask, labels=b_labels)
-        loss += outputs[0]
+        loss = outputs[0]
         logits = outputs[1]
         # Backward pass
-        if i % batch_size//small_batch_size == 0:
-            loss.sum().backward()
-        else:
-            loss.sum().backward(retain_graph=True)
+        loss.sum().backward()
         tr_loss += loss.mean().item()
         nb_tr_examples += b_input_ids.size(0)
         nb_tr_steps += 1
