@@ -31,8 +31,8 @@ train_set += dev_set[:(2 * dev_len) // 3]
 test_set += dev_set[(2 * dev_len) // 3:]
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " " + article['question'] + " " + article['explanation'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['article'] + " " + article['question'] + " " + article['explanation'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['article'] + " [SEP] " + article['question'] + " " + article['explanation'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['article'] + " [SEP] " + article['question'] + " " + article['explanation'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [article['answer'] for article in train_set]
 labels_test = [article['answer'] for article in test_set]
