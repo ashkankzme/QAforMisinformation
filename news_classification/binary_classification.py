@@ -34,7 +34,6 @@ to_be_deleted = []
 original_articles_map = {}
 for i in range(len(articles)):
     _article = articles[i]
-    _criteria = _article['criteria']
     if 'rating' not in _article or _article['rating'] == -1 or 'criteria' not in _article or len(
             _article['criteria']) < len(news_criteria) or 'original_article' not in _article or _article[
         'original_article'].isspace() or len(get_paragraphs(_article['original_article'])) > 50:
