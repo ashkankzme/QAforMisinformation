@@ -58,11 +58,11 @@ average_len /= len(tokenized_texts_train + tokenized_texts_test)
 print("reduced input is: {}".format(len(to_be_deleted)))
 print("average_len is: {}".format(average_len))
 
-for i in reversed(to_be_deleted):
-    if i >= len(tokenized_texts_train):
-        del tokenized_texts_test[i - len(tokenized_texts_train)]
-    else:
-        del tokenized_texts_train[i]
+# for i in reversed(to_be_deleted):
+#     if i >= len(tokenized_texts_train):
+#         del tokenized_texts_test[i - len(tokenized_texts_train)]
+#     else:
+#         del tokenized_texts_train[i]
 
 # Use the XLNet tokenizer to convert the tokens to their index numbers in the XLNet vocabulary
 input_ids_train = [tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts_train]
