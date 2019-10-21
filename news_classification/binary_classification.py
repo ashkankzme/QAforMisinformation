@@ -70,8 +70,8 @@ train_set = articles[: 8*len(articles)//10]
 test_set = articles[8*len(articles)//10 // 3:]
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['original_article'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['original_article'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [0 if article['rating'] < 3 else 1 for article in train_set]
 labels_test = [0 if article['rating'] < 3 else 1 for article in test_set]
