@@ -123,13 +123,6 @@ if n_gpu > 1:
     # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
     model = torch.nn.DataParallel(model)
 model.cuda()
-
-model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=2)
-if n_gpu > 1:
-    print("Let's use", torch.cuda.device_count(), "GPUs!")
-    # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
-    model = torch.nn.DataParallel(model)
-model.cuda()
 model_path = '../models/binary_classification_epoch15.pt'
 model.load_state_dict(torch.load(model_path))
 model.eval()
