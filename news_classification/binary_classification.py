@@ -1,5 +1,4 @@
-from paragraph_ranking import get_paragraphs
-import torch, json, random
+import torch, json, random, sys
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score
@@ -10,6 +9,8 @@ from transformers import AdamW
 from tqdm import tqdm, trange
 import numpy as np
 
+sys.path.insert(1, '../paragraph_ranking')
+from utils import get_paragraphs
 
 with open('../data/news.json') as news_file:
     news = json.load(news_file)
