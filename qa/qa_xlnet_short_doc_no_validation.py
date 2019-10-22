@@ -46,7 +46,7 @@ print ("Tokenize the first sentence:")
 print (tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
-MAX_LEN = 400
+MAX_LEN = 360
 average_len = 0
 reduced_inputs = 0
 for tokens in tokenized_texts_train + tokenized_texts_test:
