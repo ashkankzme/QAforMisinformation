@@ -222,10 +222,10 @@ for epoch in trange(epochs, desc="Epoch"):
         i += 1
 
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
-    if (epoch + 1) % 5 == 0:
-        # SAVING THE MODEL
-        model_path = '../models/binary_classification_epoch{}.pt'.format(epoch+1)
-        torch.save(model.state_dict(), model_path)
+    # if (epoch + 1) % 5 == 0:
+    #     # SAVING THE MODEL
+    #     model_path = '../models/binary_classification_epoch{}.pt'.format(epoch+1)
+    #     torch.save(model.state_dict(), model_path)
 
 # TEST TIME!
 
