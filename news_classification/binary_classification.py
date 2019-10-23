@@ -73,11 +73,8 @@ test_set = articles[8*len(articles)//10 // 3:]
 sentences_train = [article['original_article'] + " [SEP] [CLS]" for article in train_set]
 sentences_test = [article['original_article'] + " [SEP] [CLS]" for article in test_set]
 
-labels_train = [article['rating'] for article in train_set]
-labels_test = [article['rating'] for article in test_set]
-
-print(set(labels_test+labels_train))
-print(type(labels_train[0]))
+labels_train = [article['rating']-1 for article in train_set]
+labels_test = [article['rating']-1 for article in test_set]
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
