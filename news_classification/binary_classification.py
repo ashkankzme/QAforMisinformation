@@ -73,8 +73,8 @@ test_set = articles[8*len(articles)//10 // 3:]
 sentences_train = [article['original_article'] + " [SEP] [CLS]" for article in train_set]
 sentences_test = [article['original_article'] + " [SEP] [CLS]" for article in test_set]
 
-labels_train = [0 if article['rating'] < 3 else 1 for article in train_set]
-labels_test = [0 if article['rating'] < 3 else 1 for article in test_set]
+labels_train = [article['rating'] for article in train_set]
+labels_test = [article['rating'] for article in test_set]
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
@@ -84,7 +84,7 @@ print("Tokenize the first sentence:")
 print(tokenized_texts_train[0])
 
 # Set the maximum sequence length.
-MAX_LEN = 1500
+MAX_LEN = 1800
 average_len = 0
 to_be_deleted = []
 for i, tokens in enumerate(tokenized_texts_train + tokenized_texts_test):
@@ -139,8 +139,8 @@ train_labels = torch.tensor(train_labels)
 train_masks = torch.tensor(train_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 32
-small_batch_size = 2
+batch_size = 33
+small_batch_size = 3
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
@@ -151,7 +151,7 @@ train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=smal
 
 # Load XLNEtForSequenceClassification, the pretrained XLNet model with a single linear classification layer on top.
 
-model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=2)
+model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=5)
 if n_gpu > 1:
     print("Let's use", torch.cuda.device_count(), "GPUs!")
     # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
@@ -229,7 +229,7 @@ for epoch in trange(epochs, desc="Epoch"):
 
 # TEST TIME!
 
-batch_size = 2
+batch_size = 3
 
 prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
