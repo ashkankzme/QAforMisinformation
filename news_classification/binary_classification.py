@@ -77,6 +77,7 @@ labels_train = [article['rating'] for article in train_set]
 labels_test = [article['rating'] for article in test_set]
 
 print(set(labels_test+labels_train))
+print(type(labels_train[0]))
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
