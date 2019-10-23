@@ -76,6 +76,8 @@ sentences_test = [article['original_article'] + " [SEP] [CLS]" for article in te
 labels_train = [article['rating'] for article in train_set]
 labels_test = [article['rating'] for article in test_set]
 
+print(set(labels_test+labels_train))
+
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
 tokenized_texts_train = [tokenizer.tokenize(sent) for sent in sentences_train]
