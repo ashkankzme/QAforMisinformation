@@ -73,8 +73,8 @@ test_set = articles[8*len(articles)//10 // 3:]
 sentences_train = [article['original_article'] + " [SEP] [CLS]" for article in train_set]
 sentences_test = [article['original_article'] + " [SEP] [CLS]" for article in test_set]
 
-labels_train = [article['rating']-1 for article in train_set]
-labels_test = [article['rating']-1 for article in test_set]
+labels_train = [0 if article['rating'] < 3 else 1 for article in train_set]
+labels_test = [0 if article['rating'] < 3 else 1  for article in test_set]
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
@@ -151,7 +151,7 @@ train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=smal
 
 # Load XLNEtForSequenceClassification, the pretrained XLNet model with a single linear classification layer on top.
 
-model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=5)
+model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=2)
 if n_gpu > 1:
     print("Let's use", torch.cuda.device_count(), "GPUs!")
     # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
@@ -180,7 +180,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 20
+epochs = 15
 
 # trange is a tqdm wrapper around the normal python range
 for epoch in trange(epochs, desc="Epoch"):
@@ -270,4 +270,6 @@ for batch in prediction_dataloader:
     true_labels += [a for a in label_ids.flatten()]
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
-print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
+# print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
+print("F1 misinformative: {}".format(f1_score(true_labels, predictions, pos_label=0)))
+print("F1 legitimate: {}".format(f1_score(true_labels, predictions, pos_label=1)))
