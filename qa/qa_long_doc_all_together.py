@@ -1,80 +1,45 @@
-import torch, json, random, sys
+import torch, json, io, sys, random
 from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score
 
-from transformers import XLNetTokenizer, XLNetForSequenceClassification
+from transformers import XLNetModel, XLNetTokenizer, XLNetForSequenceClassification
 from transformers import AdamW
 
 from tqdm import tqdm, trange
 import numpy as np
 
-sys.path.insert(1, '../paragraph_ranking')
-from utils import get_paragraphs
-
-with open('../data/news.json') as news_file:
-    news = json.load(news_file)
-
-with open('../data/stories.json') as story_file:
-    stories = json.load(story_file)
-
-articles = news + stories
-
-print(str(len(articles)) + ' articles loaded.')
-
-news_criteria = [c['question'] for c in articles[0]['criteria']]
-story_criteria = [c['question'] for c in articles[2000]['criteria']]
-
-to_be_deleted = []
-# this is for removing duplicate articles
-# there were a few articles that had
-# page not found as their original text
-# and we had to remove them.
-# we also remove unnecessarily long articles
-original_articles_map = {}
-for i in range(len(articles)):
-    _article = articles[i]
-    if 'rating' not in _article or _article['rating'] == -1 or 'criteria' not in _article or len(
-            _article['criteria']) < len(news_criteria) or 'original_article' not in _article or _article[
-        'original_article'].isspace() or len(get_paragraphs(_article['original_article'])) > 50:
-        to_be_deleted.append(i)
-    elif _article['original_article'] not in original_articles_map:
-        original_articles_map[_article['original_article']] = [i]
-    else:
-        original_articles_map[_article['original_article']].append(i)
-
-duplicate_indices = [original_articles_map[duplicate_article] for duplicate_article in original_articles_map if
-                     len(original_articles_map[duplicate_article]) > 1]
-for index_list in duplicate_indices:
-    for i in index_list:
-        to_be_deleted.append(i)
-
-for index in sorted(to_be_deleted, reverse=True):
-    del articles[index]
-    if index < len(news):
-        del news[index]
-    else:
-        del stories[index - len(news)]
-
-seed = 10
-random.Random(seed).shuffle(articles)
-
-print('data cleaned. ' + str(len(articles)) + ' articles left. Count of story reviews: ' + str(
-    len(stories)) + ', count of news reviews: ' + str(len(news)) + '.')
-
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = torch.cuda.device_count()
 print("GPU name: " + torch.cuda.get_device_name(0))
 
-train_set = articles[: 8*len(articles)//10]
-test_set = articles[8*len(articles)//10 // 3:]
+print("Loading data...")
+
+train_set = []
+test_set = []
+dev_set = []
+for i in range(1, 11):
+    with open('../data/ranking/q{}_train.json'.format(i)) as train_file:
+        train_set += json.load(train_file)
+
+    with open('../data/ranking/q{}_dev.json'.format(i)) as dev_file:
+        dev_set += json.load(dev_file)
+
+    with open('../data/ranking/q{}_test.json'.format(i)) as test_file:
+        test_set += json.load(test_file)
+
+print("Data loading completed.")
+
+dev_len = len(dev_set)
+train_set += dev_set[:(2 * dev_len) // 3]
+test_set += dev_set[(2 * dev_len) // 3:]
 
 # Create sentence and label lists
-sentences_train = [article['original_article'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['original_article'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['article'] + " [SEP] " + article['question'] + (" " + article['explanation'] if random.uniform(0, 1) < 0.5 else "") + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['article'] + " [SEP] " + article['question'] + " [SEP] [CLS]" for article in test_set]
 
-labels_train = [0 if article['rating'] < 3 else 1 for article in train_set]
-labels_test = [0 if article['rating'] < 3 else 1 for article in test_set]
+labels_train = [article['answer'] for article in train_set]
+labels_test = [article['answer'] for article in test_set]
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
@@ -84,7 +49,7 @@ print("Tokenize the first sentence:")
 print(tokenized_texts_train[0])
 
 # Set the maximum sequence length.
-MAX_LEN = 1700
+MAX_LEN = 1800
 average_len = 0
 to_be_deleted = []
 for i, tokens in enumerate(tokenized_texts_train + tokenized_texts_test):
@@ -139,8 +104,8 @@ train_labels = torch.tensor(train_labels)
 train_masks = torch.tensor(train_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 32
-small_batch_size = 4
+batch_size = 48
+small_batch_size = 1
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
@@ -151,7 +116,7 @@ train_dataloader = DataLoader(train_data, sampler=train_sampler, batch_size=smal
 
 # Load XLNEtForSequenceClassification, the pretrained XLNet model with a single linear classification layer on top.
 
-model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=2)
+model = XLNetForSequenceClassification.from_pretrained("xlnet-base-cased", num_labels=3)
 if n_gpu > 1:
     print("Let's use", torch.cuda.device_count(), "GPUs!")
     # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
@@ -180,7 +145,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 15
+epochs = 10
 
 # trange is a tqdm wrapper around the normal python range
 for epoch in trange(epochs, desc="Epoch"):
@@ -222,14 +187,14 @@ for epoch in trange(epochs, desc="Epoch"):
         i += 1
 
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
-    # if (epoch + 1) % 5 == 0:
-    #     # SAVING THE MODEL
-    #     model_path = '../models/binary_classification_epoch{}.pt'.format(epoch+1)
-    #     torch.save(model.state_dict(), model_path)
+    if (epoch + 1) % 5 == 0:
+        # SAVING THE MODEL
+        model_path = '../models/whole_doc_all_together_epoch{}.pt'.format(epoch+1)
+        torch.save(model.state_dict(), model_path)
 
 # TEST TIME!
 
-batch_size = 4
+batch_size = 3
 
 prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
@@ -270,6 +235,4 @@ for batch in prediction_dataloader:
     true_labels += [a for a in label_ids.flatten()]
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
-# print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
-print("F1 misinformative: {}".format(f1_score(true_labels, predictions, pos_label=0)))
-print("F1 legitimate: {}".format(f1_score(true_labels, predictions, pos_label=1)))
+print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
