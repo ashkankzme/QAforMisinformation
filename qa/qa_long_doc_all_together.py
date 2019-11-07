@@ -35,7 +35,7 @@ train_set += dev_set[:(2 * dev_len) // 3]
 test_set += dev_set[(2 * dev_len) // 3:]
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " [SEP] " + article['question'] + (" " + article['explanation'] if random.uniform(0, 1) < 0.5 else "") + " [SEP] [CLS]" for article in train_set]
+sentences_train = [article['article'] + " [SEP] " + article['question'] + (" " + article['explanation'] if random.uniform(0, 1) < 0.25 else "") + " [SEP] [CLS]" for article in train_set]
 sentences_test = [article['article'] + " [SEP] " + article['question'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [article['answer'] for article in train_set]
@@ -189,7 +189,7 @@ for epoch in trange(epochs, desc="Epoch"):
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
     if (epoch + 1) % 5 == 0:
         # SAVING THE MODEL
-        model_path = '../models/whole_doc_all_together_epoch{}.pt'.format(epoch+1)
+        model_path = '../models/whole_doc_all_together_25_epoch{}.pt'.format(epoch+1)
         torch.save(model.state_dict(), model_path)
 
 # TEST TIME!
