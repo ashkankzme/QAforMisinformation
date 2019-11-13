@@ -35,7 +35,8 @@ train_set += dev_set[:(2 * dev_len) // 3]
 test_set += dev_set[(2 * dev_len) // 3:]
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " [SEP] " + article['question'] + (" " + article['explanation'] if random.uniform(0, 1) < 0.25 else "") + " [SEP] [CLS]" for article in train_set]
+sentences_train = [article['article'] + " [SEP] " + article['question'] + (
+    " " + article['explanation'] if random.uniform(0, 1) < 0.25 else "") + " [SEP] [CLS]" for article in train_set]
 sentences_test = [article['article'] + " [SEP] " + article['question'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [article['answer'] for article in train_set]
@@ -104,8 +105,8 @@ train_labels = torch.tensor(train_labels)
 train_masks = torch.tensor(train_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 128
-small_batch_size = 2
+batch_size = 64
+small_batch_size = 1
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
@@ -134,7 +135,7 @@ optimizer_grouped_parameters = [
 
 # This variable contains all of the hyperparemeter information our training loop needs
 optimizer = AdamW(optimizer_grouped_parameters,
-                  lr=2e-5)
+                  lr=3e-5)
 
 
 # Function to calculate the accuracy of our predictions vs labels
@@ -180,7 +181,7 @@ for epoch in trange(epochs, desc="Epoch"):
         nb_tr_examples += b_input_ids.size(0)
         nb_tr_steps += 1
         # Update parameters and take a step using the computed gradient
-        if i % batch_size//small_batch_size == 0:
+        if i % batch_size // small_batch_size == 0:
             optimizer.step()
             optimizer.zero_grad()
             loss = 0
@@ -189,7 +190,7 @@ for epoch in trange(epochs, desc="Epoch"):
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
     if (epoch + 1) % 5 == 0:
         # SAVING THE MODEL
-        model_path = '../models/whole_doc_all_together_25_epoch{}.pt'.format(epoch+1)
+        model_path = '../models/whole_doc_all_together_25_epoch{}.pt'.format(epoch + 1)
         torch.save(model.state_dict(), model_path)
 
 # TEST TIME!
