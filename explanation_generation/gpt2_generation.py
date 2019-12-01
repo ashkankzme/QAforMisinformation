@@ -1,4 +1,5 @@
-import json, sys
+import json
+import sys
 
 import gpt_2_simple as gpt2
 
@@ -30,10 +31,11 @@ MODEL_NAME = '124M'
 TRAINING_DATA_PATH = '../data/generation_input/train.txt'
 
 session = gpt2.start_tf_sess()
-gpt2.finetune(session, TRAINING_DATA_PATH, model_name=MODEL_NAME, steps=10)
+gpt2.finetune(session, TRAINING_DATA_PATH, model_name=MODEL_NAME, steps=1000)
 
 data_points_summarized = 0
 for file_number in range(1, 11):
+    print('processing file {} training data...'.format(file_number))
     with open('../data/qa_input_no_validation/q{}_train.json'.format(file_number)) as train_file:
         articles = json.load(train_file)
 
@@ -47,10 +49,13 @@ for file_number in range(1, 11):
             article_summary = ' '.join(top_sentences)
             article['generated_explanation'] = generate_explanation(article_summary, article['question'], session)
 
-
     with open('../data/ranking/q{}_train.json'.format(file_number), 'w') as f:
         f.write(json.dumps(articles))
 
+    print('results for training data of file {} saved. Data points summarized so far: {}'.format(file_number,
+                                                                                                 data_points_summarized))
+
+    print('processing file {} test data...'.format(file_number))
     with open('../data/qa_input_no_validation/q{}_test.json'.format(file_number)) as test_file:
         articles = json.load(test_file)
 
@@ -66,3 +71,8 @@ for file_number in range(1, 11):
 
     with open('../data/ranking/q{}_test.json'.format(file_number), 'w') as f:
         f.write(json.dumps(articles))
+
+    print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
+                                                                                             data_points_summarized))
+
+print('all explanations generated, total summarized are: {}.'.format(data_points_summarized))
