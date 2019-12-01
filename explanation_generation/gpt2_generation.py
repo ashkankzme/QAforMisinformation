@@ -8,7 +8,7 @@ def generate_explanation(article, session):
     generation_prefix += article['article'] + '\n'
     generation_prefix += 'QUESTION: ' + article['question'] + '\n'
     generation_prefix += 'EXPLANATION: '
-    return gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=300, inclue_prefix=False,
+    return gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=300, include_prefix=False,
                          temperature=0.7)
 
 
@@ -16,7 +16,7 @@ MODEL_NAME = '124M'
 TRAINING_DATA_PATH = '../data/generation_input/train.txt'
 
 session = gpt2.start_tf_sess()
-gpt2.finetune(session, TRAINING_DATA_PATH, model_name=MODEL_NAME, steps=1000)
+gpt2.finetune(session, TRAINING_DATA_PATH, model_name=MODEL_NAME, steps=10)
 
 for file_number in range(1, 11):
     with open('../data/qa_input_no_validation/q{}_train.json'.format(file_number)) as train_file:
