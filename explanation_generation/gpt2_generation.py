@@ -27,7 +27,7 @@ def generate_explanation(article, question, session):
                          temperature=0.7)
 
 
-MODEL_NAME = '124M'
+MODEL_NAME = '355M'
 TRAINING_DATA_PATH = '../data/generation_input/train.txt'
 
 session = gpt2.start_tf_sess()
