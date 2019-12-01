@@ -15,20 +15,13 @@ print("GPU name: " + torch.cuda.get_device_name(0))
 
 print("Loading data...")
 
-with open('../data/ranking/q{}_train.json'.format(sys.argv[1])) as train_file:
+with open('../data/qa_input_no_validation/q{}_train.json'.format(sys.argv[1])) as train_file:
     train_set = json.load(train_file)
 
-with open('../data/ranking/q{}_dev.json'.format(sys.argv[1])) as dev_file:
-    dev_set = json.load(dev_file)
-
-with open('../data/ranking/q{}_test.json'.format(sys.argv[1])) as test_file:
+with open('../data/qa_input_no_validation/q{}_test.json'.format(sys.argv[1])) as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
-
-dev_len = len(dev_set)
-train_set += dev_set[:(2 * dev_len) // 3]
-test_set += dev_set[(2 * dev_len) // 3:]
 
 # Create sentence and label lists
 sentences_train = [article['article'] + " [SEP] " + article['question'] + (" " + article['explanation'] if random.uniform(0, 1) < 0.8 else "") + " [SEP] [CLS]" for article in train_set]

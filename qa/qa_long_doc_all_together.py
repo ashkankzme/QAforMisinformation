@@ -19,20 +19,13 @@ train_set = []
 test_set = []
 dev_set = []
 for i in range(1, 11):
-    with open('../data/ranking/q{}_train.json'.format(i)) as train_file:
+    with open('../data/qa_input_no_validation/q{}_train.json'.format(i)) as train_file:
         train_set += json.load(train_file)
 
-    with open('../data/ranking/q{}_dev.json'.format(i)) as dev_file:
-        dev_set += json.load(dev_file)
-
-    with open('../data/ranking/q{}_test.json'.format(i)) as test_file:
+    with open('../data/qa_input_no_validation/q{}_test.json'.format(i)) as test_file:
         test_set += json.load(test_file)
 
 print("Data loading completed.")
-
-dev_len = len(dev_set)
-train_set += dev_set[:(2 * dev_len) // 3]
-test_set += dev_set[(2 * dev_len) // 3:]
 
 # Create sentence and label lists
 sentences_train = [article['article'] + " [SEP] " + article['question'] + (
