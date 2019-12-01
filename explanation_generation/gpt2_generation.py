@@ -1,4 +1,4 @@
-import json
+import json, sys
 
 import gpt_2_simple as gpt2
 
