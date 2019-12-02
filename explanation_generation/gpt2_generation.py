@@ -24,7 +24,7 @@ def generate_explanation(article, question, session):
     generation_prefix += 'QUESTION: ' + question + '\n'
     generation_prefix += 'EXPLANATION: '
     return gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=300, include_prefix=False,
-                         temperature=0.7)
+                         temperature=0.3)
 
 
 MODEL_NAME = '355M'
@@ -45,7 +45,7 @@ for file_number in range(1, 11):
         except:
             data_points_summarized += 1
             ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
-            top_sentences = select_top_k_texts_preserving_order(texts, ranking, 30)
+            top_sentences = select_top_k_texts_preserving_order(texts, ranking, 25)
             article_summary = ' '.join(top_sentences)
             article['generated_explanation'] = generate_explanation(article_summary, article['question'], session)
 
@@ -65,7 +65,7 @@ for file_number in range(1, 11):
         except:
             data_points_summarized += 1
             ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
-            top_sentences = select_top_k_texts_preserving_order(texts, ranking, 30)
+            top_sentences = select_top_k_texts_preserving_order(texts, ranking, 25)
             article_summary = ' '.join(top_sentences)
             article['generated_explanation'] = generate_explanation(article_summary, article['question'], session)
 
