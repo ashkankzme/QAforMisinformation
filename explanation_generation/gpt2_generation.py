@@ -42,33 +42,6 @@ gpt2.load_gpt2(session)
 
 data_points_summarized = 0
 for file_number in range(1, 11):
-    print('processing file {} training data...'.format(file_number))
-    with open('../data/qa_input_no_validation/q{}_train.json'.format(file_number)) as train_file:
-        articles = json.load(train_file)
-
-    for article in articles:
-        summary_size = 30
-        summary_doesnt_fit = True
-        article_text = article['article']
-        while summary_doesnt_fit:
-            try:
-                article['generated_explanation'] = generate_explanation(article_text, article['question'], session)
-                summary_doesnt_fit = False
-            except:
-                if summary_size == 30:  # gotta make sure we only increment this once per article at most
-                    data_points_summarized += 1
-                ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
-                top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
-                article_summary = ' '.join(top_sentences)
-                article_text = article_summary
-                summary_size -= 5
-
-    with open('../data/ranking/q{}_train.json'.format(file_number), 'w') as f:
-        f.write(json.dumps(articles))
-
-    print('results for training data of file {} saved. Data points summarized so far: {}'.format(file_number,
-                                                                                                 data_points_summarized))
-
     print('processing file {} test data...'.format(file_number))
     with open('../data/qa_input_no_validation/q{}_test.json'.format(file_number)) as test_file:
         articles = json.load(test_file)
@@ -95,5 +68,32 @@ for file_number in range(1, 11):
 
     print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
                                                                                              data_points_summarized))
+
+    print('processing file {} training data...'.format(file_number))
+    with open('../data/qa_input_no_validation/q{}_train.json'.format(file_number)) as train_file:
+        articles = json.load(train_file)
+
+    for article in articles:
+        summary_size = 30
+        summary_doesnt_fit = True
+        article_text = article['article']
+        while summary_doesnt_fit:
+            try:
+                article['generated_explanation'] = generate_explanation(article_text, article['question'], session)
+                summary_doesnt_fit = False
+            except:
+                if summary_size == 30:  # gotta make sure we only increment this once per article at most
+                    data_points_summarized += 1
+                ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
+                top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
+                article_summary = ' '.join(top_sentences)
+                article_text = article_summary
+                summary_size -= 5
+
+    with open('../data/ranking/q{}_train.json'.format(file_number), 'w') as f:
+        f.write(json.dumps(articles))
+
+    print('results for training data of file {} saved. Data points summarized so far: {}'.format(file_number,
+                                                                                                 data_points_summarized))
 
 print('all explanations generated, total summarized are: {}.'.format(data_points_summarized))
