@@ -74,14 +74,21 @@ for file_number in range(1, 11):
         articles = json.load(test_file)
 
     for article in articles:
-        try:
-            article['generated_explanation'] = generate_explanation(article['article'], article['question'], session)
-        except:
-            data_points_summarized += 1
-            ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
-            top_sentences = select_top_k_texts_preserving_order(texts, ranking, 25)
-            article_summary = ' '.join(top_sentences)
-            article['generated_explanation'] = generate_explanation(article_summary, article['question'], session)
+        summary_size = 30
+        summary_doesnt_fit = True
+        article_text = article['article']
+        while summary_doesnt_fit:
+            try:
+                article['generated_explanation'] = generate_explanation(article_text, article['question'], session)
+                summary_doesnt_fit = False
+            except:
+                if summary_size == 30:  # gotta make sure we only increment this once per article at most
+                    data_points_summarized += 1
+                ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
+                top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
+                article_summary = ' '.join(top_sentences)
+                article_text = article_summary
+                summary_size -= 5
 
     with open('../data/ranking/q{}_test.json'.format(file_number), 'w') as f:
         f.write(json.dumps(articles))
