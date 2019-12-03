@@ -72,7 +72,7 @@ def biased_textrank(text, q, exp, damping_factor=0.5):
             if i != j:
                 matrix[i][j] = text_similarities[i_text][j_text]
 
-    bias = torch.tensor(q_similarities)
+    bias = torch.tensor(exp_similarities)
     scaled_matrix = damping_factor * matrix + (1 - damping_factor) * bias
     # scaled_matrix = s * matrix + (1 - s) / len(matrix)
     for row in scaled_matrix:
