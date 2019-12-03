@@ -1,6 +1,6 @@
 import json
-import sys
 import random
+import sys
 
 import gpt_2_simple as gpt2
 import tensorflow as tf
@@ -25,13 +25,13 @@ def generate_explanation(article, question, session):
     generation_prefix += article + '\n'
     generation_prefix += 'QUESTION: ' + question + '\n'
     generation_prefix += 'EXPLANATION: '
-
     while True:
         generated_explanations = gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=80,
                                                include_prefix=False, temperature=0.7, return_as_list=True, batch_size=2,
                                                nsamples=2)
         for generated_explanation in generated_explanations:
             if generated_explanation != '':
+                print(generated_explanation)
                 return generated_explanation
 
 
@@ -47,11 +47,9 @@ for file_number in range(1, 11):
     print('processing file {} test data...'.format(file_number))
     with open('../data/qa_input_no_validation/q{}_test.json'.format(file_number)) as test_file:
         articles = json.load(test_file)
-
     for article in articles:
-        if random.uniform(0, 1) < 0.1: #bug fix for slow down in generation
-            tf.reset_default_graph()
-
+        # if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
+        #     tf.reset_default_graph()
         summary_size = 30
         summary_doesnt_fit = True
         article_text = article['article']
@@ -67,17 +65,13 @@ for file_number in range(1, 11):
                 article_summary = ' '.join(top_sentences)
                 article_text = article_summary
                 summary_size -= 5
-
     with open('../data/ranking/q{}_test.json'.format(file_number), 'w') as f:
         f.write(json.dumps(articles))
-
     print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
                                                                                              data_points_summarized))
-
     print('processing file {} training data...'.format(file_number))
     with open('../data/qa_input_no_validation/q{}_train.json'.format(file_number)) as train_file:
         articles = json.load(train_file)
-
     for article in articles:
         summary_size = 30
         summary_doesnt_fit = True
@@ -94,11 +88,8 @@ for file_number in range(1, 11):
                 article_summary = ' '.join(top_sentences)
                 article_text = article_summary
                 summary_size -= 5
-
     with open('../data/ranking/q{}_train.json'.format(file_number), 'w') as f:
         f.write(json.dumps(articles))
-
     print('results for training data of file {} saved. Data points summarized so far: {}'.format(file_number,
                                                                                                  data_points_summarized))
-
 print('all explanations generated, total summarized are: {}.'.format(data_points_summarized))
