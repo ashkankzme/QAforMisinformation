@@ -23,15 +23,22 @@ def generate_explanation(article, question, session):
     generation_prefix += article + '\n'
     generation_prefix += 'QUESTION: ' + question + '\n'
     generation_prefix += 'EXPLANATION: '
-    return gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=300, include_prefix=False,
-                         temperature=0.3)
+
+    while True:
+        generated_explanations = gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=80,
+                                               include_prefix=False, temperature=0.7, return_as_list=True, batch_size=2,
+                                               nsamples=2)
+        for generated_explanation in generated_explanations:
+            if generated_explanation != '':
+                return generated_explanation
 
 
 MODEL_NAME = '355M'
 TRAINING_DATA_PATH = '../data/generation_input/train.txt'
 
 session = gpt2.start_tf_sess()
-gpt2.finetune(session, TRAINING_DATA_PATH, model_name=MODEL_NAME, steps=1000)
+# gpt2.finetune(session, TRAINING_DATA_PATH, model_name=MODEL_NAME, steps=1000)
+gpt2.load_gpt2(session)
 
 data_points_summarized = 0
 for file_number in range(1, 11):
@@ -40,14 +47,21 @@ for file_number in range(1, 11):
         articles = json.load(train_file)
 
     for article in articles:
-        try:
-            article['generated_explanation'] = generate_explanation(article['article'], article['question'], session)
-        except:
-            data_points_summarized += 1
-            ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
-            top_sentences = select_top_k_texts_preserving_order(texts, ranking, 25)
-            article_summary = ' '.join(top_sentences)
-            article['generated_explanation'] = generate_explanation(article_summary, article['question'], session)
+        summary_size = 30
+        summary_doesnt_fit = True
+        article_text = article['article']
+        while summary_doesnt_fit:
+            try:
+                article['generated_explanation'] = generate_explanation(article_text, article['question'], session)
+                summary_doesnt_fit = False
+            except:
+                if summary_size == 30:  # gotta make sure we only increment this once per article at most
+                    data_points_summarized += 1
+                ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
+                top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
+                article_summary = ' '.join(top_sentences)
+                article_text = article_summary
+                summary_size -= 5
 
     with open('../data/ranking/q{}_train.json'.format(file_number), 'w') as f:
         f.write(json.dumps(articles))
