@@ -1,7 +1,9 @@
 import json
 import sys
+import random
 
 import gpt_2_simple as gpt2
+import tensorflow as tf
 
 sys.path.insert(1, '../paragraph_ranking')
 from rank_gold_standard import biased_textrank
@@ -47,6 +49,9 @@ for file_number in range(1, 11):
         articles = json.load(test_file)
 
     for article in articles:
+        if random.uniform(0, 1) < 0.1: #bug fix for slow down in generation
+            tf.reset_default_graph()
+
         summary_size = 30
         summary_doesnt_fit = True
         article_text = article['article']
