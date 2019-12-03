@@ -3,7 +3,6 @@ import random
 import sys
 
 import gpt_2_simple as gpt2
-import tensorflow as tf
 
 sys.path.insert(1, '../paragraph_ranking')
 from rank_gold_standard import biased_textrank
