@@ -12,11 +12,10 @@ from utils import get_paragraphs, get_sentences, get_bert_embeddings, cosine_sim
 # ranks them by their similarities of their
 # XLNet or BERT embeddings to the explanation
 # and the question.
-def get_similarities(text, q, exp):
+def get_similarities(texts, q, exp):
     exp_embeddings = get_bert_embeddings(exp.strip())
     q_embeddings = get_bert_embeddings(q.strip())
 
-    texts = get_sentences(text)
     texts_embeddings = [get_bert_embeddings(p) for p in texts]
 
     # calculate cosine similarities between articles paragraphs and explanations or questions
@@ -26,7 +25,7 @@ def get_similarities(text, q, exp):
         exp_similarities[i] = cosine_similarity(pe, exp_embeddings)
         q_similarities[i] = cosine_similarity(pe, q_embeddings)
 
-    return exp_similarities, q_similarities, texts_embeddings, texts
+    return exp_similarities, q_similarities, texts_embeddings
 
 
 # takes as input a piece of text, plus a set of
@@ -53,8 +52,8 @@ def get_relative_ranking(text, source_paragraphs_embeddings, rankings):
 # runs the textrank algorithm on it and returns
 # the ranking of each text as a score,
 # alongside the text itself.
-def biased_textrank(text, q, exp, damping_factor=0.5):
-    exp_similarities, q_similarities, text_embeddings, texts  = get_similarities(text, q, exp)
+def biased_textrank(texts, q, exp, damping_factor=0.5):
+    exp_similarities, q_similarities, text_embeddings = get_similarities(texts, q, exp)
 
     text_similarities = {}
     for i, text in enumerate(texts):
@@ -145,9 +144,10 @@ def prepare_data_for_qa(qid):
 
     NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE = 5
     for article in train + dev + test:
-        exp_similarities, _, paragraphs_embeddings, paragraphs = get_similarities(article['article'],
-                                                                                  article['question'],
-                                                                                  article['explanation'])
+        paragraphs = get_sentences(article['article'])
+        exp_similarities, _, paragraphs_embeddings = get_similarities(paragraphs,
+                                                                      article['question'],
+                                                                      article['explanation'])
 
         if len(paragraphs) > NUMBER_OF_TOP_PARAGRAPHS_TO_INCLUDE:
             sorted_rankings = [x for _, x in sorted(zip(exp_similarities, paragraphs), key=lambda pair: pair[0])]
@@ -171,6 +171,7 @@ def prepare_data_for_qa(qid):
 def main():
     for i in range(8, 11):
         prepare_data_for_qa_textrank(i)
+
 
 if __name__ == "__main__":
     main()

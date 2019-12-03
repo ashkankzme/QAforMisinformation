@@ -2,9 +2,34 @@ import json
 import sys
 import random
 
-# import numpy as np
+import numpy as np
 from utils import get_paragraphs, get_sentences, get_bert_embeddings
-from rank_gold_standard import biased_textrank
+from rank_gold_standard import biased_textrank, get_similarities
+from sklearn.cluster import KMeans
+
+
+def extract_paragraph_features(articles):
+    for i, article in enumerate(articles):
+        # if random.uniform(0, 1) < 0.1:
+        print('processing {}th entry...'.format(i))
+        article['paragraph_features'] = []
+        exp_similarities, q_similarities, _ = get_similarities(article['paragraphs'], article['question'],
+                                                               article['explanation'])
+        exp_textrank, _ = biased_textrank(article['paragraphs'], article['question'], article['explanation'])
+        q_textrank, _ = biased_textrank(article['paragraphs'], article['explanation'], article['question'])
+        for i, paragraph in enumerate(article['paragraphs']):
+            article['paragraph_features'].append(
+                [exp_similarities[i], exp_textrank[i], q_similarities[i], q_textrank[i]])
+
+    paragraph_features = []
+    paragraphs = []
+    for article in train_set:
+        paragraph_features.extend(article['paragraph_features'])
+        paragraphs.extend(article['paragraphs'])
+
+    paragraph_features = np.array(paragraph_features)
+
+    return paragraph_features, paragraphs
 
 print("Loading data...")
 
@@ -21,9 +46,12 @@ for article in train_set + test_set:
     article['paragraphs'] = get_paragraphs(article['article'])
 
 # clustering for classifying paragraphs into relevant/irrelevant
-paragraphs = []
-for article in train_set:
-    paragraphs.extend()
+print('Calculating paragraph features...')
+paragraph_features_train, paragraphs_train = extract_paragraph_features(train_set)
+print('Paragraph features calculated.')
+
+# Doing some clustering
+kmeans = KMeans(n_clusters=2, random_state=0).fit(paragraph_features_train)
 
 # # initial classifier, based on string matching
 # articles_with_referencing_explanations = []
