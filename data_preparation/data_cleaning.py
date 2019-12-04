@@ -1,10 +1,11 @@
 import json
 import math
 import random
-
+import sys
 import numpy as np
 
-from paragraph_ranking import get_paragraphs, get_bert_marked_text, tokenizer
+sys.path.insert(1, '../paragraph_ranking')
+from utils import get_paragraphs, get_bert_marked_text, tokenizer
 
 with open('../data/news.json') as news_file:
     news = json.load(news_file)
