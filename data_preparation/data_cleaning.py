@@ -51,6 +51,8 @@ for index_list in duplicate_indices:
 
 doc_lens = []
 for article in articles:
+    if 'original_article' not in article:
+        continue
     tokenized_article = tokenizer.tokenize(get_bert_marked_text(article['original_article']))
     doc_lens.append(len(tokenized_article))
 
