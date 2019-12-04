@@ -66,7 +66,7 @@ std_doc_len = np.std(doc_lens)
 print("Std doc len: {}".format(std_doc_len))
 
 for i in index_map:
-    if doc_lens[i] > avg_doc_len + 2 * std_doc_len or doc_lens[i] < avg_doc_len - std_doc_len:
+    if doc_lens[i] < avg_doc_len - std_doc_len:
         to_be_deleted.append(index_map[i])
 
 to_be_deleted = list(set(to_be_deleted))
