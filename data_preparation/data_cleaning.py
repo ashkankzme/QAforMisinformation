@@ -50,22 +50,24 @@ for index_list in duplicate_indices:
         to_be_deleted.append(i)
 
 doc_lens = []
-for article in articles:
-    if 'original_article' not in article:
+temp_counter = 0
+index_map = {}
+for i, article in enumerate(articles):
+    if 'original_article' not in article or i in to_be_deleted:
         continue
     tokenized_article = tokenizer.tokenize(get_bert_marked_text(article['original_article']))
     doc_lens.append(len(tokenized_article))
+    index_map[temp_counter] = i
+    temp_counter += 1
 
 avg_doc_len = np.mean(doc_lens)
 print("Average doc len: {}".format(avg_doc_len))
 std_doc_len = np.std(doc_lens)
 print("Std doc len: {}".format(std_doc_len))
 
-for i, article in enumerate(articles):
-    if 'original_article' not in article:
-        continue
-    if doc_lens[i] > avg_doc_len + 2 * std_doc_len or doc_lens[i] < avg_doc_len - 2 * std_doc_len:
-        to_be_deleted.append(i)
+for i in index_map:
+    if doc_lens[i] > avg_doc_len + 2 * std_doc_len or doc_lens[i] < avg_doc_len - std_doc_len:
+        to_be_deleted.append(index_map[i])
 
 to_be_deleted = list(set(to_be_deleted))
 
