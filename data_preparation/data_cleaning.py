@@ -1,8 +1,10 @@
 import json
 import math
 import random
-from paragraph_ranking import get_paragraphs, get_bert_marked_text, tokenizer
 
+import numpy as np
+
+from paragraph_ranking import get_paragraphs, get_bert_marked_text, tokenizer
 
 with open('../data/news.json') as news_file:
     news = json.load(news_file)
@@ -24,14 +26,16 @@ to_be_deleted = []
 # and we had to remove them.
 # we also remove unnecessarily long articles
 original_articles_map = {}
-for i in range(len(articles)):
-    _article = articles[i]
-    _criteria = _article['criteria']
+for i, _article in enumerate(articles):
+    _criteria = _article['criteria'] if 'criteria' in _article else []
+    paragraphs = get_paragraphs(_article['original_article']) if 'original_article' in _article else []
+
     if 'rating' not in _article or _article['rating'] == -1 or 'criteria' not in _article or len(
             _article['criteria']) < len(news_criteria) or 'original_article' not in _article or _article[
-        'original_article'].isspace() or len(get_paragraphs(_article['original_article'])) > 50 or len(
-        [1 for p in get_paragraphs(_article['original_article']) if len(tokenizer.tokenize(get_bert_marked_text(p))) > 512]) > 0\
-            or len([1 for q in _criteria if len(tokenizer.tokenize(get_bert_marked_text(q['explanation']))) > 512]) > 0:
+        'original_article'].isspace() or len(paragraphs) > 50 or len(paragraphs) <= 5 or len(
+        [1 for p in paragraphs if len(tokenizer.tokenize(get_bert_marked_text(p))) > 512]) > 0 or \
+            len([1 for q in _criteria if len(tokenizer.tokenize(get_bert_marked_text(q['explanation']))) > 512]) > 0 or \
+            'Error code 404'.lower() in _article['original_article'].lower():
         to_be_deleted.append(i)
     elif _article['original_article'] not in original_articles_map:
         original_articles_map[_article['original_article']] = [i]
@@ -43,6 +47,22 @@ duplicate_indices = [original_articles_map[duplicate_article] for duplicate_arti
 for index_list in duplicate_indices:
     for i in index_list:
         to_be_deleted.append(i)
+
+doc_lens = []
+for article in articles:
+    tokenized_article = tokenizer.tokenize(get_bert_marked_text(article['original_article']))
+    doc_lens.append(len(tokenized_article))
+
+avg_doc_len = np.mean(doc_lens)
+print("Average doc len: {}".format(avg_doc_len))
+std_doc_len = np.std(doc_lens)
+print("Std doc len: {}".format(std_doc_len))
+
+for i, article in enumerate(articles):
+    if doc_lens[i] > avg_doc_len + 2 * std_doc_len or doc_lens[i] < avg_doc_len - 2 * std_doc_len:
+        to_be_deleted.append(i)
+
+to_be_deleted = list(set(to_be_deleted))
 
 for index in sorted(to_be_deleted, reverse=True):
     del articles[index]
@@ -65,18 +85,13 @@ for i in range(10):
     seed = i  # for getting the same random results every time
     random.Random(seed).shuffle(qi)
 
-    first_split_idnex = math.floor(0.8 * len(qi))
-    second_split_index = math.floor(0.9 * len(qi))
+    split_index = math.floor(0.8 * len(qi))
 
-    qi_train = qi[:first_split_idnex]
-    qi_dev = qi[first_split_idnex:second_split_index]
-    qi_test = qi[second_split_index:]
+    qi_train = qi[:split_index]
+    qi_test = qi[split_index:]
 
-    with open('../data/ranking/q{}_train.json'.format(i + 1), 'w') as f:
+    with open('../data/ttt/q{}_train.json'.format(i + 1), 'w') as f:
         f.write(json.dumps(qi_train))
 
-    with open('../data/ranking/q{}_dev.json'.format(i + 1), 'w') as f:
-        f.write(json.dumps(qi_dev))
-
-    with open('../data/ranking/q{}_test.json'.format(i + 1), 'w') as f:
+    with open('../data/ttt/q{}_test.json'.format(i + 1), 'w') as f:
         f.write(json.dumps(qi_test))
