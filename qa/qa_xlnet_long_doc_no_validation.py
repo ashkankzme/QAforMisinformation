@@ -15,17 +15,17 @@ print("GPU name: " + torch.cuda.get_device_name(0))
 
 print("Loading data...")
 
-with open('../data/qa_input_no_validation/q{}_train.json'.format(sys.argv[1])) as train_file:
+with open('../data/ttt/q{}_train.json'.format(sys.argv[1])) as train_file:
     train_set = json.load(train_file)
 
-with open('../data/qa_input_no_validation/q{}_test.json'.format(sys.argv[1])) as test_file:
+with open('../data/ttt/q{}_test.json'.format(sys.argv[1])) as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " [SEP] " + article['question'] + (" " + article['explanation'] if random.uniform(0, 1) < 0.8 else "") + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['article'] + " [SEP] " + article['question'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [article['answer'] for article in train_set]
 labels_test = [article['answer'] for article in test_set]
@@ -176,10 +176,10 @@ for epoch in trange(epochs, desc="Epoch"):
         i += 1
 
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
-    # if (epoch + 1) % 5 == 0:
-    #     # SAVING THE MODEL
-    #     model_path = '../models/whole_doc_q{}_epoch{}.pt'.format(sys.argv[1], epoch+1)
-    #     torch.save(model.state_dict(), model_path)
+    if (epoch + 1) % 15 == 0:
+        # SAVING THE MODEL
+        model_path = '../saved_models/whole_doc_q{}_epoch{}.pt'.format(sys.argv[1], epoch+1)
+        torch.save(model.state_dict(), model_path)
 
 # TEST TIME!
 
