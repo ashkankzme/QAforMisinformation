@@ -67,6 +67,9 @@ print("Std doc len: {}".format(std_doc_len))
 
 for i in index_map:
     if doc_lens[i] < avg_doc_len - std_doc_len:
+        if random.uniform(0, 1) < 0.01:
+            print(articles[index_map[i]]['original_article'])
+            print('########################################')
         to_be_deleted.append(index_map[i])
 
 to_be_deleted = list(set(to_be_deleted))
