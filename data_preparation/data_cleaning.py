@@ -62,6 +62,8 @@ std_doc_len = np.std(doc_lens)
 print("Std doc len: {}".format(std_doc_len))
 
 for i, article in enumerate(articles):
+    if 'original_article' not in article:
+        continue
     if doc_lens[i] > avg_doc_len + 2 * std_doc_len or doc_lens[i] < avg_doc_len - 2 * std_doc_len:
         to_be_deleted.append(i)
 
