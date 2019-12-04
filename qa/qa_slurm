@@ -6,13 +6,13 @@
 #SBATCH --job-name=test_job_ash
 #SBATCH --mail-user=ashkank@umich.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --nodes=1
-#SBATCH --ntasks-per-node=1
-#SBATCH --mem-per-cpu=1000m
-#SBATCH --time=10:00
+#SBATCH --time=108:24:58
 #SBATCH --account=mihalcea
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpu
+#SBATCH --output=/home/alcllahn/acl_chordembeddings/create_chord_embeddings/lstm_lm/logs/%x-%j.log
+#SBATCH --nodes=1
+#SBATCH --mem-per-cpu=8g
 
 # The application(s) to execute along with its input arguments and options:
 echo "Hello World from Great Lakes" > alaki.log
