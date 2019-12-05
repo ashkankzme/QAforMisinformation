@@ -10,7 +10,7 @@ from transformers import AdamW
 from transformers import XLNetTokenizer, XLNetForSequenceClassification
 
 
-def train_and_label(train_set, test_set, device, n_gpu):
+def train_and_label(train_set, test_set, device, n_gpu, epochs):
     # Create sentence and label lists
     sentences_train = [item['paragraph'] + " [SEP] [CLS]" for item in train_set]
     labels_train = [item['label'] for item in train_set]
@@ -97,9 +97,6 @@ def train_and_label(train_set, test_set, device, n_gpu):
         pred_flat = np.argmax(preds, axis=1).flatten()
         labels_flat = labels.flatten()
         return np.sum(pred_flat == labels_flat) / len(labels_flat)
-
-    # Number of training epochs (authors recommend between 2 and 4)
-    epochs = 15
 
     # trange is a tqdm wrapper around the normal python range
     for _ in trange(epochs, desc="Epoch"):
@@ -230,7 +227,7 @@ initial_train_set = initial_train_set_one + initial_train_set_zero
 random.Random(2017).shuffle(initial_train_set)
 
 # train on part of train data, label all train data with what you learned.
-train_and_label(initial_train_set, rest_of_training_data, device, n_gpu)
+train_and_label(initial_train_set, rest_of_training_data, device, n_gpu, 3)
 
 # preparing newly labeled data for retraining
 second_train_set_one = []
@@ -249,4 +246,10 @@ second_train_set = second_train_set_one + second_train_set_zero
 random.Random(2017).shuffle(second_train_set)
 
 # train on training data, label test data
-train_and_label(second_train_set, test_set, device, n_gpu)
+train_and_label(second_train_set, test_set, device, n_gpu, 15)
+
+with open('../data/paragraph_relevance_classification_input/q{}_train.json'.format(sys.argv[1]), 'w') as f:
+    f.write(json.dumps(train_set))
+
+with open('../data/paragraph_relevance_classification_input/q{}_test.json'.format(sys.argv[1]), 'w') as f:
+    f.write(json.dumps(test_set))
