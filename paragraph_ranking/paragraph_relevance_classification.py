@@ -189,7 +189,7 @@ def train_and_label(train_set, test_set, device, n_gpu, epochs):
             predictions = [a for a in np.argmax(logits, axis=1).flatten()]
             for i, label in enumerate(predictions):
                 p = test_paragraphs[input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]]
-                test_set[paragraphs_map[p][0]]['paragraph_relevance_learned_labels'][paragraphs_map[p][1]] = label
+                test_set[paragraphs_map[p][0]]['paragraph_relevance_learned_labels'][paragraphs_map[p][1]] = int(label)
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -246,7 +246,7 @@ second_train_set = second_train_set_one + second_train_set_zero
 random.Random(2017).shuffle(second_train_set)
 
 # train on training data, label test data
-train_and_label(second_train_set, test_set, device, n_gpu, 15)
+train_and_label(second_train_set, test_set, device, n_gpu, 10)
 
 with open('../data/paragraph_relevance_classification_input/q{}_train.json'.format(sys.argv[1]), 'w') as f:
     f.write(json.dumps(train_set))
