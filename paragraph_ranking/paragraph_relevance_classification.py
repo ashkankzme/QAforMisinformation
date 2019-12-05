@@ -227,7 +227,7 @@ initial_train_set = initial_train_set_one + initial_train_set_zero
 random.Random(2017).shuffle(initial_train_set)
 
 # train on part of train data, label all train data with what you learned.
-train_and_label(initial_train_set, rest_of_training_data, device, n_gpu, 3)
+train_and_label(initial_train_set, rest_of_training_data, device, n_gpu, 15)
 
 # preparing newly labeled data for retraining
 second_train_set_one = []
@@ -236,7 +236,7 @@ second_train_set_zero = []
 for article in train_set:
     if 'paragraph_relevance_learned_labels' not in article:
         continue
-    for i, paragraph in article['paragraphs']:
+    for i, paragraph in enumerate(article['paragraphs']):
         if article['paragraph_relevance_learned_labels'][i]:
             second_train_set_one.append({'paragraph': paragraph, 'label': 1})
         elif len(second_train_set_zero) < len(second_train_set_one):
