@@ -134,7 +134,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 15
+epochs = 20
 
 # trange is a tqdm wrapper around the normal python range
 for epoch in trange(epochs, desc="Epoch"):
@@ -176,7 +176,7 @@ for epoch in trange(epochs, desc="Epoch"):
         i += 1
 
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
-    if (epoch + 1) % 15 == 0:
+    if (epoch + 1) % epochs == 0:
         # SAVING THE MODEL
         model_path = '../saved_models/whole_doc_q{}_epoch{}.pt'.format(sys.argv[1], epoch+1)
         torch.save(model.state_dict(), model_path)
