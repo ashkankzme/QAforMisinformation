@@ -3,16 +3,30 @@
 
 #“#SBATCH” directives that convey submission options:
 
-#SBATCH --job-name=test_job_ash
+#SBATCH --job-name=qa_with_50_exp
 #SBATCH --mail-user=ashkank@umich.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --time=108:24:58
+#SBATCH --time=24:00:00
 #SBATCH --account=mihalcea
-#SBATCH --gres=gpu:1
+#SBATCH --gres=gpu:4
 #SBATCH --partition=gpu
-#SBATCH --output=/home/alcllahn/acl_chordembeddings/create_chord_embeddings/lstm_lm/logs/%x-%j.log
+#SBATCH --output=/home/ashkank/logs/%x-%j.log
 #SBATCH --nodes=1
 #SBATCH --mem-per-cpu=8g
 
 # The application(s) to execute along with its input arguments and options:
-echo "Hello World from Great Lakes" > alaki.log
+cd /home/ashkank/
+source .bashrc
+cd QAforMisinformation
+conda activate QAforMisinfo
+cd qa/
+python qa_xlnet_long_doc_with_exp.py 1
+python qa_xlnet_long_doc_with_exp.py 2
+python qa_xlnet_long_doc_with_exp.py 3
+python qa_xlnet_long_doc_with_exp.py 4
+python qa_xlnet_long_doc_with_exp.py 5
+python qa_xlnet_long_doc_with_exp.py 6
+python qa_xlnet_long_doc_with_exp.py 7
+python qa_xlnet_long_doc_with_exp.py 8
+python qa_xlnet_long_doc_with_exp.py 9
+python qa_xlnet_long_doc_with_exp.py 10
