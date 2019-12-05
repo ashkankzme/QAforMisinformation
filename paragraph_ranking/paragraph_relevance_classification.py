@@ -214,7 +214,7 @@ for article in train_set:
     if 'paragraph_relevance_extracted_labels' not in article:
         rest_of_training_data.append(article)
         continue
-    for i, paragraph in article['paragraphs']:
+    for i, paragraph in enumerate(article['paragraphs']):
         if article['paragraph_relevance_extracted_labels'][i]:
             initial_train_set_one.append({'paragraph': paragraph, 'label': 1})
         elif len(initial_train_set_zero) < len(initial_train_set_one):
