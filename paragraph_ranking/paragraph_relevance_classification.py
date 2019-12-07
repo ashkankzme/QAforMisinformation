@@ -285,6 +285,10 @@ if sys.argv[2] == 'cross-validate':
         accuracies.append(acc)
         f1_relevant_set.append(f1_relevant)
         f1_irrelevant_set.append(f1_irrelevant)
+        # Freeing up memory for next round
+        del model
+        del tokenizer
+        torch.cuda.empty_cache()
 
     print('{} fold cross validation results:'.format(fold_count))
     print('Accuracy: {}, F1 (Relevant): {}, F1 (Irrelevant): {}'.format(np.mean(accuracies), np.mean(f1_relevant_set),
