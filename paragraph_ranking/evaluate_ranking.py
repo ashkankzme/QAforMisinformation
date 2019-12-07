@@ -64,7 +64,7 @@ def calculate_hitrate(articles):
 
 
 def main():
-    for qid in range(1, 4):
+    for qid in range(4, 5):
         # with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_train.json'.format(
         #         qid)) as train_file:
         #     articles = json.load(train_file)
