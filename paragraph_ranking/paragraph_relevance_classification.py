@@ -293,7 +293,7 @@ if sys.argv[2] == 'cross-validate':
     print('{} fold cross validation results:'.format(fold_count))
     print('Accuracy: {}, F1 (Relevant): {}, F1 (Irrelevant): {}'.format(np.mean(accuracies), np.mean(f1_relevant_set),
                                                                         np.mean(f1_irrelevant_set)))
-else:
+elif sys.argv[2] == 'label':
     # train on part of train data, label all train data with what you learned.
     acc, f1_rel, f1_irrel = train_and_label(initial_train_set, rest_of_training_data, device, n_gpu, 15)
     print('Initial Training Results for Majority Class Selection: Acc == {}, F1 Rel. == {}, F1 Irrel. == {}'.format(acc,
