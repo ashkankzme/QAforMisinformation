@@ -266,7 +266,7 @@ random.Random(2017).shuffle(initial_train_set)
 
 if sys.argv[2] == 'cross-validate':
 
-    fold_count = sys.argv[3]
+    fold_count = int(sys.argv[3])
     fold_size = len(initial_train_set) // fold_count
 
     accuracies = []
