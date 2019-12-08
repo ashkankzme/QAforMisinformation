@@ -107,7 +107,7 @@ def calculate_extraction_hitrate(articles):
                 hit_3 += 1
                 break
 
-    return hit_1 / len(articles), hit_2 / len(articles), hit_3 / len(articles)
+    return hit_1 / total, hit_2 / total, hit_3 / total
 
 
 def main():
