@@ -53,7 +53,7 @@ def calculate_hitrate(articles):
             similarities[i] = cosine_similarity(pe, exp_embeddings)
             similarity_map[similarities[i]] = i
 
-        top3_similarities = sorted(similarities, reverse=True)[:3]
+        top3_similarities = sorted(similarities, reverse=True)[:1]
         top3_paragraph_indices = [similarity_map[sim] for sim in top3_similarities]
         for i in top3_paragraph_indices:
             if article['paragraph_relevance_learned_labels'][i]:
@@ -64,7 +64,7 @@ def calculate_hitrate(articles):
 
 
 def main():
-    for qid in range(5, 6):
+    for qid in range(1, 11):
         # with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_train.json'.format(
         #         qid)) as train_file:
         #     articles = json.load(train_file)
