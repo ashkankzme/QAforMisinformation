@@ -53,7 +53,7 @@ def calculate_hitrate(articles):
             similarities[i] = cosine_similarity(pe, exp_embeddings)
             similarity_map[similarities[i]] = i
 
-        top3_similarities = sorted(similarities, reverse=True)[:1]
+        top3_similarities = sorted(similarities, reverse=True)[:2]
         top3_paragraph_indices = [similarity_map[sim] for sim in top3_similarities]
         for i in top3_paragraph_indices:
             if article['paragraph_relevance_learned_labels'][i]:
