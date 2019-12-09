@@ -47,7 +47,7 @@ print("Tokenize the first sentence:")
 print(tokenized_texts_train[0])
 
 # Set the maximum sequence length.
-MAX_LEN = 1000
+MAX_LEN = 1200
 average_len = 0
 to_be_deleted = []
 for i, tokens in enumerate(tokenized_texts_train + tokenized_texts_test):
@@ -102,8 +102,8 @@ train_labels = torch.tensor(train_labels)
 train_masks = torch.tensor(train_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 32
-small_batch_size = 8
+batch_size = 36
+small_batch_size = 6
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
