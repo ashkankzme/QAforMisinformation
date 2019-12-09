@@ -20,11 +20,6 @@ source .bashrc
 cd QAforMisinformation
 conda activate QAforMisinfo
 cd qa/
-python qa_long_doc_extractive_method.py 1 20
-python qa_long_doc_extractive_method.py 2 20
-python qa_long_doc_extractive_method.py 3 20
-python qa_long_doc_extractive_method.py 4 20
-python qa_long_doc_extractive_method.py 5 20
 python qa_long_doc_extractive_method.py 6 20
 python qa_long_doc_extractive_method.py 7 20
 python qa_long_doc_extractive_method.py 8 20
