@@ -103,7 +103,7 @@ train_masks = torch.tensor(train_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
 batch_size = 36
-small_batch_size = 6
+small_batch_size = 9
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
@@ -192,7 +192,7 @@ for epoch in trange(epochs, desc="Epoch"):
 
 # TEST TIME!
 
-batch_size = 6
+batch_size = small_batch_size
 
 prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
