@@ -47,7 +47,7 @@ print("Tokenize the first sentence:")
 print(tokenized_texts_train[0])
 
 # Set the maximum sequence length.
-MAX_LEN = 900
+MAX_LEN = 1000
 average_len = 0
 to_be_deleted = []
 for i, tokens in enumerate(tokenized_texts_train + tokenized_texts_test):
