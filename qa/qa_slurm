@@ -20,13 +20,13 @@ source .bashrc
 cd QAforMisinformation
 conda activate QAforMisinfo
 cd qa/
-python qa_xlnet_long_doc_with_exp.py 1
-python qa_xlnet_long_doc_with_exp.py 2
-python qa_xlnet_long_doc_with_exp.py 3
-python qa_xlnet_long_doc_with_exp.py 4
-python qa_xlnet_long_doc_with_exp.py 5
-python qa_xlnet_long_doc_with_exp.py 6
-python qa_xlnet_long_doc_with_exp.py 7
-python qa_xlnet_long_doc_with_exp.py 8
-python qa_xlnet_long_doc_with_exp.py 9
-python qa_xlnet_long_doc_with_exp.py 10
+python qa_long_doc_extractive_method.py 1 20
+python qa_long_doc_extractive_method.py 2 20
+python qa_long_doc_extractive_method.py 3 20
+python qa_long_doc_extractive_method.py 4 20
+python qa_long_doc_extractive_method.py 5 20
+python qa_long_doc_extractive_method.py 6 20
+python qa_long_doc_extractive_method.py 7 20
+python qa_long_doc_extractive_method.py 8 20
+python qa_long_doc_extractive_method.py 9 20
+python qa_long_doc_extractive_method.py 10 20
