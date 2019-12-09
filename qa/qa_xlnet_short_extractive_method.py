@@ -23,8 +23,8 @@ with open('../data/paragraph_relevance_classification_input/q{}_test.json'.forma
 for article in train_set + test_set:
     article['relevant_summary'] = ''
     for i, paragraph in enumerate(article['paragraphs']):
-        if (article['paragraph_relevance_extracted_labels'] and article['paragraph_relevance_extracted_labels'][i]) or (
-                article['paragraph_relevance_learned_labels'] and article['paragraph_relevance_learned_labels'][i]):
+        if ('paragraph_relevance_extracted_labels' in article and article['paragraph_relevance_extracted_labels'][i]) or (
+                'paragraph_relevance_learned_labels' in article and article['paragraph_relevance_learned_labels'][i]):
             article['relevant_summary'] += paragraph + '\n'
     if article['relevant_summary'] == '':
         article['relevant_summary'] = 'Empty Text'
