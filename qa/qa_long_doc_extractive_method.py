@@ -33,8 +33,8 @@ for article in train_set + test_set:
         article['selected_text'] = article['article']
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['selected_text'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['selected_text'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [article['answer'] for article in train_set]
 labels_test = [article['answer'] for article in test_set]
