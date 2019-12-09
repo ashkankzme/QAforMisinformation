@@ -143,7 +143,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = sys.argv[2] or 15
+epochs = int(sys.argv[2]) or 15
 
 # trange is a tqdm wrapper around the normal python range
 for epoch in trange(epochs, desc="Epoch"):
