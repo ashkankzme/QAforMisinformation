@@ -61,7 +61,7 @@ for file_number in range(1, 11):
             except:
                 if summary_size == 30:  # gotta make sure we only increment this once per article at most
                     data_points_summarized += 1
-                ranking, texts = biased_textrank(article['article'], article['question'], 'OK', damping_factor=0.5)
+                ranking, texts = biased_textrank(article['article'], article['question'])
                 top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
                 article_summary = ' '.join(top_sentences)
                 article_text = article_summary
