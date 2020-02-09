@@ -85,7 +85,7 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
     # preparing to add bias
     bias_embedding = get_bert_embeddings(bias_text.strip())
 
-    bias_text_similarities = [0] * len(texts)
+    bias_text_similarities = torch.zeros(len(texts))
     for i, text_embedding in enumerate(texts_embeddings):
         bias_text_similarities[i] = cosine_similarity(text_embedding, bias_embedding)
 
