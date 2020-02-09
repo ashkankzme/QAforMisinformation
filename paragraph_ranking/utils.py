@@ -22,7 +22,7 @@ model.to(device)
 # and returns the cosine similarity
 # between them.
 def cosine_similarity(a, b):
-    return torch.dot(a, b) / (torch.norm(a) * torch.norm(b))
+    return torch.abs(torch.dot(a, b) / (torch.norm(a) * torch.norm(b)))
 
 
 # returns the marked text for BERT

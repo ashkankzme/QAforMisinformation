@@ -7,6 +7,15 @@ import torch
 from utils import get_paragraphs, get_sentences, get_bert_embeddings, cosine_similarity, get_xlnet_embeddings
 
 
+# takes an array/matrix as input
+# rescales everything to (0, 1)
+# range, proportionally
+def rescale(a):
+    maximum = torch.max(a)
+    minimum = torch.min(a)
+    return (a - minimum) / (maximum - minimum)
+
+
 # gets as input a news article, a question and
 # the explanation for the questions answer.
 # ranks them by their similarities of their
@@ -52,30 +61,44 @@ def get_relative_ranking(text, source_paragraphs_embeddings, rankings):
 # runs the textrank algorithm on it and returns
 # the ranking of each text as a score,
 # alongside the text itself.
-def biased_textrank(texts, q, exp, damping_factor=0.5):
-    exp_similarities, q_similarities, text_embeddings = get_similarities(texts, q, exp)
+def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0.75):
+    texts_embeddings = [get_bert_embeddings(p) for p in texts]
 
     text_similarities = {}
     for i, text in enumerate(texts):
         similarities = {}
-        for j, embedding in enumerate(text_embeddings):
+        for j, embedding in enumerate(texts_embeddings):
             if i != j:
-                similarities[texts[j]] = cosine_similarity(embedding, text_embeddings[i])
+                similarities[texts[j]] = cosine_similarity(embedding, texts_embeddings[i])
 
         text_similarities[text] = similarities
 
-    # create text rank matrix
+    # create text rank matrix, add edges between pieces that are more than X similar
     matrix = torch.zeros((len(texts), len(texts)))
     for i, i_text in enumerate(texts):
         for j, j_text in enumerate(texts):
-            if i != j:
+            if i != j and text_similarities[i_text][j_text] > similarity_threshold:
                 matrix[i][j] = text_similarities[i_text][j_text]
 
-    bias = torch.tensor(exp_similarities)
+    matrix = rescale(matrix)
+
+    # preparing to add bias
+    bias_embedding = get_bert_embeddings(bias_text.strip())
+
+    bias_text_similarities = [0] * len(texts)
+    for i, text_embedding in enumerate(texts_embeddings):
+        bias_text_similarities[i] = cosine_similarity(text_embedding, bias_embedding)
+
+    bias_text_similarities = rescale(bias_text_similarities)
+
+    bias = torch.tensor(bias_text_similarities)
     scaled_matrix = damping_factor * matrix + (1 - damping_factor) * bias
     # scaled_matrix = s * matrix + (1 - s) / len(matrix)
-    for row in scaled_matrix:
-        row /= torch.sum(row)
+
+    # for row in scaled_matrix:
+    #     row /= torch.sum(row)
+    scaled_matrix = rescale(scaled_matrix)
+
     v = torch.ones((len(matrix), 1)) / len(matrix)
     iterations = 40
     for i in range(iterations):

@@ -45,17 +45,18 @@ gpt2.load_gpt2(session)
 data_points_summarized = 0
 for file_number in range(1, 11):
     print('processing file {} test data...'.format(file_number))
-    with open('../data/qa_input_no_validation/q{}_test.json'.format(file_number)) as test_file:
+    with open('../data/ttt/q{}_test.json'.format(file_number)) as test_file:
         articles = json.load(test_file)
     for article in articles:
         if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
             tf.reset_default_graph()
+
         summary_size = 30
         summary_doesnt_fit = True
         article_text = article['article']
         while summary_doesnt_fit:
             try:
-                article['generated_explanation'] = generate_explanation(article_text, article['question'], session)
+                article['explanation_gpt2'] = generate_explanation(article_text, article['question'], session)
                 summary_doesnt_fit = False
             except:
                 if summary_size == 30:  # gotta make sure we only increment this once per article at most
@@ -65,7 +66,14 @@ for file_number in range(1, 11):
                 article_summary = ' '.join(top_sentences)
                 article_text = article_summary
                 summary_size -= 5
-    with open('../data/ranking/q{}_test.json'.format(file_number), 'w') as f:
+
+        if random.uniform(0, 1) < 0.01:
+            with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
+                f.write(json.dumps(articles))
+            print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
+                                                                                                     data_points_summarized))
+
+    with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
         f.write(json.dumps(articles))
     print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
                                                                                              data_points_summarized))
