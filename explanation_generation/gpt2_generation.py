@@ -48,8 +48,8 @@ for file_number in range(1, 11):
     with open('../data/ttt/q{}_test.json'.format(file_number)) as test_file:
         articles = json.load(test_file)
     for article in articles:
-        if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
-            tf.reset_default_graph()
+        # if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
+        #     tf.reset_default_graph()
 
         summary_size = 30
         summary_doesnt_fit = True
