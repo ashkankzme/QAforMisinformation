@@ -67,7 +67,7 @@ for file_number in range(1, 11):
                 article_text = article_summary
                 summary_size -= 5
 
-        if random.uniform(0, 1) < 0.01:
+        if random.uniform(0, 1) < 0.1:
             with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
                 f.write(json.dumps(articles))
             print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
