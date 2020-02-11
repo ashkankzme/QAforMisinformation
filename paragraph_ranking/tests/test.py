@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(1, '../paragraph_ranking')
 from test_article2 import text, q, exp
 from rank_gold_standard import biased_textrank
 from utils import get_sentences
