@@ -80,7 +80,7 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
             if i != j and text_similarities[i_text][j_text] > similarity_threshold:
                 matrix[i][j] = text_similarities[i_text][j_text]
 
-    matrix = rescale(matrix)
+    # matrix = rescale(matrix)
 
     # preparing to add bias
     bias_embedding = get_bert_embeddings(bias_text.strip())
@@ -89,7 +89,7 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
     for i, text_embedding in enumerate(texts_embeddings):
         bias_text_similarities[i] = cosine_similarity(text_embedding, bias_embedding)
 
-    bias_text_similarities = rescale(bias_text_similarities)
+    # bias_text_similarities = rescale(bias_text_similarities)
 
     bias = torch.tensor(bias_text_similarities)
     scaled_matrix = damping_factor * matrix + (1 - damping_factor) * bias
