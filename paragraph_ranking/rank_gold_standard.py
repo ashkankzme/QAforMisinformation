@@ -61,7 +61,7 @@ def get_relative_ranking(text, source_paragraphs_embeddings, rankings):
 # runs the textrank algorithm on it and returns
 # the ranking of each text as a score,
 # alongside the text itself.
-def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0.75):
+def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0.78):
     texts_embeddings = [get_bert_embeddings(p) for p in texts]
 
     text_similarities = {}
