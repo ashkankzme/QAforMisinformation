@@ -12,4 +12,4 @@ top_paragraphs = [p for _, p in sorted_rankings[-10: ]] # top 10 pieces
 
 for rank, p in zip(ranks, texts):
     if p in top_paragraphs:
-        print('{}'.format(p))
+        print('{}: {}'.format(rank, p))
