@@ -1,22 +1,27 @@
 
 
 text = '''
-NEW YORK (Reuters Health) - Hormone replacement therapy may work slightly better than soy at reducing menopausal hot flashes, a new study says.
-Women who took such hormones had fewer hot flashes, on average, than women who took soy - and both had fewer than those who took a placebo, or “dummy pill.”
-“The bottom line for someone who is very disturbed by hot flashes, the best treatment is hormones, and the next tier would be soy,” said Dr. Gloria Bachmann, professor of obstetrics and gynecology at the Robert Wood Johnson Medical School in New Jersey.
-However, a 2002 landmark study by the National Institutes of Health (NIH) found that such treatments can increase the risk of breast cancer, heart disease and stroke. That means that if women do take hormones, Bachmann told Reuters Health, it should be the lowest dose and for the shortest possible period of time.
-And not every woman needs treatment, notes Bachmann, who was not involved in the study. Women with severe or frequent hot flashes or whose hot flashes keep them up at night, should consider treatment, she said.
-Women typically suffer between 30 and 150 hot flashes a month, said Dr. Rafael Bolanos-Diaz, professor of health economics at San Marcos University in Lima, Peru, who co-authored the study.
-Women who took hormones had an average of 24 fewer hot flashes per month, while those who took soy had 12 per month fewer. The study did not look at whether eating soy in food has the same effect on hot flashes as supplements, Bolanos-Diaz said.
-The researchers looked at 19 studies on how a treatment, either hormones or soy, compared to a placebo. They compared the average number of hot flashes in 760 women who had treatment with 770 who did not.
-The study was published in Menopause: The Journal of the North American Menopause Society.
-Soy hasn’t been studied as much as hormone replacement to treat hot flashes, and doctors don’t know exactly how it works. It’s thought to have similar effects to estrogen on the brain, bones, and blood vessels, Bolanos-Diaz told Reuters Health by email.
-Soy supplements also have side effects: Nausea, bloating, and constipation, according to the NIH. A month’s supply costs about $12, while a month of hormone tablets runs between $40 and $60.
-“For some women, hormone therapy is the best option, for some soy is best, and for some, it’s just watchful waiting until the hot flashes subside,” Bachmann said.
-SOURCE: bit.ly/hBua85 Menopause: The Journal of The North American Menopause Society, online March 3, 2011.
+NEW YORK (Reuters Health) - Fast food outlets should hand out free cholesterol-lowering statin drugs to their customers to “neutralize” the heart risks of eating fatty foods like burgers and fries, British scientists suggested on Thursday.
+But a few experts say you might want to ask your server to hold the statin at this point.
+In a study published in the American Journal of Cardiology, scientists from the National Heart and Lung Institute at Imperial College London calculated that the reduction in heart disease risk offered by a statin could offset the increase in risk from eating a cheeseburger and a milkshake.
+“Statins don’t cut out all of the unhealthy effects of a burger and fries. It’s better to avoid fatty food altogether. But we’ve worked out that in terms of your likelihood of having a heart attack, taking a statin can reduce your risk to more or less the same degree as a fast food meal increases it,” said Dr. Darrel Francis, who led the research team.
+“When people engage in risky behaviors like driving or smoking, they’re encouraged to take measures that minimize their risk, like wearing a seatbelt or choosing cigarettes with filters. Taking a statin is a rational way of lowering some of the risks of eating a fatty meal.”
+Still, Peter Weissberg, medical director at the British Heart Foundation (BHF) health charity, said Francis’ idea should not be taken too literally. He urged people to focus on maintaining a good diet and taking exercise to keep their hearts healthy.
+“Statins are a vital medicine for people with — or at high risk of developing — heart disease,” he said. “They are not a magic bullet.”
+A study in June in the Archives of Internal Medicine suggested, in fact, that statins do not save lives in patients without heart disease, although they may prevent some non-fatal heart attacks.
+Dr. Franz Messerli, the director of the hypertension program at two New York hospitals, St. Luke’s and Roosevelt, worried about the message handing out statins would send to burger-eaters.
+“Complimentary statin packets are prone to ... give Quarter Pounder consumers a sense of false security,” he told Reuters Health by email.
+While statins might combat some of the toll that fatty foods take on cholesterol, there’s a lot they can’t negate: “sodium content is high, fibres are absent, and caloric load gargantuan,” Messerli said of the fast food the authors looked at.
+Statins are among the most widely used drugs for the treatment and prevention of heart disease and strokes — the world’s top killers.
+One statin, a generic drug called simvastatin, is already available in low doses over the counter at pharmacies in Britain without a prescription. Other statins such as Pfizer’s Lipitor and AstraZeneca’s Crestor - which are among the biggest-selling drugs in the world — are for prescription only.
+In the U.S., all statins are only available by prescription.
+“Although no substitute for systematic lifestyle improvements, including healthy diet, regular exercise, weight loss, and smoking cessation, complimentary statin packets would add, at little cost, one positive choice to a panoply of negative ones,” the scientists write in their paper.
+Francis’ team — who worked independently and had no funding from the drug or food industries for their research — used data from a previous large study to quantify how a person’s heart attack risk increases with their daily intake of total fat and harmful trans fats.
+They compared this with the decrease in risk from taking statins, using data from seven previously published trials.
+“It makes sense to make risk-reducing supplements available just as easily as the unhealthy condiments (such as salt or ketchup) that are provided free of charge,” Francis said in his report of the research. “It would cost less than 5 pence ($0.07) per customer — not much different to a sachet of ketchup.
 '''
 q = 'Does the story adequately discuss the costs of the intervention?'
 exp = '''
-We were pleased to see that the story included cost estimates of both soy supplements and of hormone replacement therapy pills.
+The story describes the cost of the statin, and how much it would cost for a modest reduction in risk.
 '''
 
