@@ -22,6 +22,6 @@ They compared this with the decrease in risk from taking statins, using data fro
 '''
 q = 'Does the story adequately discuss the costs of the intervention?'
 exp = '''
-The story describes the cost of the statin, and how much it would cost for a modest reduction in risk.
+In this context, the cost discussion works, even though it is only a passing reference. The authors are trying to argue that statins would not cost much for fast food restaurants. "It would cost less than 5 pence ($0.07) per customer — not much different to a sachet of ketchup," says one of the authors. It would have been nice to have some clarity on whether that is a wholesale cost, retail cost or a British government cost. For this sort of plan to work in the U.S., assuming it even makes sense, the cost likely would be much higher.
 '''
 
