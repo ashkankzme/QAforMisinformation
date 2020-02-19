@@ -2,6 +2,9 @@ import json
 import random
 import sys
 
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
+
 import gpt_2_simple as gpt2
 import tensorflow as tf
 
@@ -20,19 +23,33 @@ def select_top_k_texts_preserving_order(texts, ranking, k):
     return result
 
 
+def almost_the_same(a, b):
+    len_ratio = len(a) / len(b) if len(a) < len(b) else len(b) / len(a)
+    return len_ratio >= 0.9 and fuzz.partial_ratio(a, b) > 90
+
+
+def generated_text_is_meaningful(text, generation_prefix):
+    return text != '' and not text.isspace() and not almost_the_same(text, generation_prefix)
+
+
 def generate_explanation(article, question, session):
-    generation_prefix = '<|startoftext|>' + '\n'
-    generation_prefix += article + '\n'
-    generation_prefix += 'QUESTION: ' + question + '\n'
-    generation_prefix += 'EXPLANATION: '
+    generation_prefix = get_generation_prefix(article, question)
     while True:
         generated_explanations = gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=80,
                                                include_prefix=False, temperature=0.7, return_as_list=True, batch_size=2,
                                                nsamples=2)
         for generated_explanation in generated_explanations:
-            if generated_explanation != '':
+            if generated_text_is_meaningful(generated_explanation, generation_prefix):
                 print(generated_explanation)
                 return generated_explanation
+
+
+def get_generation_prefix(article, question):
+    generation_prefix = '<|startoftext|>' + '\n'
+    generation_prefix += article + '\n'
+    generation_prefix += 'QUESTION: ' + question + '\n'
+    generation_prefix += 'EXPLANATION: '
+    return generation_prefix
 
 
 MODEL_NAME = '355M'
@@ -50,7 +67,9 @@ for file_number in range(1, 11):
     for article in articles:
         # if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
         #     tf.reset_default_graph()
-        if 'explanation_gpt2' in article:
+        if 'explanation_gpt2' in article and generated_text_is_meaningful(article['explanation_gpt2'],
+                                                                          get_generation_prefix(article['article'],
+                                                                                                article['question'])):
             continue
 
         summary_size = 30
