@@ -46,6 +46,7 @@ def generate_explanation(article, question, session):
                 return generated_explanation
 
         temperature += 0.05
+        print("GPT-2 generated giberish, increasing temperature to {}".format(temperature))
 
 
 def get_generation_prefix(article, question):
