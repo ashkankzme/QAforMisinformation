@@ -45,7 +45,7 @@ def generate_explanation(article, question, session):
                 print(generated_explanation)
                 return generated_explanation
 
-        temperature += 0.02
+        temperature += 0.05
 
 
 def get_generation_prefix(article, question):
