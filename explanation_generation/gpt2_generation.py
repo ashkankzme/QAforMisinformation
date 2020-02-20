@@ -26,7 +26,6 @@ def select_top_k_texts_preserving_order(texts, ranking, k):
 def almost_the_same(a, b):
     len_ratio = len(a) / len(b) if len(a) < len(b) else len(b) / len(a)
     similarity = fuzz.partial_ratio(a, b)
-    print("len ratio is: {}, similarity is: {}".format(len_ratio, similarity))
     return len_ratio >= 0.9 and similarity > 90
 
 
@@ -36,16 +35,17 @@ def generated_text_is_meaningful(text, generation_prefix):
 
 def generate_explanation(article, question, session):
     generation_prefix = get_generation_prefix(article, question)
+    temperature = 0.7
     while True:
         generated_explanations = gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=80,
-                                               include_prefix=False, temperature=0.7, return_as_list=True, batch_size=2,
+                                               include_prefix=False, temperature=temperature, return_as_list=True, batch_size=2,
                                                nsamples=2)
         for generated_explanation in generated_explanations:
-            print(generated_explanation)
-            print('#########################################################')
             if generated_text_is_meaningful(generated_explanation, generation_prefix):
                 print(generated_explanation)
                 return generated_explanation
+
+        temperature += 0.02
 
 
 def get_generation_prefix(article, question):
