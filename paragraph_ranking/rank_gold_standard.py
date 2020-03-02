@@ -66,6 +66,7 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
     texts_embeddings = [get_bert_embeddings(p) for p in texts]
     print('Retrieving embeddings done.')
 
+    print('calculating text similarities...')
     text_similarities = {}
     for i, text in enumerate(texts):
         similarities = {}
@@ -76,6 +77,7 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
         text_similarities[text] = similarities
 
     # create text rank matrix, add edges between pieces that are more than X similar
+    print('calculating textrank matrix...')
     matrix = torch.zeros((len(texts), len(texts)))
     for i, i_text in enumerate(texts):
         for j, j_text in enumerate(texts):
@@ -85,8 +87,10 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
     # matrix = rescale(matrix)
 
     # preparing to add bias
+    print('Getting bias embeddings...')
     bias_embedding = get_bert_embeddings(bias_text.strip())
 
+    print('calculating biases...')
     bias_text_similarities = torch.zeros(len(texts))
     for i, text_embedding in enumerate(texts_embeddings):
         bias_text_similarities[i] = cosine_similarity(text_embedding, bias_embedding)
