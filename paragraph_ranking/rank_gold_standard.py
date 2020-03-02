@@ -62,7 +62,6 @@ def get_relative_ranking(text, source_paragraphs_embeddings, rankings):
 # the ranking of each text as a score,
 # alongside the text itself.
 def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0.78):
-    torch.cuda.set_device(1)
     print('Getting embeddings for pieces of text...')
     texts_embeddings = [get_bert_embeddings(p) for p in texts]
     print('Retrieving embeddings done.')

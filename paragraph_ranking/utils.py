@@ -5,7 +5,7 @@ import logging
 import nltk
 
 
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 model = BertModel.from_pretrained('bert-base-uncased')
 # tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased')
