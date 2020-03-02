@@ -62,7 +62,9 @@ def get_relative_ranking(text, source_paragraphs_embeddings, rankings):
 # the ranking of each text as a score,
 # alongside the text itself.
 def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0.78):
+    print('Getting embeddings for pieces of text...')
     texts_embeddings = [get_bert_embeddings(p) for p in texts]
+    print('Retrieving embeddings done.')
 
     text_similarities = {}
     for i, text in enumerate(texts):
@@ -99,6 +101,7 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
         row /= torch.sum(row)
     # scaled_matrix = rescale(scaled_matrix)
 
+    print('Calculating ranks...')
     v = torch.ones((len(matrix), 1)) / len(matrix)
     iterations = 40
     for i in range(iterations):

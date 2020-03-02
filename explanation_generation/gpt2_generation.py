@@ -69,12 +69,13 @@ for file_number in range(1, 11):
     print('processing file {} test data...'.format(file_number))
     with open('../data/ttt/q{}_test.json'.format(file_number)) as test_file:
         articles = json.load(test_file)
-    for article in articles:
+    for article_id, article in enumerate(articles):
         # if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
         #     tf.reset_default_graph()
         if 'explanation_gpt2' in article and generated_text_is_meaningful(article['explanation_gpt2'],
                                                                           get_generation_prefix(article['article'],
                                                                                                 article['question'])):
+            print('Skipping article #{} because it already has a meaningful generated explanation.'.format(article_id))
             continue
 
         summary_size = 25
@@ -82,15 +83,20 @@ for file_number in range(1, 11):
         article_text = article['article']
         while summary_doesnt_fit:
             try:
+                print('Generating explanation for article #{} ...'.format(article_id))
                 article['explanation_gpt2'] = generate_explanation(article_text, article['question'], session)
                 if generated_text_is_meaningful(article['explanation_gpt2'], get_generation_prefix(article_text, article['question'])):
                     summary_doesnt_fit = False
                 else:
+                    print('Generated explanation for article #{} was not meaningful.'.format(article_id))
                     raise ValueError('Generated explanation was gibberish (whitespace or repeating precondition text)')
             except:
                 if summary_size == 25:  # gotta make sure we only increment this once per article at most
                     data_points_summarized += 1
+
+                print('Running biased textrank for article #{} ...'.format(article_id))
                 ranking, texts = biased_textrank(article['article'], article['question'])
+                print('Biased textrank completed.')
                 top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
                 article_summary = ' '.join(top_sentences)
                 article_text = article_summary
