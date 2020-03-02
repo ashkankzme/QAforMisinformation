@@ -42,12 +42,11 @@ def generate_explanation(article, question, session):
                                                include_prefix=False, temperature=temperature, return_as_list=True, batch_size=8,
                                                nsamples=8)
         for generated_explanation in generated_explanations:
-            if generated_text_is_meaningful(generated_explanation, generation_prefix) or temperature >= 1:
+            if generated_text_is_meaningful(generated_explanation, generation_prefix) or temperature >= 0.8:
                 print(generated_explanation)
                 return generated_explanation
 
         temperature += 0.1
-        print("GPT-2 generated giberish, increasing temperature to {}".format(temperature))
 
 
 def get_generation_prefix(article, question):
