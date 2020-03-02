@@ -5,7 +5,7 @@ import logging
 import nltk
 
 
-device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
+device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 model = BertModel.from_pretrained('bert-base-uncased')
 # tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased')
@@ -13,7 +13,7 @@ model = BertModel.from_pretrained('bert-base-uncased')
 if torch.cuda.device_count() > 1:
   print("Let's use", torch.cuda.device_count(), "GPUs!")
   # dim = 0 [30, xxx] -> [10, ...], [10, ...], [10, ...] on 3 GPUs
-  model = nn.DataParallel(model, device_ids=[1,0])
+  model = nn.DataParallel(model)
 model.eval()
 model.to(device)
 
