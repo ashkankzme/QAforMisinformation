@@ -10,6 +10,7 @@ import tensorflow as tf
 
 sys.path.insert(1, '../paragraph_ranking')
 from rank_gold_standard import biased_textrank
+from utils import get_sentences
 
 
 def select_top_k_texts_preserving_order(texts, ranking, k):
@@ -95,7 +96,7 @@ for file_number in range(1, 11):
                     data_points_summarized += 1
 
                 print('Running biased textrank for article #{} ...'.format(article_id))
-                ranking, texts = biased_textrank(article['article'], article['question'])
+                ranking, texts = biased_textrank(get_sentences(article['article']), article['question'])
                 print('Biased textrank completed.')
                 top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
                 article_summary = ' '.join(top_sentences)
