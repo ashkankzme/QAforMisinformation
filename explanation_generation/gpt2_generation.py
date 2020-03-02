@@ -41,11 +41,11 @@ def generate_explanation(article, question, session):
                                                include_prefix=False, temperature=temperature, return_as_list=True, batch_size=8,
                                                nsamples=8)
         for generated_explanation in generated_explanations:
-            if generated_text_is_meaningful(generated_explanation, generation_prefix):
+            if generated_text_is_meaningful(generated_explanation, generation_prefix) or temperature >= 1:
                 print(generated_explanation)
                 return generated_explanation
 
-        temperature += 0.05
+        temperature += 0.1
         print("GPT-2 generated giberish, increasing temperature to {}".format(temperature))
 
 
@@ -77,15 +77,18 @@ for file_number in range(1, 11):
                                                                                                 article['question'])):
             continue
 
-        summary_size = 30
+        summary_size = 25
         summary_doesnt_fit = True
         article_text = article['article']
         while summary_doesnt_fit:
             try:
                 article['explanation_gpt2'] = generate_explanation(article_text, article['question'], session)
-                summary_doesnt_fit = False
+                if generated_text_is_meaningful(article['explanation_gpt2'], get_generation_prefix(article_text, article['question'])):
+                    summary_doesnt_fit = False
+                else:
+                    raise ValueError('Generated explanation was gibberish (whitespace or repeating precondition text)')
             except:
-                if summary_size == 30:  # gotta make sure we only increment this once per article at most
+                if summary_size == 25:  # gotta make sure we only increment this once per article at most
                     data_points_summarized += 1
                 ranking, texts = biased_textrank(article['article'], article['question'])
                 top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
