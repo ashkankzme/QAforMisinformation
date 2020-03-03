@@ -68,7 +68,7 @@ session = gpt2.start_tf_sess()
 gpt2.load_gpt2(session)
 
 data_points_summarized = 0
-for file_number in range(range_begin, range_end):
+for file_number in range(int(range_begin), int(range_end)):
     print('processing file {} test data...'.format(file_number))
     with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
         articles = json.load(test_file)
