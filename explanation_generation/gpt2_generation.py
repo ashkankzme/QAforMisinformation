@@ -12,6 +12,9 @@ sys.path.insert(1, '../paragraph_ranking')
 from rank_gold_standard import biased_textrank
 from utils import get_sentences
 
+split = sys.argv[1]
+range_begin = sys.argv[2]
+range_end = sys.argv[3]
 
 def select_top_k_texts_preserving_order(texts, ranking, k):
     texts_sorted = sorted(zip(texts, ranking), key=lambda item: item[1], reverse=True)
@@ -65,9 +68,9 @@ session = gpt2.start_tf_sess()
 gpt2.load_gpt2(session)
 
 data_points_summarized = 0
-for file_number in range(1, 11):
+for file_number in range(range_begin, range_end):
     print('processing file {} test data...'.format(file_number))
-    with open('../data/ttt/q{}_test.json'.format(file_number)) as test_file:
+    with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
         articles = json.load(test_file)
     for article_id, article in enumerate(articles):
         # if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
