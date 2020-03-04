@@ -73,8 +73,8 @@ for file_number in range(int(range_begin), int(range_end)):
     with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
         articles = json.load(test_file)
     for article_id, article in enumerate(articles):
-        # if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
-        #     tf.reset_default_graph()
+        if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
+            tf.reset_default_graph()
         if 'explanation_gpt2' in article and generated_text_is_meaningful(article['explanation_gpt2'],
                                                                           get_generation_prefix(article['article'],
                                                                                                 article['question'])):
@@ -105,7 +105,7 @@ for file_number in range(int(range_begin), int(range_end)):
                 article_text = article_summary
                 summary_size -= 5
 
-        if random.uniform(0, 1) < 0.1:
+        if random.uniform(0, 1) < 0.5:
             with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
                 f.write(json.dumps(articles))
             print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
