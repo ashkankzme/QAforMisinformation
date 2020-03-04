@@ -109,12 +109,12 @@ for file_number in range(int(range_begin), int(range_end)):
                 summary_size -= 1
 
         if random.uniform(0, 1) < 0.5:
-            with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
+            with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
                 f.write(json.dumps(articles))
             print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
                                                                                                      data_points_summarized))
 
-    with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
+    with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
         f.write(json.dumps(articles))
     print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
                                                                                              data_points_summarized))
