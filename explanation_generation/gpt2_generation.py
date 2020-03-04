@@ -96,6 +96,8 @@ for file_number in range(int(range_begin), int(range_end)):
             except:
                 if summary_size == 25:  # gotta make sure we only increment this once per article at most
                     data_points_summarized += 1
+                elif summary_size < 15:
+                    summary_size = 24
 
                 print('Running biased textrank for article #{} ...'.format(article_id))
                 ranking, texts = biased_textrank(get_sentences(article['article']), article['question'])
@@ -103,7 +105,7 @@ for file_number in range(int(range_begin), int(range_end)):
                 top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
                 article_summary = ' '.join(top_sentences)
                 article_text = article_summary
-                summary_size -= 5
+                summary_size -= 1
 
         if random.uniform(0, 1) < 0.5:
             with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
