@@ -93,7 +93,8 @@ for file_number in range(int(range_begin), int(range_end)):
                 else:
                     print('Generated explanation for article #{} was not meaningful.'.format(article_id))
                     raise ValueError('Generated explanation was gibberish (whitespace or repeating precondition text)')
-            except:
+            except Exception as e:
+                print(e)
                 if summary_size == 25:  # gotta make sure we only increment this once per article at most
                     data_points_summarized += 1
                 elif summary_size < 15:
