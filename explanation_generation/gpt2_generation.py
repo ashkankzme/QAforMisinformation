@@ -90,6 +90,8 @@ for file_number in range(int(range_begin), int(range_end)):
                 article['explanation_gpt2'] = generate_explanation(article_text, article['question'], session)
                 if generated_text_is_meaningful(article['explanation_gpt2'], get_generation_prefix(article_text, article['question'])) or summary_size < 15:
                     summary_doesnt_fit = False
+                    if summary_size < 15:
+                        article['explanation_gpt2'] = article['article']
                 else:
                     print('Generated explanation for article #{} was not meaningful.'.format(article_id))
                     raise ValueError('Generated explanation was gibberish (whitespace or repeating precondition text)')
@@ -104,7 +106,7 @@ for file_number in range(int(range_begin), int(range_end)):
                 top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
                 article_summary = ' '.join(top_sentences)
                 article_text = article_summary
-                summary_size -= 1
+                summary_size -= 5
 
         with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
             f.write(json.dumps(articles))
