@@ -1,38 +1,33 @@
 import torch
-from torch import randint
-
 from reformer_pytorch import ReformerLM
-from reformer_pytorch.generative_tools import TrainingWrapper
 
-model = ReformerLM(
-    num_tokens= 20000,
-    dim = 1024,
-    depth = 12,
-    max_seq_len = 4096,
-    lsh_dropout = 0.1,
-    causal = True,
-    full_attn_thres = 1024
-)
+ARTICLE_SEQ_LEN = 2048
+EXPLANATION_SEQ_LEN = 128
 
-# 0 is used for padding and no loss to be calculated on it
-model = TrainingWrapper(model, ignore_index = 0, pad_value = 0)
+encoder = ReformerLM(
+    num_tokens=30000,  # as big as BERT vocabulary
+    emb_dim=128,
+    dim=1024,
+    depth=12,
+    heads=8,
+    max_seq_len=ARTICLE_SEQ_LEN,
+    fixed_position_emb=True,
+    return_embeddings=True  # return output of last attention layer
+).cuda()
 
-# the wrapper can handle evenly packed sequences
-x_train = randint(0, 20000, (3, 357))
+decoder = ReformerLM(
+    num_tokens=30000,  # as big as BERT vocabulary
+    emb_dim=128,
+    dim=1024,
+    depth=12,
+    heads=8,
+    max_seq_len=EXPLANATION_SEQ_LEN,
+    fixed_position_emb=True,
+    causal=True
+).cuda()
 
-# or if you have a list of uneven sequences, it will be padded for you
-x_train = [
-    randint(0, 20000, (120,)),
-    randint(0, 20000, (253,)),
-    randint(0, 20000, (846,))
-]
+x = torch.randint(0, 20000, (1, ARTICLE_SEQ_LEN)).long().cuda()
+yi = torch.randint(0, 20000, (1, EXPLANATION_SEQ_LEN)).long().cuda()
 
-# when training, set return_loss equal to True
-model.train()
-loss = model(x_train, return_loss = True)
-loss.backward()
-
-# when evaluating, just use the generate function, which will default to top_k sampling with temperature of 1.
-initial = torch.tensor([[0]]).long() # assume 0 is start token
-sample = model.generate(initial, 100, temperature=1., filter_thres = 0.9, eos_token = 1) # assume end token is 1, or omit and it will sample up to 100
-print(sample.shape) # (1, <=100) token ids
+enc_keys = encoder(x)  # (1, 4096, 1024)
+yo = decoder(yi, keys=enc_keys)  # (1, 4096, 20000)
