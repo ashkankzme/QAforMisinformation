@@ -42,8 +42,8 @@ def generate_explanation(article, question, session):
     temperature = 0.7
     while True:
         generated_explanations = gpt2.generate(session, prefix=generation_prefix, truncate='<|endoftext|>', length=80,
-                                               include_prefix=False, temperature=temperature, return_as_list=True, batch_size=8,
-                                               nsamples=8)
+                                               include_prefix=False, temperature=temperature, return_as_list=True, batch_size=2,
+                                               nsamples=2)
         for generated_explanation in generated_explanations:
             if generated_text_is_meaningful(generated_explanation, generation_prefix) or temperature >= 0.8:
                 print(generated_explanation)
