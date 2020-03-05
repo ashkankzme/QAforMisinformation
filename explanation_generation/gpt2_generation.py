@@ -69,7 +69,7 @@ gpt2.load_gpt2(session)
 
 data_points_summarized = 0
 for file_number in range(int(range_begin), int(range_end)):
-    print('processing file {} test data...'.format(file_number))
+    print('processing file {} {} data...'.format(file_number, split))
     with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
         articles = json.load(test_file)
     for article_id, article in enumerate(articles):
@@ -88,7 +88,7 @@ for file_number in range(int(range_begin), int(range_end)):
             try:
                 print('Generating explanation for article #{} ...'.format(article_id))
                 article['explanation_gpt2'] = generate_explanation(article_text, article['question'], session)
-                if generated_text_is_meaningful(article['explanation_gpt2'], get_generation_prefix(article_text, article['question'])):
+                if generated_text_is_meaningful(article['explanation_gpt2'], get_generation_prefix(article_text, article['question'])) or summary_size < 15:
                     summary_doesnt_fit = False
                 else:
                     print('Generated explanation for article #{} was not meaningful.'.format(article_id))
@@ -97,8 +97,6 @@ for file_number in range(int(range_begin), int(range_end)):
                 print(e)
                 if summary_size == 25:  # gotta make sure we only increment this once per article at most
                     data_points_summarized += 1
-                elif summary_size < 15:
-                    summary_size = 24
 
                 print('Running biased textrank for article #{} ...'.format(article_id))
                 ranking, texts = biased_textrank(get_sentences(article['article']), article['question'])
@@ -108,16 +106,12 @@ for file_number in range(int(range_begin), int(range_end)):
                 article_text = article_summary
                 summary_size -= 1
 
-        if random.uniform(0, 1) < 0.5:
-            with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
-                f.write(json.dumps(articles))
-            print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
-                                                                                                     data_points_summarized))
+        with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
+            f.write(json.dumps(articles))
+        print('results for {} data of file {} saved. Data points summarized so far: {}'.format(split, file_number, data_points_summarized))
 
     with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
         f.write(json.dumps(articles))
-    print('results for test data of file {} saved. Data points summarized so far: {}'.format(file_number,
-                                                                                             data_points_summarized))
     # print('processing file {} training data...'.format(file_number))
     # with open('../data/qa_input_no_validation/q{}_train.json'.format(file_number)) as train_file:
     #     articles = json.load(train_file)
