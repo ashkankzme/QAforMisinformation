@@ -13,6 +13,9 @@ class ReformerForExplanationGeneration(nn.Module):
     def __init__(self, article_seq_len=ARTICLE_SEQ_LEN, explanation_seq_len=EXPLANATION_SEQ_LEN):
         super().__init__()
 
+        self.article_seq_len = ARTICLE_SEQ_LEN
+        self.explanation_seq_len = EXPLANATION_SEQ_LEN
+
         self.encoder = ReformerLM(
             num_tokens=30000,  # as big as BERT vocabulary
             emb_dim=128,
@@ -47,8 +50,15 @@ class ReformerForExplanationGeneration(nn.Module):
         tokenized_input = self._tokenizer.tokenize(input_text)
         indexed_tokenized_input = torch.tensor(self._tokenizer.convert_tokens_to_ids(tokenized_input))
 
+        # encoding the input
         encoder_out = self.encoder(indexed_tokenized_input)
-        decoder_out = self.decoder()
+
+        # decoding the output, greedy style
+        output = torch.zeros(self.explanation_seq_len)
+        output[0] = self._tokenizer.convert_tokens_to_ids([CLS_TOKEN.lower()])[0]
+
+        for i in range(1, self.explanation_seq_len):
+            decoder_out = self.decoder(keys=encoder_out)
 
 
 
