@@ -16,24 +16,17 @@ print("GPU name: " + torch.cuda.get_device_name(0))
 
 print("Loading data...")
 
-with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_train.json'.format(sys.argv[1])) as train_file:
+with open('../data/ttt/q{}_train.json'.format(sys.argv[1])) as train_file:
     train_set = json.load(train_file)
 
-with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_dev.json'.format(sys.argv[1])) as dev_file:
-    dev_set = json.load(dev_file)
-
-with open('../data/question_answering_gold_standard_fine_grained_textrank_50/q{}_test.json'.format(sys.argv[1])) as test_file:
+with open('../data/ttt/q{}_test.json'.format(sys.argv[1])) as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
 
-dev_len = len(dev_set)
-train_set += dev_set[:(2*dev_len)//3]
-test_set += dev_set[(2*dev_len)//3:]
-
 # Create sentence and label lists
-sentences_train = [article['explanation'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['explanation'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['explanation_gpt2'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['explanation_gpt2'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [article['answer'] for article in train_set]
 labels_test = [article['answer'] for article in test_set]
@@ -46,7 +39,7 @@ print ("Tokenize the first sentence:")
 print (tokenized_texts_train[0])
 
 # Set the maximum sequence length. The longest sequence in our training set is 47, but we'll leave room on the end anyway.
-MAX_LEN = 280
+MAX_LEN = 128
 average_len = 0
 reduced_inputs = 0
 for tokens in tokenized_texts_train + tokenized_texts_test:
