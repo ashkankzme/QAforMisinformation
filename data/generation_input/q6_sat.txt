@@ -4614,39 +4614,6 @@ QUESTION: Does the news release identify funding sources & disclose conflicts of
 EXPLANATION: The release says that the authors had no financial conflicts of interest.
 <|endoftext|>
 <|startoftext|>
-MONDAY, Jan. 11, 2010 (HealthDay News) -- As a major organization of pediatricians considers revising its recommendations on circumcision of newborn boys, two new reviews of existing research offer conflicting conclusions about the bitterly debated procedure.
-
-One review, from Australia, says there's no evidence that infant circumcision will reduce the risk of sexually transmitted disease later in life, and it warns of significant psychological harm. But another from the United States gives more weight to findings from Africa that show the procedure, when it's performed on adult men, makes a major difference in preventing such diseases as AIDS.
-
-The findings come as the American Academy of Pediatrics debates updating its recommendations regarding circumcision among newborns. The academy now takes a neutral stance.
-
-In general, "there is still a lot of uncertainty surrounding the risks and benefits of circumcision," said Dr. Douglas S. Diekema, a pediatrician at the University of Washington who's familiar with both reviews and serves on a task force working on the academy's recommendations.
-
-"There are some clear benefits to circumcision," he said. "There are some risks to circumcision, although the significant ones appear to be rare."
-
-Not so, write the Australian researchers, who examined eight studies for a review in the latest issue of the Annals of Family Medicine. Two studies involved neonatal circumcision, and six involved older males, roughly 14 to 49 years old.
-
-The review's lead author, researcher Caryn Perera of the Royal Australasian College of Surgeons, said the risk of major complications ranges from 2 percent to 10 percent. "These may be considered unacceptable for an elective procedure," she said.
-
-Parents who think circumcision has medical benefits should be aware that there's "a lack of consensus and robust evidence" on that, she added.
-
-Though African studies have linked circumcision in adult men to lower rates of sexually transmitted diseases, including the virus that causes AIDS, Perera said that only future studies will tell if those findings are applicable to the Western world, where AIDS is much less prevalent.
-
-And there's more to consider, Perera said. She said that circumcision poses problems from a mental point of view, potentially causing "significant anger or feeling incomplete, hurt, frustrated, abnormal or violated."
-
-As to whether circumcision reduces sexual sensitivity, Perera said there's no evidence that it affects sensation when performed on adults. The highest-quality studies, known as randomized controlled trials, don't report whether infant circumcision affects sensation, she said.
-
-A review in the January issue of Archives of Pediatrics & and Adolescent Medicine, which examined three studies, took a different tack. It says that risks of complications from circumcision are less than 1 percent, and "serious long-term complications are extremely rare."
-
-Dr. Matthew Golden, an associate professor of medicine at the University of Washington Center for AIDS and STD, said the ideal study would randomly assign thousands of infants to either get circumcised or not get circumcised and then follow them for decades. But "that trial is never getting done, nor should it be done," Golden said.
-
-For now, he said, when it comes to circumcision, "we know it's pretty safe, and we have a lot of evidence for some benefit."
-
-The American Academy of Pediatrics has more on circumcision.
-QUESTION: Does the story use independent sources and identify conflicts of interest?
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 WASHINGTON — Prostate cancer is more likely to be life-threatening if the man's PSA level rose rapidly during the years before he was diagnosed, says a new study that may help change how PSA tests are used.
 
 The finding could help doctors diagnose aggressive cancers earlier, when they might be easier to fight.
@@ -6928,43 +6895,6 @@ She says some patients get caught in a "push and crash" cycle. When symptoms aba
 Bateman takes also issue with CBT's implication that chronic fatigue syndrome is psychosomatic. We still don't know what exactly causes the syndrome. And, like most professionals who treat patients, Bateman eagerly awaits the day when science can finally pinpoint its cause.
 QUESTION: Does the story use independent sources and identify conflicts of interest?
 EXPLANATION: The story only quoted two people, but we like that it at least attempted to bring in a different view on how to treat chronic fatigue. In talking with Lucinda Bateman at Fatigue Consultation Clinic in Salt Lake City, the story brought out some of the limitations of the study.
-<|endoftext|>
-<|startoftext|>
-MILAN (Reuters) - An established targeted therapy for bowel cancer may also help women with an aggressive form of breast cancer, a mid-stage clinical study revealed on Monday, opening up a potential new market for the medicine.
-
-Adding Erbitux to cisplatin, a platinum-based chemotherapy, doubled the tumor response rate and the length of time patients lived without their disease worsening, compared with giving cisplatin on its own, in the Phase II trial.
-
-“We are very excited by these results,” lead researcher Jose Baselga of the Massachusetts General Hospital Cancer Center in Boston told the European Society for Medical Oncology (ESMO) — Europe’s biggest cancer meeting.
-
-Erbitux — from Merck KGaA, Eli Lilly and Bristol-Myers Squibb — is approved for bowel and head and neck cancer. Sales last year were $1.7 billion.
-
-An independent Nordic study, published at ESMO on Sunday, revealed 566 patients who were given Erbitux plus a three-drug chemotherapy regimen called FLOX, in first-line treatment for bowel cancer, did not live longer or gain any significant extra benefit to those on chemotherapy alone.
-
-It is the first time researchers have shown that a drug like Erbitux, which targets a protein called epidermal growth factor involved in cancer cell growth, can provide substantial benefit in difficult-to-treat “triple negative” breast cancer.
-
-Women with triple negative breast cancer have tumors that do not respond to two types of hormonal therapy, or drugs that target a protein called HER-2.
-
-The disease tends to spread through the body rapidly and there are few treatment options, though Sanofi-Aventis has a promising drug in late-stage development.
-
-The Phase II study included 173 women whose cancer had spread and who had received other treatments. The best overall tumor response rate, of 20 percent, was in those given Erbitux. This compared with 10 percent among those on cisplatin alone.
-
-Erbitux, known generically as cetuximab, also more than doubled the median time before the patients’ disease worsened, to 3.7 months from 1.5 months.
-
-Baselga said that level of improvement was rarely seen in this advanced-disease population and was highly promising.
-
-“This study clearly opens the field ... I am convinced that cetuximab or other anti-EGFR agents have a role in triple negative breast cancer. No question,” he said.
-
-Still, further studies will be needed to build the case, including testing Erbitux alongside other types of chemotherapy, he added, noting the Phase II study did not meet its primary objective of proving a greater than 20 percent response rate.
-
-Dr. Fabrice Andre from Institut Gustave Roussy in Villejuif, France, who was not involved in the research, said the results were “extremely important” but echoed the view that the findings now had to be confirmed in larger-scale clinical tests.
-
-In practice, experts suspect triple negative breast cancer represents a number of different disease sub-groups and that analyzing patients according to the molecular profile of their tumors may help identify a sub-group that could benefit most.
-
-Wolfgang Wein, head of oncology at German drugmaker Merck, welcomed the latest findings, which could broaden the market for the company’s key medicine.
-
-Merck suffered a setback last year when its attempts to win marketing approval to sell Erbitux in lung cancer were rebuffed by regulators.
-QUESTION: Does the story use independent sources and identify conflicts of interest?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 TUESDAY, Nov. 27, 2018 (HealthDay News) --What if a simple zap to the spine could relieve the debilitating lower back and leg pain brought on by a herniated disk?
@@ -10362,45 +10292,6 @@ EXPLANATION: The story squeaked by on this criterion, because it quoted a news 
 [Editor’s note: This criterion was updated on 1/11/18 to reflect the correct rating. It was previously rated “Not Satisfactory.” This change does not affect the overall rating.]
 <|endoftext|>
 <|startoftext|>
-London, England (CNN) -- Researchers hope a new treatment developed in the United Kingdom will prove vital in controlling future flu pandemics such as H1N1 (swine) flu, bird flu as well as ending the need for annual flu jabs.
-
-Developed by scientists at Oxford University, the new vaccine works by targeting protein cells inside the influenza A virus, instead of current vaccines that attack proteins on the outside of the flu virus.
-
-According to Sarah Gilbert, head of the project at Oxford's Jenner Institute, this method is effective because proteins inside the virus are far more similar across all the influenza strains and are less likely to mutate.
-
-In the first successful trial on humans, 11 healthy people were vaccinated and infected with the seasonal flu strain along with 11 non-vaccinated volunteers.
-
-The results, say Gilbert, are important in developing a new form of protection that researchers hope could spell the end of flu vaccination supply problems.
-
-The most recent global pandemic was the 2009 H1N1 flu pandemic, in which the estimates of deaths ranged as high as 12,500 in the U.S. alone, according to the Centers for Disease Control and Prevention. 
-
- 
-
- Gilbert explained: "With the swine flu pandemic it took four months before the first doses of the vaccine were available and there was only a small amount available," Gilbert explained. "It took a further six months before it was possible to vaccinate a large number of people.
-
-"With this type of vaccine, you would at least be able to start using the vaccine as soon as you knew a new pandemic was starting. You could stockpile the vaccine and wouldn't have this wait to make a new pandemic-specific vaccine," she said.
-
-The vaccine would be an important step in treating seasonal flu, not just pandemics.
-
-"Flu kills every year. It's not just swine flu. Normally it's the very old or very young that die from flu, but every year there are deaths from influenza A," said Gilbert.
-
-In the U.S alone it's believed about 36,000 people die from seasonal flu-related causes in an average year, according to the CDC.
-
-The initial results are positive, says Peter Palese, professor and chair of microbiology at Mount Sinai School of Medicine, New York, but more research is needed before the new treatment is approved.
-
-"I think it's a very interesting and very elegant approach and the data so far looks very, very good," he said.
-
-"But although the vaccine has been give to humans, unfortunately there is no evidence presented to say if it really results in protection against infection."
-
-Gilbert agrees more work is required before the vaccine becomes available, estimating a wait of at least five year, but says the results are a fundamental next step in the treatment of flu.
-
-"It's fairly certain flu vaccines are going to change a lot in the next few years," she said.
-
-"Whether it's this vaccine or another one someone else develops, I don't think we'll be continuing with the type of flu vaccines that we have at the moment."
-QUESTION: Does the story use independent sources and identify conflicts of interest?
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 (CNN) -- Marcia Gilbert has spent most of her life in Charlotte, North Carolina, but for the end of summer, she decided to make a special trip.
 
 Gilbert, 56, spent the weekend before Labor Day in New York City. She roamed from Chinatown to the Upper East Side, went sightseeing in Central Park and painted the town with her husband of 33 years, their two 20-something children and assorted friends.
@@ -12315,41 +12206,6 @@ EXPLANATION:
 
 
 The story includes both an independent source and the information that the researchers did not receive any outside funding for their work.
-<|endoftext|>
-<|startoftext|>
-(Health.com) -- People who consume lots of foods rich in vitamin B12 -- such as fish and fortified cereals -- may be at lower risk of developing Alzheimer's disease than people who take in less of the vitamin, a small study conducted in Finland suggests.
-
-In the study, which was published in Neurology, researchers in Scandinavia analyzed blood samples from 271 individuals ages 65 to 79 who showed no evidence of dementia. The researchers tested for levels of a blood marker of vitamin B12 and for levels of homocysteine, an amino acid that has been linked to an increased risk of Alzheimer's disease (as well as heart disease and stroke).
-
-B vitamins, including B12 and folate, have been shown to help lower homocysteine levels, so high levels of the amino acid suggest low levels of B12.
-
-Health.com: 9 foods that may help save your memory
-
-Over the next seven years, 17 study participants were diagnosed with Alzheimer's disease. The people with the highest levels of homocysteine at the beginning of the study had the greatest risk of developing the disease. In contrast, each unit increase in the marker of vitamin B12 (known as holotranscobalamin) reduced the risk of developing Alzheimer's by 2 percent.
-
-The relationship between vitamin B12 and Alzheimer's risk is "complex," says Dr. Sudha Seshadri, M.D., an associate professor of neurology at the Boston University School of Medicine and the author of an editorial accompanying the study. But, she adds, "B12 levels, particularly holotranscobalamin levels, likely play a contributory role."
-
-The links among Alzheimer's risk, homocysteine, and B12 were more pronounced in older individuals, the study found.
-
-Blood levels of folate, which the researchers also measured, were not related to homocysteine levels or Alzheimer's risk in this study. Folic acid -- a synthetic version of folate found in many supplements and multivitamins -- has been shown to lower homocysteine in previous studies, but its effect on disease risk is disputed.
-
-A National Institutes of Health panel recently concluded that there are no foods or vitamins that definitively prevent the development of Alzheimer's disease, and experts say this study is consistent with the panel's recommendations. "A healthy diet likely remains important," Seshadri says. "The role of supplementation remains unclear."
-
-Health.com: Ginkgo doesn't work: are there better ways to save your brain?
-
-Maria Carillo, Ph.D., the senior director of medical and scientific relations at the Alzheimer's Association, a nonprofit research and advocacy group, urges caution in interpreting the new findings, especially given that so few study participants developed the disease.
-
-"We do know that vitamin B12 is a huge contributor to lowering homocysteine levels," she says. "Lowering these in general is important for cardiovascular health, and this study strengthens our knowledge about its role in risk for Alzheimer's disease."
-
-Dr. Sam Gandy, M.D., the associate director of the Alzheimer's Disease Research Center at the Mount Sinai School of Medicine, in New York City, says that it may make sense for people to get blood tests to measure their levels of B12 and folate.
-
-Health.com: How to age-proof your memory
-
-However, he says, the study findings may not necessarily translate to people outside Scandinavia. And he worries that the results may spur doctors to recommend B12 injections to their patients -- a preventive treatment that he says is unfounded and already overused.
-
-It's still unclear whether increasing your intake of vitamin B12 will help protect you from Alzheimer's, Gandy says. "Good nutrition should minimize the risk of Alzheimer's disease, but we can't say that any specific food has been proven to reduce this risk."
-QUESTION: Does the story use independent sources and identify conflicts of interest?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 Attaching curcumin, a component of the common spice turmeric, to nanoparticles can be used to target and destroy treatment-resistant neuroblastoma tumor cells, according to a new study published in Nanoscale.
@@ -14538,35 +14394,6 @@ Dr. Gregg C. Fonarow, a professor of cardiology at the University of California,
 For more on omega-3 fatty acids, visit the National Institutes of Health.
 QUESTION: Does the story use independent sources and identify conflicts of interest?
 EXPLANATION:  The story included comments from several individuals without direct ties to the study reported on but with active research programs examining the potential of benefit from omega-3 fatty acids.
-<|endoftext|>
-<|startoftext|>
-FRIDAY, Jan. 1, 2010 (HealthDay News) -- Three-quarters of patients undergoing surgery for stubborn sinusitis saw significant improvements in their quality of life, new research shows.
-
-Most of the remaining 25 percent also saw some improvement, just not as dramatic, said Dr. Timothy Smith, lead author of a study appearing in the January issue of Otolaryngology -- Head and Neck Surgery.
-
-"Certainly this reinforces our belief that sinus surgery increases the quality of life of patients, and I see that clinically as well as scientifically," added Dr. Jordan S. Josephson, a sinus and allergy specialist at Lenox Hill Hospital in New York City. "Previous studies have been single-center studies, and this is a bigger study using multiple centers and using a fairly large population, so it further says sinus surgery is a really good thing to do if you need it."
-
-Chronic rhinosinusitis (CRS) affects a sizable minority -- 14 percent to 16 percent -- of U.S. residents. The condition, marked by symptoms such as sinus pain and pressure, headache, stuffy nose and sneezing, can compromise quality of life more than even congestive heart failure, back pain or chronic obstructive pulmonary disease, the study authors said.
-
-Endoscopic sinus surgery has been performed in the United States since the mid-1980s, said Smith, who is director of the Oregon Sinus Center at Oregon Health & Science University in Portland.
-
-"It's a minimally invasive type of surgery performed with a telescope that goes into the nostril," then basically snips away abnormal and interfering tissue while leaving normal tissue behind, Smith explained.
-
-Smith and his co-authors studied 302 patients with CRS from three academic medical centers, following them for an average of a year and a half after their surgery.
-
-"These were patients who have chronic sinusitis so, by definition, they have at least three months of symptoms and they have evidence of an ongoing inflammation or infection of their nose and sinuses on either a CT scan or an examination of the nose and sinuses," Smith said.
-
-Following the surgery, about 76 percent of patients had "clinically significant" improvement in quality of life, as measured by various validated scales.
-
-Patients with worse disease at the outset seemed to fare the best after the procedure, as did those undergoing surgery for the first time. This second finding is probably explained by the fact that people going for second or further surgeries were probably sicker to begin with, Josephson said.
-
-None of which is to say that patients shouldn't try medical therapies first, he added.
-
-"I don't think it means everyone with CRS should consider surgery. They should try medical therapy, and if medical therapy fails and the surgeon feels that part of the problem is anatomic, then surgery would be a good tool for them to use," Josephson said. "Some people with stage 1 and 2 diseases may even get cured. This is a wonderful renewed hope of feeling better."
-
-The U.S. National Institute of Allergy and Infectious Diseases has more on sinusitis.
-QUESTION: Does the story use independent sources and identify conflicts of interest?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 If the high-pitched whir of a dentist's drill as it bores into your molar terrifies you, good news! There could be fewer fillings in your future. A painless way to prevent cavities in adults is gaining traction.
@@ -17921,29 +17748,6 @@ The trial's researchers were careful to list indications of possible harmful sid
 The American Heart Association has more on cholesterol-lowering drugs.
 QUESTION: Does the story use independent sources and identify conflicts of interest?
 EXPLANATION: Important caveats were included in the independent expert’s views at the end of the story. 
-<|endoftext|>
-<|startoftext|>
-So should U.S. women continue to get routine mammograms? It's a "close call," says H. Gilbert Welch, MD, MPH, of the Dartmouth Institute in Lebanon, N.H.
-
-"This is a test that women who want it should be able to have," Welch tells WebMD. "But it should not be jammed down people's throats. ... The system we are working in leads doctors to coax, scare, and coerce women into having this test."
-
-Why would a woman at normal risk of breast cancer want to get routine mammograms? The obvious answer is that these tests save lives.
-
-How many lives? If the full 10% drop in breast cancer deaths among screened women in the Norwegian study is totally due to mammograms themselves -- Welch calls this an optimistic assumption -- one life is saved for every 2,500 women who get regular mammograms.
-
-But what's the harm of routine mammograms?
-
-"The biggest harm is you are treated for breast cancer unnecessarily, for a cancer that was never going to cause problems," Welch says. "Because we don't know which cancers these are, all cancers are treated. This means some women will undergo needless surgery, radiation, or chemotherapy. On balance, this is about five to 15 of those 2,500 women screened."
-
-Moreover, a large number of screened women will have worrisome mammogram results.
-
-"Among the 2,500 women screened, at least 1,000 will be told something looks wrong on their mammogram, and they will have to worry that they have cancer," Welch says. "The vast majority will turn out not to have cancer, but all of them will worry."
-
-Welch notes that many women may find that the benefits of routine mammograms outweigh these risks.
-
-"Every woman has to make her own decision about how to weigh these very dissimilar things," Welch says. "Some will benefit in a very large way. But to achieve that benefit, a lot of others will have to go through something with very negative effects. It is not wrong to want a routine mammogram, and it is not wrong not to want one."
-QUESTION: Does the story use independent sources and identify conflicts of interest?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 Swedish Study Finds Surgery For Prostate Cancer Better Than Waiting

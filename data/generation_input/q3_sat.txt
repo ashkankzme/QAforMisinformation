@@ -1871,53 +1871,6 @@ QUESTION: Does the story adequately explain/quantify the harms of the interventi
 EXPLANATION: This story doesn’t sugar coat the side effects of these drugs. A spokesman for a patient group notes that many patients “spend months or years taking medicines that don’t work and make them miserable.”
 <|endoftext|>
 <|startoftext|>
-The gene responsible for cystic fibrosis was discovered in 1989. Now, 22 years later, a drug that tries to compensate for the genetic defect might be nearing the market.
-
-Vertex Pharmaceuticals announced Wednesday morning that the drug, VX-770, improved lung function in people with cystic fibrosis in a late-stage clinical trial. The drug also reduced the frequency of disease exacerbations that required treatment with antibiotics.
-
-The caveat is that VX-770 is designed to counter one specific genetic mutation that accounts for about 4 percent of cases of cystic fibrosis. Vertex is working on another drug for the most common mutation, but that one is further behind in development.
-
-Still, the news is expected to be greeted favorably by doctors and patients and by Wall Street.
-
-“I’ve been doing clinical trials for 30 years in C.F. and these are amazing results,’’ Dr. Bonnie W. Ramsey, a lead investigator in the trial, said in an interview.
-
-Dr. Ramsey, a professor of pediatrics at the University of Washington, was briefed on the results by Vertex.
-
-The results were announced by a press release and have not been peer reviewed by experts.
-
-About 30,000 Americans and 70,000 people worldwide have cystic fibrosis, a disease caused by defects in a gene responsible for the transport of chloride ions across cell membranes. People with the disease tend to have very thick mucus in their lungs, which leads to infections and lung damage. Many do not live past age 40.
-
-Two inhaled antibiotics and one drug that loosens mucus are approved to treat cystic fibrosis, but nothing that directly improves chloride ion transport.
-
- 
-
- In the trial, those who received VX-770 gained 10.6 percentage points more on a lung function test after 24 weeks than those getting a placebo, a difference that statistically was highly significant. Patients continued to take either drug or placebo for another 24 weeks and the improvement was sustained. Lung function, the primary endpoint of the trial, was measured by how much a person could exhale in one second, a standard test.
-
-Investors had been expecting around a 5 percentage point improvement. In a note to clients Tuesday evening, before the results were known, an analyst at ISI Group, Mark Schoenebaum, said that an improvement of 10 percent would be a “home run’’ that could lead to $600 million in annual sales for the drug.
-
-Dr. Ramsey, who has received research grants from Vertex, said that some patients could perceive a 10 percentage point change in lung function. She said other results of the trial were encouraging.
-
-These included fewer exacerbations of the disease in those who got the drug, fewer self-reported respiratory symptoms, and a gain in weight, which is good for people with cystic fibrosis, who often have digestive problems. The saltiness of their sweat — a measure used to diagnose the disease — was markedly reduced, suggesting that the drug was having an effect on chloride ion transport.
-
-The trial involved 161 people age 12 and older, all with at least one copy of the particular mutation, known as G551D. The main side effects, Vertex said, were headache, upper respiratory tract infections, nasal congestion, rash and dizziness.
-
-Vertex said it hoped to apply in the second half of the year for approval of VX-770 in the United States and Europe. The company is awaiting results of a second trial of the drug, this one in younger children.
-
-Vertex has not said how much it will charge for VX-770. But since there are only about 1,200 Americans who are candidates for the drug, the price is likely to be tens of thousands of dollars a year.
-
-Vertex, based in Cambridge, Mass., was founded in 1989, coincidentally the same year the cystic fibrosis gene was discovered. It has not yet had a big commercial success and had a $2.5 billion net loss in the last five years.
-
-The company is hoping that by late May it will win approval to sell a new type of drug for hepatitis C, which analysts expect will be a blockbuster.
-
-The long time needed to develop a drug for cystic fibrosis is a lesson for those expecting a quick payout from the sequencing of the human genome, which was completed a decade ago. It is not enough to know the gene behind a disease. It can take years of research to determine how a mutation actually causes a disease and then to design a drug that corrects the problem.
-
-Vertex received $75 million in financial support from the Cystic Fibrosis Foundation, one of the first nonprofit disease groups to give money to companies.
-
-“These results are highly encouraging,’’ Robert J. Beall, president of the foundation, said in a statement Wednesday. “They provide scientific evidence that support our long-standing belief that targeting the underlying defect of C.F. may have a profound effect on the disease.’’
-QUESTION: Does the story adequately explain/quantify the harms of the intervention?
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 A study shows that not all good fats are the same when it comes to protecting your health
 
 A study shows that not all good fats are the same when it comes to protecting your health.
@@ -8478,37 +8431,6 @@ QUESTION: Does the story adequately explain/quantify the harms of the interventi
 EXPLANATION: The story says the main side effect from the device is “that people can wake up with a sore tongue.” We’ll give this a barely passing satisfactory. (What about people who may have suffered adverse reactions or complications from surgery?)
 <|endoftext|>
 <|startoftext|>
-Hormone therapy is the only FDA-approved treatment for hot flashes related to menopause, but many women are reluctant to undergo hormone therapy because its long-term use has been linked to an increased risk for breast cancer and stroke .
-
-The study was presented in Chicago at the annual meeting of the North American Menopause Society (NAMS).
-
-In a manufacturer-funded study, the drug Serada proved to be more effective than placebo for preventing hot flashes and reducing their severity.
-
-Oct. 6, 2010 -- An extended-release version of the seizure and pain drug gabapentin may be one step closer to becoming the first approved nonhormonal treatment for menopause -related hot flashes .
-
-In earlier studies, immediate-release gabapentin was shown to be an effective treatment for hot flashes. But side effects, including dizziness and daytime sleepiness, were commonly reported by users.
-
-Michael Sweeney, MD, who is vice president of research and development for Serada manufacturer Depomed Inc., says the company’s slow-release gabapentin formulation avoids many of these side effects.
-
-About 60% of women who took the experimental drug in one study reported side effects, compared to about 50% of women taking placebo pills. About 8% and 18% of Serada users reported daytime sleepiness and dizziness, respectively, compared to about 3% and 8% of women who took a placebo.
-
-“These side effects, when they did occur, tended to occur early in treatment and disappear within a few weeks,” Sweeney says.
-
-Researchers presented findings from two studies of Serada at the NAMS meeting.
-
-In one study, the number of daily hot flashes experienced by postmenopausal women taking 1,800 milligrams of the drug per day declined from around 10 to around 2. But a similar reduction in hot flashes was seen in women who took placebo pills instead of the slow-release gabapentin.
-
-In the second study, about 65% of women taking Serada reported significant improvement in hot flash symptoms after 12 weeks of treatment, compared to 45% of women taking placebo.
-
-NAMS founder and former executive director Wulf Utian, MD, says Serada does not appear to be as effective as hormonal therapy, but it may be a useful alternative treatment for women who can’t take hormones or don’t want to.
-
-Utian is now an independent consultant and was a co-author of one of the studies.
-
-“Estrogen and estrogen-progestin drugs are about 95% effective for treating hot flashes,” he tells WebMD. “This drug was about 60% to 65% effective, which is about the same efficacy that has been reported with antidepressants [for treatment of hot flashes].”
-QUESTION: Does the story adequately explain/quantify the harms of the intervention?
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 This article is featured in Newsweek's Special Edition: Nature's Remedies—Heal Your Body.
 
 One of the leading causes of disability in the United States isn’t physical—it’s mental. According to the Anxiety and Depression Association of America (ADAA), 15 million adults—approximately 6.7 percent of the population—suffer from major depressive disorder, which is most often treated through a combination of talk therapy and medication. Those who struggle with depression have imbalanced levels of serotonin, which maintains mood, and dopamine, which controls the pleasure and reward zones. The brain’s synapses control how much of these chemicals are released, and drugs like Zoloft effectively prevent the little serotonin being produced from reabsorbing back into the nerve cells from which they were released, resulting in a higher concentration of serotonin. Some pill-averse patients have longed for a natural cure for depression, while others complain that the drugs they’re on aren’t enough. Hope for both groups may have arrived through an unlikely source: magnets. Researchers discovered they can harness the power of magnetism to increase serotonin production and combat depression through a process called Transcranial Magnetic Stimulation (TMS).
@@ -9643,45 +9565,6 @@ The guidelines will be published in Tuesday’s edition of the journal Neurology
 QUESTION: Does the story adequately explain/quantify the harms of the intervention?
 EXPLANATION: Although the story was not specific enough on this point, it reminded readers that all drugs “can have side effects or interact with other medications.”  It didn’t mention how serious they might be or how often they might occur. We’ll give the story the benefit of the doubt however since the list of drugs is long and the incidence and severity of the side effects is complicated
  
-<|endoftext|>
-<|startoftext|>
-NEW YORK (Reuters Health) - For pregnant women with depression, a couple months of acupuncture might help reduce the severity of their symptoms, a small study hints.
-
-The study, which followed 150 pregnant women with major depression, tested “depression-specific” acupuncture against massage and acupuncture sessions that, according to traditional Chinese medicine, does not specifically target depression.
-
-Researchers found that after eight weeks, women who received depression-specific acupuncture were more likely to have a treatment response — meaning the severity of their symptoms fell by at least half and they no longer met all of the criteria for diagnosing major depression.
-
-Overall, 63 percent responded to the therapy, versus 37 percent of the “control” acupuncture group and half of the massage group, according to findings published in the medical journal Obstetrics & Gynecology.
-
-But while the findings are promising, questions still remain — including whether acupuncture as practiced in the real world can reliably help women with depression.
-
-“The acupuncture protocol we have tested appears effective,” lead researcher Dr. Rachel Manber, of Stanford University in California, told Reuters Health in an email.
-
-“However,” she added, “unlike a pill, which always has the same ingredients, acupuncture, like psychotherapy, varies from one provider to the other.”
-
-So while the specific regimen used in this study appeared effective, Manber said, “I do not think we can say that our study proves that acupuncture is effective for depression during pregnancy.”
-
-It’s estimated that 3 to 5 percent of pregnant women are diagnosed with depression, Manber and her colleagues note in their report. Antidepressant medications are one treatment option, but there are safety concerns.
-
-One recent study, for example, found that pregnant women who started taking selective serotonin reuptake inhibitors (SSRIs) in the second or third trimester had a higher risk of preterm delivery than other women. SSRIs include drugs like sertraline (Zoloft), paroxetine
-
-Because of the potential for harm from medications, many pregnant women with depression may prefer psychotherapy or other non-drug options.
-
-Acupuncture has been used for more than 2,000 years in Chinese medicine to treat a wide variety of ailments. According to traditional medicine, specific acupuncture points on the skin are connected to internal pathways that conduct energy, or qi (“chee”), and stimulating these points with a fine needle promotes the healthy flow of qi.
-
-Modern research has most often focused on the effects of acupuncture on painful conditions, like chronic back pain and migraines. Researchers speculate that it may help ease pain by altering signals among nerve cells or affecting the release of various chemicals of the central nervous system.
-
-It is unclear, Manber said, why acupuncture might help lessen the severity of depression.
-
-For their study, she and her colleagues randomly assigned 52 women to receive depression-specific acupuncture twice a week for four weeks, then weekly for another four weeks. Another 49 women received control acupuncture and 49 received massage. All completed a standard measure of depression severity at the outset and again after four and eight weeks of treatment.
-
-After eight weeks, patients in the depression-specific acupuncture group had a higher rate of response to treatment. They were not, however, more likely to see a complete remission in their depression; about 35 percent had a remission, versus 29.5 percent in the other two groups combined - a statistically insignificant difference.
-
-Fourteen women who received depression-specific acupuncture reported pain during the needling, as did seven in the control-acupuncture group.
-
-Overall, Manber’s team notes, the response to acupuncture in this study was comparable to what has been seen in studies of psychotherapy for depression during pregnancy.
-QUESTION: Does the story adequately explain/quantify the harms of the intervention?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 PHILADELPHIA - Pembrolizumab, an antibody drug already used to treat other forms of cancer, can be effective in the treatment of the most common form of mesothelioma, according to a new study led by investigators from the Perelman School of Medicine at the University of Pennsylvania. The study, published this month in The Lancet Oncology, is the first to show a positive impact from checkpoint inhibitor immunotherapy drugs on this disease.
@@ -13057,29 +12940,6 @@ MORE INFORMATION Check the Web sites of the Society for Light Therapy and Biolog
 QUESTION: Does the story adequately explain/quantify the harms of the intervention?
 EXPLANATION: The story stated “Side effects include headaches and hypomania.” And it included the warning: “Using a light box is not as simple as it may appear. Experts recommend consulting with a knowledgeable health care provider.”
 Another point the story could have raised is that a person with a disorder that does not respond to light may self-diagnose and fail to seek more effective therapy or advice.
-<|endoftext|>
-<|startoftext|>
-So should U.S. women continue to get routine mammograms? It's a "close call," says H. Gilbert Welch, MD, MPH, of the Dartmouth Institute in Lebanon, N.H.
-
-"This is a test that women who want it should be able to have," Welch tells WebMD. "But it should not be jammed down people's throats. ... The system we are working in leads doctors to coax, scare, and coerce women into having this test."
-
-Why would a woman at normal risk of breast cancer want to get routine mammograms? The obvious answer is that these tests save lives.
-
-How many lives? If the full 10% drop in breast cancer deaths among screened women in the Norwegian study is totally due to mammograms themselves -- Welch calls this an optimistic assumption -- one life is saved for every 2,500 women who get regular mammograms.
-
-But what's the harm of routine mammograms?
-
-"The biggest harm is you are treated for breast cancer unnecessarily, for a cancer that was never going to cause problems," Welch says. "Because we don't know which cancers these are, all cancers are treated. This means some women will undergo needless surgery, radiation, or chemotherapy. On balance, this is about five to 15 of those 2,500 women screened."
-
-Moreover, a large number of screened women will have worrisome mammogram results.
-
-"Among the 2,500 women screened, at least 1,000 will be told something looks wrong on their mammogram, and they will have to worry that they have cancer," Welch says. "The vast majority will turn out not to have cancer, but all of them will worry."
-
-Welch notes that many women may find that the benefits of routine mammograms outweigh these risks.
-
-"Every woman has to make her own decision about how to weigh these very dissimilar things," Welch says. "Some will benefit in a very large way. But to achieve that benefit, a lot of others will have to go through something with very negative effects. It is not wrong to want a routine mammogram, and it is not wrong not to want one."
-QUESTION: Does the story adequately explain/quantify the harms of the intervention?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 The idea that alcohol might be good for our hearts and blood vessels is a popular one, right up there with the notion that chocolate is a health food.
@@ -16705,61 +16565,6 @@ QUESTION: Does the story adequately explain/quantify the harms of the interventi
 EXPLANATION: As with the benefits, we wish the story had quantified the side effects observed in the study, but since side effects were acknowledged and since the following caveat was included, we’ll give it a satisfactory score on this criterion:
 “…more work is needed to gauge the long-term consequences of GHRH injections. It’s possible health problems could show up down the road, and the mental boost may be short-lived.
 “Is it going to work in the long run and is it going to be safe? That is still unknown,” said Petersen. “
-<|endoftext|>
-<|startoftext|>
-Getting your tonsils out used to be just part of childhood — a rite of passage for children in the 1950s and '60s. Then it fell out of favor.
-
-Today, the most common reason for the surgery is "sleep disordered breathing," a broad diagnosis that includes sleep apnea and snoring. About 10 percent of elementary-school-age children snore.
-
-Doctors say snoring can cause bed-wetting, behavior problems, short stature and poor school performance. That's a far cry from the 1950s and '60s, when tonsillectomy was used to fight frequent sore throats.
-
-Back then, it was the most popular surgery in the United States. In the 1960s sitcom Leave It to Beaver, Beaver Cleaver was so impressed by his dad's tales of ice cream and pretty nurses that he schemed to have his tonsils out, even though he didn't need it.
-
-The tonsils are two glands that sit at the base of the tongue and are part of the body's immune system. The premise of tonsillectomies, back in their heyday, was that tonsils get infected themselves and no longer help fend off germs.
-
-Then doctors started noticing that kids were still getting sore throats, even after having their tonsils taken out. But it wasn't until clinical trials were completed in the early 1980s that there was proof that tonsillectomy really only helped children with severe, recurrent throat infections.
-
-"It was becoming unacceptable to just take tonsils out because they were there or you had a few infections," says Richard Rosenfeld, an ear, nose and throat doctor at SUNY Downstate in Brooklyn, N.Y. "People were growing up with their tonsils."
-
-But growing up with tonsils can create another problem: snoring. Lisa Moran of Takoma Park, Md., remembers what it sounded like when her son ,Tyler Scorza, now age 7, slept.
-
-"It was loud," Moran says. "You could hear him through he closed door, down the hall, snoring, and he would occasionally stop breathing."
-
-At first, Tyler's pediatrician thought he'd outgrow the snoring. But he wasn't sleeping well and often didn't have any energy. The doctor recommended a head X-Ray, and the radiologist said that though Tyler's adenoids were enlarged, they weren't that bad.
-
-By then, Tyler had been dealing with this for almost three years. He started getting frequent nasal infections. So his parents took him to an ear, nose and throat doctor. He said, sure, the adenoids are swollen.
-
-"But the real problem is the tonsils!" Moran recalls. "He showed us on the X-ray that there was a tiny passage between the tonsils and the back of his throat — very small."
-
-Enlarged tonsils (and adenoids) are the most common cause of sleep-disordered breathing in children. So the doctor recommended tonsillectomy.
-
-But Tyler's parents were worried about the surgery. It's usually done as an outpatient procedure now, but with general anesthesia. That's never without some risk.
-
-"Your child is under," says Moran, "completely under. This is not a local."
-
-Other complications include pain after surgery and the risk of bleeding; about 4 percent of people have complications that require readmission to the hospital.
-
-Despite hundreds of studies, there's still surprisingly little research on whether tonsillectomy really helps reduce the risk of sore throats. The operation continues to be controversial.
-
-No less a personage than President Obama dissed tonsillectomy when he was stumping for health care overhaul in July 2009. In a prime time news conference, Obama said that doctors may think: " 'You know what? I make a lot more money if I take this kid's tonsils out.' "
-
-Rosenfeld disputes Obama's claim, saying insurers usually pay a surgeon $200 to $300 for tonsil surgery.
-
-The picture is further clouded because not all children with big tonsils have sleep-disordered breathing or frequent throat infections. Because of that, in 2002 the American Academy of Pediatrics recommended that children have a sleep study before surgery is considered.
-
-About 530,000 tonsillectomies are performed in the United States each year. Obviously, parents could use some help in deciding whether surgery is needed. In January, the American Academy of Otolaryngology issued its first guidelines on tonsillectomy in children.
-
-With sore throats, the ENTs recommend waiting (and treatment with antibiotics, if needed), unless a child has more than seven infections in a year. They'd recommend surgery if a child has five or more throat infections a year for two years, or three or more in three years.
-
-There have been very few randomized studies on the effects of tonsillectomy for sleep-disordered breathing. Most of the researchers have asked parents or children whether they noticed improvements, and looked at a single measure, like behavior or quality of life. Still, the ENTs recommend tonsillectomy for sleep-disordered breathing, saying it reduces symptoms in most children.
-
-Tyler's family decided to go ahead with the surgery; they went to the hospital at 5 a.m., and Tyler was home by noon. The doctors said he would be out of school for a week, but a throat infection kept him home a second week. His classmates sent him get-well cards.
-
-A year later, Tyler is feeling great. And his snoring is gone. "Completely gone," his mom says. "You can hear a pin-drop quiet when he sleeps."
-
-Tyler still hears snoring at night, he says. But he knows that the culprit is not him, or the family dog. It's Dad.
-QUESTION: Does the story adequately explain/quantify the harms of the intervention?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 Hispanic middle school children, at high risk for being overweight or obese, reduced their Body Mass Index (BMI) when they adhered to a nutrition intervention that included a snack of peanuts, compared to those children who did not.

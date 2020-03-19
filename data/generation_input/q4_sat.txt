@@ -286,41 +286,6 @@ EXPLANATION: There’s a troubling sentence in this story that doesn’t appear 
 Despite our feelings that the limitations of the study could have been emphasized even more, we’ll judge this one satisfactory – especially in light of the competition. 
 <|endoftext|>
 <|startoftext|>
-(Health.com) -- People who consume lots of foods rich in vitamin B12 -- such as fish and fortified cereals -- may be at lower risk of developing Alzheimer's disease than people who take in less of the vitamin, a small study conducted in Finland suggests.
-
-In the study, which was published in Neurology, researchers in Scandinavia analyzed blood samples from 271 individuals ages 65 to 79 who showed no evidence of dementia. The researchers tested for levels of a blood marker of vitamin B12 and for levels of homocysteine, an amino acid that has been linked to an increased risk of Alzheimer's disease (as well as heart disease and stroke).
-
-B vitamins, including B12 and folate, have been shown to help lower homocysteine levels, so high levels of the amino acid suggest low levels of B12.
-
-Health.com: 9 foods that may help save your memory
-
-Over the next seven years, 17 study participants were diagnosed with Alzheimer's disease. The people with the highest levels of homocysteine at the beginning of the study had the greatest risk of developing the disease. In contrast, each unit increase in the marker of vitamin B12 (known as holotranscobalamin) reduced the risk of developing Alzheimer's by 2 percent.
-
-The relationship between vitamin B12 and Alzheimer's risk is "complex," says Dr. Sudha Seshadri, M.D., an associate professor of neurology at the Boston University School of Medicine and the author of an editorial accompanying the study. But, she adds, "B12 levels, particularly holotranscobalamin levels, likely play a contributory role."
-
-The links among Alzheimer's risk, homocysteine, and B12 were more pronounced in older individuals, the study found.
-
-Blood levels of folate, which the researchers also measured, were not related to homocysteine levels or Alzheimer's risk in this study. Folic acid -- a synthetic version of folate found in many supplements and multivitamins -- has been shown to lower homocysteine in previous studies, but its effect on disease risk is disputed.
-
-A National Institutes of Health panel recently concluded that there are no foods or vitamins that definitively prevent the development of Alzheimer's disease, and experts say this study is consistent with the panel's recommendations. "A healthy diet likely remains important," Seshadri says. "The role of supplementation remains unclear."
-
-Health.com: Ginkgo doesn't work: are there better ways to save your brain?
-
-Maria Carillo, Ph.D., the senior director of medical and scientific relations at the Alzheimer's Association, a nonprofit research and advocacy group, urges caution in interpreting the new findings, especially given that so few study participants developed the disease.
-
-"We do know that vitamin B12 is a huge contributor to lowering homocysteine levels," she says. "Lowering these in general is important for cardiovascular health, and this study strengthens our knowledge about its role in risk for Alzheimer's disease."
-
-Dr. Sam Gandy, M.D., the associate director of the Alzheimer's Disease Research Center at the Mount Sinai School of Medicine, in New York City, says that it may make sense for people to get blood tests to measure their levels of B12 and folate.
-
-Health.com: How to age-proof your memory
-
-However, he says, the study findings may not necessarily translate to people outside Scandinavia. And he worries that the results may spur doctors to recommend B12 injections to their patients -- a preventive treatment that he says is unfounded and already overused.
-
-It's still unclear whether increasing your intake of vitamin B12 will help protect you from Alzheimer's, Gandy says. "Good nutrition should minimize the risk of Alzheimer's disease, but we can't say that any specific food has been proven to reduce this risk."
-QUESTION: Does the story seem to grasp the quality of the evidence? 
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 TUESDAY, June 5, 2012 (HealthDay News) -- A simple blood test may help gauge prognosis and tailor treatments for women who have been diagnosed with early stage breast cancer.
 
 The test, described in the June 6 online edition of The Lancet Oncology, measures how many tumor cells are circulating in the blood. In the new study, if even one cell was detected in the bloodstream, a woman had a greater chance of her cancer recurring and of dying.
@@ -3659,67 +3624,6 @@ Visit the U.S. Centers for Disease Control and Prevention for more on obesity.
 QUESTION: Does the story seem to grasp the quality of the evidence? 
 EXPLANATION: The story reports the key features of the trial. It also notes that, “Research presented at meetings is considered preliminary until published in a peer-reviewed journal.”
 The story would have been stronger if it clearly reported that the trial does not provide any evidence about whether the Obalon device is any better or worse than other options, because it did not compare it to similar balloons or to other weight loss interventions, other than the lifestyle counseling offered to all study participants.
-<|endoftext|>
-<|startoftext|>
-Two big studies suggest possible new ways to screen healthy people for cervical or prostate cancers, but a third disappointed those hoping for a way to detect early signs of deadly ovarian tumors.
-
--For women 30 and over, a test for the virus, HPV, is better than a Pap smear for predicting cervical cancer risk, and those who test negative on both can safely wait three years to be screened again.
-
--A single PSA blood test at ages 44 to 50 might help predict a man's risk of developing advanced prostate cancer or dying of it up to 30 years later. The PSA test is notoriously unreliable, but using it this way separates men who need a close watch from those who are so low-risk that they can skip testing for five years or more.
-
--Screening women with no symptoms for ovarian cancer with a blood test and an ultrasound exam is harmful. It didn't prevent deaths and led to thousands of false alarms, unneeded surgeries and serious complications.
-
-The last study is a warning to people who get screening tests that aren't recommended, or who question whether screening can ever hurt.
-
-"The answer is, it could hurt a lot," said Dr. Allen Lichter, chief executive of the American Society of Clinical Oncology. The group published these and 4,000 other studies Wednesday, ahead of its annual meeting next month.
-
-Cervical cancer is easy to prevent. It's very slow-growing and screening finds precancerous cells and allows early treatment. The new study was the first big one to examine a newer screening tool, HPV tests, with or without Pap smears in routine practice.
-
-For a Pap test, cells scraped from the cervix, the gateway to the uterus, are checked under a microscope. But this can miss problems or raise false alarms.
-
-HPV tests detect the human papillomavirus, which causes most cases of cervical cancer. But HPV is "the common cold" of the nether regions — most sexually active young people have been exposed to it, said Debbie Saslow, the American Cancer Society's director of breast and gynecologic cancer. Most infections go away on their own; they're only a cancer risk when they last a year or more.
-
-Younger women tend to have short-term infections, so Pap tests are a better way to screen them. HPV tests are approved as an option along with Paps for women 30 and older, and the cancer society says that if a woman tests negative on both, she can wait three years to be screened again. Few take this advice, though.
-
-"Women still want their annual Pap and doctors still want to give them," and think it's rationing care to test less often, Saslow said.
-
-The new study gives "very, very solid support" for screening less often, Lichter said.
-
-Hormuzd Katki of the National Cancer Institute studied more than 330,000 women getting HPV and Pap tests through Kaiser Permanente Northern California for five years.
-
-Only about three out of 100,000 women each year developed cervical cancer after negative HPV and Pap tests. HPV tests were twice as good as Paps for predicting risk. Adding a Pap after a negative HPV test did little to improve risk prediction.
-
-However, if an HPV test was positive, a Pap test helped confirm or rule out the need for follow-up.
-
-The study didn't look at the downside of HPV testing — how many false alarms and needless procedures it triggered. HPV tests cost $80 to $100 compared to $20 to $40 for Paps.
-
-The prostate study sought a better way to use PSA tests, which are troublesome because PSA can be high for many reasons besides cancer, and doctors don't know which cancers need treatment or whether screening saves lives. Most groups don't recommend PSA tests, but most men over 50 get them anyway.
-
-The new study "is not going to end the controversy, but it suggests a very interesting middle ground," Lichter said.
-
-Researchers at Memorial Sloan-Kettering Cancer Center in New York used stored blood samples that 12,000 Swedish men gave for a heart study decades ago, when most were 44 to 50 years old. They also had second samples from some of them six years later, and samples from other 60-year-old men.
-
-Looking 27 years later, researchers saw that 44 percent of cancer deaths occurred in men whose initial PSAs had been in the top 10 percent when they were 44 to 50 years old.
-
-Conversely, scoring below the median meant very little cancer risk years later.
-
-"They're identifying a group of guys who don't need to be screened, or need to be screened less often," said Dr. Otis Brawley, the cancer society's chief medical officer.
-
-The results are "provocative," but this type of study can't prove that screening prevents deaths, said Dr. Matthew R. Smith of the Massachusetts General Hospital Cancer Center. Few of the Swedish men were treated for prostate cancer as most men are today, which can affect survival.
-
-The National Cancer Institute, the Swedish Cancer Society and several foundations paid for the work, and one researcher holds patents for two PSA-related tests.
-
-Baseline PSA tests for men in their 40s can't be recommended yet, Brawley said. The cancer society says men should be informed of the risks and benefits of PSA tests starting at age 50, and sooner for blacks and those with family history of prostate cancer.
-
-The government-funded ovarian cancer study involved nearly 80,000 women. Half were screened annually with an ultrasound for four years and a blood test for six years. The blood test looked for CA-125, a substance often elevated in ovarian cancer.
-
-After 13 years, there were no major differences in ovarian cancers found or deaths from the disease. Screening found only 212 cancers while giving 3,285 false alarms that led to 1,080 unneeded biopsy surgeries and 163 serious complications.
-
-"So many people say `how can cancer screening be harmful?' This thing documents it," Brawley said.
-
-The results don't apply to using these tests on women with symptoms of ovarian cancer or abnormal physical exams. That's still the best way to check for ovarian cancer in those cases.
-QUESTION: Does the story seem to grasp the quality of the evidence? 
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 EMBARGOED FOR RELEASE: 11 A.M. (ET), THURSDAY, JULY 20, 2017
@@ -12677,53 +12581,6 @@ QUESTION: Does the story seem to grasp the quality of the evidence?
 EXPLANATION: The story explained that the Maryland physician promoting the theory "published a 2006 study contending that 11 autistic children taking Lupron did better on tests of awareness, sociability and behavior. He has since issued other studies finding that mercury leads to excess testosterone and that autistic children have excessive levels of the hormone."  But then it immediately notes: "Other doctors said (the) studies were small, were not scientifically sound and were published in journals that do not follow the standard practice of having experts review the methods." 
 <|endoftext|>
 <|startoftext|>
-WEDNESDAY, Sept. 22, 2010 (HealthDay News) -- Routine mammograms account for only about one-third of the decline in breast cancer death rates, according to a large new analysis of data from Norway's expansive breast cancer screening program.
-
-The other two-thirds of the reduction is probably due to such factors as increased cancer awareness, improved therapy and use of more sensitive diagnostic tools, the study authors suggest.
-
-The analysis, published in the Sept. 23 issue of the New England Journal of Medicine, raises new questions about the benefits versus risks of screening mammography and is already reigniting tensions over its frequency of use in the United States.
-
-"Women should be informed that the benefit is smaller than expected, and there should be a balanced discussion on the benefit and the possible harms of screening, such as overdiagnosis, false-negative and -positive tests and psychological distress," said the study's lead author, Dr. Mette Kalager, an epidemiologist with the Cancer Registry of Norway in Oslo and a visiting scientist at the Harvard School of Public Health in Boston.
-
-"This study will only add to the confusion for women and their physicians," said Dr. Daniel B. Kopans, director of breast imaging at Massachusetts General Hospital and a radiology professor at Harvard Medical School.
-
-Last November, the U.S. Preventive Services Task Force spurred dissension among breast cancer experts with controversial new guidelines for breast cancer screening. The task force recommended that women begin having screening mammograms at age 50 -- not 40 -- and that those exams occur every other year, instead of annually.
-
-But some cancer organizations reject the panel's advice. The American Cancer Society still recommends annual mammograms starting at age 40, as long as a woman is still in good health.
-
-On Tuesday, the American College of Radiology (ACR), the Society of Breast Imaging and the American Society of Breast Disease launched "Mammography Saves Lives," a campaign designed to encourage women to have an annual mammogram starting at age 40.
-
-"Mammography is not perfect; no one has claimed that it is," said Kopans, a member of the ACR Commission on Breast Imaging. But since the advent of routine mammograms in the 1990s, the rate of death from breast cancer has dropped 30 percent, he observed.
-
-"That's a huge achievement," Kopans noted, adding that "it may not be a big deal to an epidemiologist who's looking at huge numbers and doesn't take care of women with breast problems."
-
-Norway's breast cancer screening program began in 1996 and was expanded two years later, with staggered enrollment by county over a period of nine years. Since 2005, all Norwegian women aged 50 to 69 have been invited to have a screening mammogram every two years, the authors said.
-
-For the study, more than 40,000 Norwegian women were followed for an average of 2.2 years. Researchers compared death rates from breast cancer among four groups of women: two that were living in counties with or without screening and two groups that lived in the same counties before screening was offered.
-
-The difference in the rate of death from breast cancer among women in the screening group versus the control group was 28 percent. In comparison, there was an 18 percent reduction in the rate of death in the non-screened group versus the control group, the study found.
-
-In other words, breast cancer screening was associated with a reduction in death -- but only accounted for 10 percentage points of the difference.
-
-"Our observed 10 percent reduction in death from breast cancer is much lower than previously thought," Kalager said. "It is plausible that today, the effect of increased breast awareness and improved therapy have outweighed the effect of screening on reducing mortality from breast cancer."
-
-Both Kopans and Dr. Otis W. Brawley, the American Cancer Society's chief medical officer, criticized the research team's short follow-up period -- just 2.2 years of observation, on average. They both said that the time frame was insufficient to assess the effect of screening.
-
-In an accompanying editorial, Dr. H. Gilbert Welch, a professor of medicine and community and family medicine at the Dartmouth Institute for Health Policy and Clinical Practice in Lebanon, N.H., said the Norwegian study helps to confirm that the decision to undergo screening mammography is "a close call."
-
-Welch, author of a book, Should I Be Tested for Cancer? Maybe Not and Here's Why, suggested that with better treatment and increased awareness of the importance of seeking care for breast abnormalities, screening mammography may be less important now than in the past.
-
-"That physicians are still debating the relative merits of screening mammography despite the wealth of data suggests that the test is surely a close call, a delicate balance between modest benefit and modest harm," Welch wrote.
-
-But Kopans noted that mammography is still the only test that has been proven to reduce the death rate from breast cancer and that this study should not divert attention away from that fact.
-
-"It's clearly muddying the waters," he said.
-
-Learn more about screening mammograms by visiting the U.S. National Cancer Institute.
-QUESTION: Does the story seem to grasp the quality of the evidence? 
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 The pocket-watch-sized device is billed as "a pacemaker for the brain," the newest cutting-edge treatment for as many as 4 million adults whose severe depression is not relieved by psychotherapy, drugs or even shock treatments.
 
 Since its approval under unusual circumstances eight months ago by the Food and Drug Administration (FDA), more than 550 Americans have undergone surgery to have a vagus nerve stimulator (VNS) implanted in their chests to activate parts of their brains. Another 7,000 people -- aided by a network of nurses hired by Cyberonics, the Houston-based manufacturer of the device -- are seeking approval from their insurance companies for the $25,000 operation.
@@ -17750,29 +17607,6 @@ Joslin research is highly innovative and imaginative, employing the newest tools
 Joslin has one of the largest diabetes training programs in the world, educating 150 M.D. and Ph.D. researchers each year, many of whom go on to head diabetes initiatives at leading institutions all over the globe. For more information, visit www.joslinresearch.org.
 QUESTION: Does the news release seem to grasp the quality of the evidence? 
 EXPLANATION: The release tells us that the results were published in the New England Journal of Medicine. And while the story does not include the statistical comparisons of the three drugs, it does show, by vision improvement, the outcomes. Also included are the numbers of patients and the general study methodology. It’s clear from the release that this was a well-conducted study that has important implications for practice.
-<|endoftext|>
-<|startoftext|>
-So should U.S. women continue to get routine mammograms? It's a "close call," says H. Gilbert Welch, MD, MPH, of the Dartmouth Institute in Lebanon, N.H.
-
-"This is a test that women who want it should be able to have," Welch tells WebMD. "But it should not be jammed down people's throats. ... The system we are working in leads doctors to coax, scare, and coerce women into having this test."
-
-Why would a woman at normal risk of breast cancer want to get routine mammograms? The obvious answer is that these tests save lives.
-
-How many lives? If the full 10% drop in breast cancer deaths among screened women in the Norwegian study is totally due to mammograms themselves -- Welch calls this an optimistic assumption -- one life is saved for every 2,500 women who get regular mammograms.
-
-But what's the harm of routine mammograms?
-
-"The biggest harm is you are treated for breast cancer unnecessarily, for a cancer that was never going to cause problems," Welch says. "Because we don't know which cancers these are, all cancers are treated. This means some women will undergo needless surgery, radiation, or chemotherapy. On balance, this is about five to 15 of those 2,500 women screened."
-
-Moreover, a large number of screened women will have worrisome mammogram results.
-
-"Among the 2,500 women screened, at least 1,000 will be told something looks wrong on their mammogram, and they will have to worry that they have cancer," Welch says. "The vast majority will turn out not to have cancer, but all of them will worry."
-
-Welch notes that many women may find that the benefits of routine mammograms outweigh these risks.
-
-"Every woman has to make her own decision about how to weigh these very dissimilar things," Welch says. "Some will benefit in a very large way. But to achieve that benefit, a lot of others will have to go through something with very negative effects. It is not wrong to want a routine mammogram, and it is not wrong not to want one."
-QUESTION: Does the story seem to grasp the quality of the evidence? 
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 WEDNESDAY, July 6, 2011 (HealthDay News) -- For the millions of Americans with chronic low back pain, a silver bullet to alleviate the condition has yet to be identified, a new study suggests.

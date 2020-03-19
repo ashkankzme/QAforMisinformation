@@ -443,51 +443,6 @@ QUESTION: Does the news release compare the new approach with existing alternati
 EXPLANATION: The very basis of the news release — and the study upon which it is based — is a comparison of alternatives.
 <|endoftext|>
 <|startoftext|>
-TUESDAY, July 13, 2010 (HealthDay News) -- A leading group of cancer experts has issued new guidelines on the best way to use two classes of hormone therapies for estrogen receptor-positive breast cancer, the most common form of breast tumor.
-
-After a systematic review of medical research on the subject, experts reported that adding an aromatase inhibitor -- a drug that reduces the amount of estrogen produced in the body -- has clearly been shown to reduce the number of tumor recurrences in postmenopausal women compared with the standard drug tamoxifen, which works by blocking the action of estrogen on cancer tumors that are estrogen-receptor positive.
-
-The committee preparing the guidelines recommended, therefore, that all postmenopausal women with this type of breast cancer use aromatase inhibitors either before or after tamoxifen.
-
-They also concluded that women could use them as long as five years after tamoxifen therapy to lower their risk that the cancer will reoccur.
-
-The paper, issued by the American Society of Clinical Oncologists (ASCO) and published July 12 in the Journal of Clinical Oncology essentially brings guidelines in alignment with today's practice.
-
-"This is actually reinforcing clinical practice," said Dr. Crystal Denlinger, assistant professor of medical oncology at Fox Chase Cancer Center in Philadelphia. "In general, for postmenopausal women, we are offering them aromatase inhibitors based on the single studies that have been referenced [in these guidelines] and what has already been reported in national meetings."
-
-Those studies and presentations, added Denlinger, "have uniformly demonstrated the superiority of aromatase inhibitors over tamoxifen or a switching strategy or an extended strategy."
-
-The new guidelines replace previous guidelines issued in 2002, and subsequent updates in 2003 and 2004.
-
-Tamoxifen has been a mainstay of treatment for decades, while aromatase inhibitors are a more recent entry into the field. Both drugs are used as "adjuvant" therapy, meaning they are used after surgery and chemotherapy and/or radiation to prevent the cancer from coming back.
-
-The committee reviewed recent studies which had investigated aromatase inhibitors and/or tamoxifen in women with this particular subtype of breast cancer.
-
-Using an aromatase inhibitor alone or with tamoxifen therapy improved disease-free survival compared with using tamoxifen alone. It also reduced the risk of the cancer spreading to other parts of the body.
-
-Women who are pre- or peri-menopausal when they are diagnosed should be given tamoxifen for five years. Aromatase inhibitors are not effective in this age group, the experts note.
-
-All three aromatase inhibitors on the market - Arimidex (anastrozole), Femara (letrozole) and Aromasin (exemestane) - were essentially equal in their benefit.
-
-The drugs can also cause side effects that need to be taken into account when prescribing.
-
-"We've learned a huge amount about the various side effect profiles of these products," said Dr. Harold J. Burstein, co-chair of the ASCO committee which prepared the guidelines and associate professor of medicine at Harvard Medical School and Dana-Farber Cancer Institute in Boston. "Aromatase inhibitors are clearly associated with osteoporosis and with bone and joint [conditions]. They might also be associated with a greater risk of hypertension and high cholesterol."
-
-For its part, tamoxifen is also associated with serious side effects, which can include cataracts and uterine cancer as well as life-threatening blood clots and stroke.
-
-And cost will also be a factor in decision-making.
-
-"Aromatase inhibitors are very expensive. And sometimes we have to make decisions about using drugs that are probably a little less effective but at the same time we have to take into account the financial standpoint," said Dr. Jay Brooks, chairman of hematology/oncology at Ochsner Health System in Baton Rouge. "Are [aromatase inhibitors] better than tamoxifen? Yes, in two areas: preventing recurrent disease in other parts of the body and in preventing a second, separate breast cancer. But the [financial] costs are much more expensive."
-
-According to the new guidelines, 20 milligrams of tamoxifen costs $21.90 a month, while Arimidex can cost $379.80.
-
-On the other hand, Burstein pointed out, the aromatase inhibitor anastrozole recently became available as a generic, which should lower the cost significantly.
-
-Read the full guideline at the American Society of Clinical Oncology.
-QUESTION: Does the story compare the new approach with existing alternatives?
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 CLEVELAND, Ohio (October 8, 2018)--Microablative fractional CO2 lasers are energy-based devices designed to help manage troublesome menopause symptoms such as painful sex, dryness, itching/burning, urinary frequency, and incontinence. Although there is ongoing debate regarding the safety and effectiveness of vaginal laser surgery, a new study suggests that it may be effective, especially after multiple treatments. Study results are published online in Menopause, the journal of The North American Menopause Society (NAMS).
 
 Collectively known as the genitourinary syndrome of menopause (GSM), the various genital and urinary problems associated with menopause have created a market for new therapies and treatments to help women regain sexual function and bladder control. Vaginal laser surgery represents one of the newer and more hotly contested approaches.
@@ -6270,35 +6225,6 @@ QUESTION: Does the story compare the new approach with existing alternatives?
 EXPLANATION: This article compares existing 2-D mammorgraphy imaging with the new 3-D imaging throughout the piece.  While it does present 3-D imaging as superior because of its ostensibly improved sensitivity and specificity, the article provides no scientific evidence to support that view.
 For patients the information that matters most is which imaging mode improves survival.  Both the article and Hologic’s Andy Smith note that a study of whether 3-D imaging improves patient survival versus 2-D imaging will take a long time and “won’t be available for decades.”  Because of that fact, the story had an even greater obligation to provide readers with balanced information about this latest imaging technique and to include any available evidence supporting the superiority of 3-D imaging that this article suggests.
 Nonethless, since some attempt at comparison was made, we’ll give the story the benefit of the doubt.
-<|endoftext|>
-<|startoftext|>
-NEW YORK (Reuters Health) - A sweet tooth isn’t necessarily bad for your health— at least not when it comes to chocolate, hints a new study.
-
-Researchers studying more than 33,000 Swedish women found that the more chocolate women said they ate, the lower their risk of stroke.
-
-The results add to a growing body of evidence linking cocoa consumption to heart health, but they aren’t a free pass to gorge on chocolate.
-
-“Given the observational design of the study, findings from this study cannot prove that it’s chocolate that lowers the risk of stroke,” Susanna Larsson from Karolinska Institutet in Stockholm told Reuters Health in an email.
-
-While she believes chocolate has health benefits, she also warned that eating too much of it could be counterproductive.
-
-“Chocolate should be consumed in moderation as it is high in calories, fat, and sugar,” she said. “As dark chocolate contains more cocoa and less sugar than milk chocolate, consumption of dark chocolate would be more beneficial.”
-
-Larsson and her colleagues, whose findings appear in the Journal of the American College of Cardiology, tapped into data from a mammography study that included self-reports of how much chocolate women ate in 1997. The women ranged in age from 49 to 83 years.
-
-Over the next decade, there were 1,549 strokes, and the more chocolate women ate, the lower their risk.
-
-Among those with the highest weekly chocolate intake — more than 45 grams — there were 2.5 strokes per 1,000 women per year. That figure was 7.8 per 1,000 among women who ate the least (less than 8.9 grams per week).
-
-Scientists speculate that substances known as flavonoids, in particular so-called flavanols, may be responsible for chocolate’s apparent effects on health.
-
-According to Larsson, flavonoids have been shown to cut high blood pressure, a risk factor for stroke, and improve other blood factors linked to heart health. Whether that theoretical benefit translates into real-life benefits remains to be proven by rigorous studies, however.
-
-Nearly 800,000 Americans suffer a stroke every year, with about a sixth of them dying of it and many more left disabled. For those at high risk, doctors recommend blood pressure medicine, quitting smoking, exercising more and eating a healthier diet — but so far chocolate isn’t on the list.
-
-SOURCE: bit.ly/qhsaZ0 Journal of the American College of Cardiology, October 10, 2011.
-QUESTION: Does the story compare the new approach with existing alternatives?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 MONDAY, July 2, 2012 (HealthDay News) -- Men may one day have a birth-control option other than the condom or vasectomy -- if early research on a new contraceptive gel pans out.
@@ -13673,29 +13599,6 @@ QUESTION: Does the story compare the new approach with existing alternatives?
 EXPLANATION: The story does mention the Pill, the Ring, the Sponge, an IUD and tubal ligation as alternatives to Essure. The story could have provided more content for the reader about the pros and cons of the different approaches. 
 <|endoftext|>
 <|startoftext|>
-So should U.S. women continue to get routine mammograms? It's a "close call," says H. Gilbert Welch, MD, MPH, of the Dartmouth Institute in Lebanon, N.H.
-
-"This is a test that women who want it should be able to have," Welch tells WebMD. "But it should not be jammed down people's throats. ... The system we are working in leads doctors to coax, scare, and coerce women into having this test."
-
-Why would a woman at normal risk of breast cancer want to get routine mammograms? The obvious answer is that these tests save lives.
-
-How many lives? If the full 10% drop in breast cancer deaths among screened women in the Norwegian study is totally due to mammograms themselves -- Welch calls this an optimistic assumption -- one life is saved for every 2,500 women who get regular mammograms.
-
-But what's the harm of routine mammograms?
-
-"The biggest harm is you are treated for breast cancer unnecessarily, for a cancer that was never going to cause problems," Welch says. "Because we don't know which cancers these are, all cancers are treated. This means some women will undergo needless surgery, radiation, or chemotherapy. On balance, this is about five to 15 of those 2,500 women screened."
-
-Moreover, a large number of screened women will have worrisome mammogram results.
-
-"Among the 2,500 women screened, at least 1,000 will be told something looks wrong on their mammogram, and they will have to worry that they have cancer," Welch says. "The vast majority will turn out not to have cancer, but all of them will worry."
-
-Welch notes that many women may find that the benefits of routine mammograms outweigh these risks.
-
-"Every woman has to make her own decision about how to weigh these very dissimilar things," Welch says. "Some will benefit in a very large way. But to achieve that benefit, a lot of others will have to go through something with very negative effects. It is not wrong to want a routine mammogram, and it is not wrong not to want one."
-QUESTION: Does the story compare the new approach with existing alternatives?
-EXPLANATION: 
-<|endoftext|>
-<|startoftext|>
 Using data from a national study, Johns Hopkins researchers determined that using heart CT scans can help personalize treatment in patients whose blood pressure falls in the gray zone of just above normal or mild high blood pressure. Previously, the appropriate blood pressure treatment for these patients used risk calculations and some guesswork, potentially leaving many vulnerable to heart disease or taking drugs they don't need. Nearly one in three adults in the U.S. has prehypertension, blood pressure higher than normal but not considered high yet.
 
 The scans detect levels of calcium in the heart's arteries, and the physicians suggest those people with the highest calcium levels would benefit most from aggressive blood pressure treatment, whereas those with little or no calcium may not need to be treated as intensively, depending on their other heart disease risk factors.
@@ -16248,45 +16151,6 @@ Zemore’s study begins to peel away at this problem. By showing that there real
 For more on the research into AA and the 12 steps, read Vox’s explainer.
 QUESTION: Does the story compare the new approach with existing alternatives?
 EXPLANATION: The story’s main focus is to compare popular 12-step programs with their alternatives. And it explains why alternatives are necessary, since many people object to the spiritual component of AA. It would have been useful to also include outcomes associated with medication for alcohol use disorder, as well as outcomes when there is no formal treatment.
-<|endoftext|>
-<|startoftext|>
-NEW YORK (Reuters Health) - For pregnant women with depression, a couple months of acupuncture might help reduce the severity of their symptoms, a small study hints.
-
-The study, which followed 150 pregnant women with major depression, tested “depression-specific” acupuncture against massage and acupuncture sessions that, according to traditional Chinese medicine, does not specifically target depression.
-
-Researchers found that after eight weeks, women who received depression-specific acupuncture were more likely to have a treatment response — meaning the severity of their symptoms fell by at least half and they no longer met all of the criteria for diagnosing major depression.
-
-Overall, 63 percent responded to the therapy, versus 37 percent of the “control” acupuncture group and half of the massage group, according to findings published in the medical journal Obstetrics & Gynecology.
-
-But while the findings are promising, questions still remain — including whether acupuncture as practiced in the real world can reliably help women with depression.
-
-“The acupuncture protocol we have tested appears effective,” lead researcher Dr. Rachel Manber, of Stanford University in California, told Reuters Health in an email.
-
-“However,” she added, “unlike a pill, which always has the same ingredients, acupuncture, like psychotherapy, varies from one provider to the other.”
-
-So while the specific regimen used in this study appeared effective, Manber said, “I do not think we can say that our study proves that acupuncture is effective for depression during pregnancy.”
-
-It’s estimated that 3 to 5 percent of pregnant women are diagnosed with depression, Manber and her colleagues note in their report. Antidepressant medications are one treatment option, but there are safety concerns.
-
-One recent study, for example, found that pregnant women who started taking selective serotonin reuptake inhibitors (SSRIs) in the second or third trimester had a higher risk of preterm delivery than other women. SSRIs include drugs like sertraline (Zoloft), paroxetine
-
-Because of the potential for harm from medications, many pregnant women with depression may prefer psychotherapy or other non-drug options.
-
-Acupuncture has been used for more than 2,000 years in Chinese medicine to treat a wide variety of ailments. According to traditional medicine, specific acupuncture points on the skin are connected to internal pathways that conduct energy, or qi (“chee”), and stimulating these points with a fine needle promotes the healthy flow of qi.
-
-Modern research has most often focused on the effects of acupuncture on painful conditions, like chronic back pain and migraines. Researchers speculate that it may help ease pain by altering signals among nerve cells or affecting the release of various chemicals of the central nervous system.
-
-It is unclear, Manber said, why acupuncture might help lessen the severity of depression.
-
-For their study, she and her colleagues randomly assigned 52 women to receive depression-specific acupuncture twice a week for four weeks, then weekly for another four weeks. Another 49 women received control acupuncture and 49 received massage. All completed a standard measure of depression severity at the outset and again after four and eight weeks of treatment.
-
-After eight weeks, patients in the depression-specific acupuncture group had a higher rate of response to treatment. They were not, however, more likely to see a complete remission in their depression; about 35 percent had a remission, versus 29.5 percent in the other two groups combined - a statistically insignificant difference.
-
-Fourteen women who received depression-specific acupuncture reported pain during the needling, as did seven in the control-acupuncture group.
-
-Overall, Manber’s team notes, the response to acupuncture in this study was comparable to what has been seen in studies of psychotherapy for depression during pregnancy.
-QUESTION: Does the story compare the new approach with existing alternatives?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 Chicago (CNN) -- For the first time, patients with the deadliest form of skin cancer have two new treatment options that prolong survival, according to new research presented at a cancer conference in Chicago on Sunday.
@@ -23638,29 +23502,6 @@ This may be why relatively small infusions of the CAR T cells had such a profoun
 "Within three weeks, the tumors had been blown away, in a way that was much more violent than we ever expected,"June says in a news release. 'It worked much better than we thought it would."
 QUESTION: Does the story compare the new approach with existing alternatives?
 EXPLANATION: The story talked about bone marrow transplants, while the Reuters story made no mention of them. This was an important comparison for readers. “Cure is possible, but it requires a risky bone marrow transplant. About 20% of patients don’t survive this treatment — and even when they do, there’s only a 50-50 chance of a cure.”
-<|endoftext|>
-<|startoftext|>
-A study published late last month in The New England Journal of Medicine is raising provocative questions about how best to treat a torn anterior cruciate ligament. For the study, researchers from Lund University in Sweden recruited 121 young adults who had injured their A.C.L.’s. The volunteers, between 18 and 35, were physically active, and many were competitive athletes. They agreed, rather bravely, to be randomly assigned to one of two groups and accept radically different treatments for their torn A.C.L.’s. The first group began physical therapy and then underwent surgical reconstruction of the ligament, considered by many people to be the best option for injured athletes. The second group received only physical therapy, with the option to have the operation later. Twenty-three subjects of that group did eventually have the operation. (For those fortunate enough not to be personally familiar with A.C.L. surgery, reconstruction involves replacing the injured ligament with tissue from elsewhere in your own leg or from a cadaver.)
-
-Over two years, the injured knees were assessed using a comprehensive numerical score that rated pain, function during activity and other measures. At the time of the original injury, the knee also had been scored. At the end of the two years, both groups showed considerable improvement. The scores for the surgically repaired knees had risen by 39.2 points. The scores for the more conservatively treated knees also had risen, by 39.4 points. In other words, the outcomes were virtually identical. Despite a widespread belief that surgery leads to a stronger knee, the results showed that surgically reconstructing the A.C.L. as soon as possible after the tear “was not superior” to more conservative treatment, the study’s authors wrote. The findings suggest, the authors concluded, that “more than half the A.C.L. reconstructions” currently being conducted on injured knees “could be avoided without adversely affecting outcomes.”
-
-This possibility should reverberate across playing fields nationwide, where, at the moment, preseason high school, collegiate and adult-league sports practices are under way, with a concomitant surge in A.C.L. tears. By one estimate, as many as 1 in every 556 fit, active people will tear an A.C.L. — particularly if they participate in sports that involve frequent pivoting and landing, like soccer, football, tennis, skiing and basketball. At the same time, the urge to treat the injury with surgery appears to be growing. The “belief among most surgeons and patients is that surgery is a ‘must,’ at least if you aim to go back into an active lifestyle,” the Swedish authors of the study e-mailed in response to questions.
-
-Part of the reason for A.C.L. surgery’s popularity is that by most measures, it works. In the current study, most of the group members who had reconstructive surgery reported that their injured knees felt healthy after two years and that they had returned to activity — not, in most cases, at the same level as before their injuries, but they were active. Significantly, their knees also were notably more “stable” than the joints that hadn’t been surgically fixed. Stability is, in theory, desirable. A stable knee rarely gives way.
-
-But in practice, the importance of stability after A.C.L. treatment is “controversial,” The New England Journal study’s authors, Richard Frobell, Ph.D., and Stefan Lohmander, M.D., Ph.D., of Lund University, wrote in their e-mail. In an important 2009 study published in The British Journal of Sports Medicine, researchers retrospectively compared outcomes after 10 years in competitive athletes who had surgery or had opted for conservative treatment of their torn A.C.L.’s. The surgically repaired knees were notably more stable. But they weren’t fundamentally healthier. The surgically reconstructed knees and the conservatively treated joints experienced similar (and high) levels of early onset knee arthritis, a common occurrence after an A.C.L. tear. The treatments were almost identical, too, in terms of whether the athletes could return to sports and whether they reported subsequent knee problems.
-
-Why, then, undergo A.C.L. reconstruction, an operation that can be expensive and, like all surgical procedures, carries risks? Several top-flight orthopedic surgeons I contacted say that they remain convinced that surgery leads to a better long-term outcome for certain patients, particularly if they want to return to pivoting sports. “The reason to have the surgery is to preserve” other parts of the knee from injury during activity, says Dr. Warren Dunn, an assistant professor of orthopedics and rehabilitation at Vanderbilt University who has extensively studied A.C.L. tears. He points out that in The New England Journal of Medicine study, only 8 percent of the patients in the first surgical group subsequently tore a meniscus, a fragile pillow of cartilage that can rip if a knee gives way. Twenty-five percent of those in the physical therapy group eventually tore their meniscuses.
-
-What these numbers mean for anyone who tears an A.C.L. or is the parent of a young athlete in that situation is that they should have a long, frank conversation with an orthopedic surgeon and possibly also a nonsurgical sports-medicine specialist about options. “We recommend surgery based on activity level and sports,” Dr. Dunn says. “Most subjects can do in-line activities” like running or biking “without an A.C.L.” He adds, “On the other hand, we believe that A.C.L.-deficient subjects that do return” to sports involving cutting, pivoting or planting the leg “can consequently injure the meniscus” or other cartilage in the knee and would benefit from a replacement A.C.L.
-
-The authors of the study are less sure. “On the basis of our study results, we’d tell patients” that “there is no apparent downside of starting a good rehab program and waiting with the surgery decision to see if it is needed or not,” the authors wrote to me.
-
-The ultimate lesson of The New England Journal study is almost certainly that more science on the subject is needed. “We definitely know only parts of the long-term outcome” after different A.C.L. treatments, says Dr. Duncan Meuffels, an assistant professor of orthopedic surgery at Erasmus Medical Center in Rotterdam and lead author of The British Journal of Sports Medicine study.
-
-But large-scale, randomized controlled studies, the gold standard of medical research, may be difficult to orchestrate, in part because people with shredded A.C.L.’s can balk at being denied surgery. In The New England Journal study, some of those assigned to physical therapy wound up requesting surgery, although they weren’t experiencing any knee problems. For them, it seems, “the desire to undergo surgery was based on expectations rather than symptoms,” the authors told me. It may be years, unfortunately, before we know if such expectations are justified or if unreconstructed injured knees can be fine.
-QUESTION: Does the story compare the new approach with existing alternatives?
-EXPLANATION: 
 <|endoftext|>
 <|startoftext|>
 THURSDAY, April 26, 2018 (HealthDay News) -- After a stroke, many patients are given the clot-busting intravenous drug alteplase, but another drug may be more effective, Australian researchers report.

@@ -23,6 +23,8 @@ def prepare_for_generation_all_together():
 def generate_training_string(articles):
     train_str = ''
     for article in articles:
+        if article['explanation'] == '' or article['explanation'].isspace() or len(article['explanation']) < 6:
+            continue
         train_str += '<|startoftext|>' + '\n'
         train_str += article['article'] + '\n'
         train_str += 'QUESTION: ' + article['question'] + '\n'
