@@ -10,3 +10,4 @@ gpt-2-simple
 python-Levenshtein
 fuzzywuzzy
 reformer_pytorch
+rouge
