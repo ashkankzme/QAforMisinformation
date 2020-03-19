@@ -61,24 +61,27 @@ def get_generation_prefix(article, question):
 
 
 MODEL_NAME = '355M'
-TRAINING_DATA_PATH = '../data/generation_input/train.txt'
-
-session = gpt2.start_tf_sess()
-# gpt2.finetune(session, TRAINING_DATA_PATH, model_name=MODEL_NAME, steps=1000)
-gpt2.load_gpt2(session)
+TRAINING_DATA_PATH = '../data/generation_input/q{}_sat.txt'
 
 data_points_summarized = 0
 for file_number in range(int(range_begin), int(range_end)):
+    print('fine-tuning a gpt-2 model for file {} {} data...'.format(file_number, split))
+    session = gpt2.start_tf_sess()
+    gpt2.finetune(session, TRAINING_DATA_PATH.format(file_number), model_name=MODEL_NAME, steps=1000, run_name='q{}_sat'.format(file_number))
+    # gpt2.load_gpt2(session)
     print('processing file {} {} data...'.format(file_number, split))
     with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
         articles = json.load(test_file)
     for article_id, article in enumerate(articles):
         # if random.uniform(0, 1) < 0.1:  # bug fix for slow down in generation
         #     tf.reset_default_graph()
-        if 'explanation_gpt2' in article and generated_text_is_meaningful(article['explanation_gpt2'],
+        if 'explanation_gpt2_sep_sat' in article and generated_text_is_meaningful(article['explanation_gpt2_sep_sat'],
                                                                           get_generation_prefix(article['article'],
                                                                                                 article['question'])):
             print('Skipping article #{} because it already has a meaningful generated explanation.'.format(article_id))
+            continue
+        elif article['answer'] != 1:
+            print('Skipping article #{} because it\'s not satisfactory for question{}.'.format(article_id, file_number))
             continue
 
         summary_size = 25
@@ -87,11 +90,11 @@ for file_number in range(int(range_begin), int(range_end)):
         while summary_doesnt_fit:
             try:
                 print('Generating explanation for article #{} ...'.format(article_id))
-                article['explanation_gpt2'] = generate_explanation(article_text, article['question'], session)
-                if generated_text_is_meaningful(article['explanation_gpt2'], get_generation_prefix(article_text, article['question'])) or summary_size < 15:
+                article['explanation_gpt2_sep_sat'] = generate_explanation(article_text, article['question'], session)
+                if generated_text_is_meaningful(article['explanation_gpt2_sep_sat'], get_generation_prefix(article_text, article['question'])) or summary_size < 15:
                     summary_doesnt_fit = False
                     if summary_size < 15:
-                        article['explanation_gpt2'] = article['article']
+                        article['explanation_gpt2_sep_sat'] = article['article']
                 else:
                     print('Generated explanation for article #{} was not meaningful.'.format(article_id))
                     raise ValueError('Generated explanation was gibberish (whitespace or repeating precondition text)')
