@@ -8,9 +8,9 @@ from fuzzywuzzy import process
 import gpt_2_simple as gpt2
 import tensorflow as tf
 
-# sys.path.insert(1, '../paragraph_ranking')
-# from rank_gold_standard import biased_textrank
-# from utils import get_sentences
+sys.path.insert(1, '../paragraph_ranking')
+from rank_gold_standard import biased_textrank
+from utils import get_sentences
 
 split = sys.argv[1]
 range_begin = sys.argv[2]
@@ -68,7 +68,6 @@ for file_number in range(int(range_begin), int(range_end)):
     print('fine-tuning a gpt-2 model for file {} {} data...'.format(file_number, split))
     session = gpt2.start_tf_sess()
     # gpt2.finetune(session, TRAINING_DATA_PATH.format(file_number), model_name=MODEL_NAME, steps=1000, run_name='q{}_sat'.format(file_number))
-    tf.reset_default_graph()
     gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
     print('processing file {} {} data...'.format(file_number, split))
     with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
@@ -115,6 +114,8 @@ for file_number in range(int(range_begin), int(range_end)):
         with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
             f.write(json.dumps(articles))
         print('results for {} data of file {} saved. Data points summarized so far: {}'.format(split, file_number, data_points_summarized))
+
+    tf.reset_default_graph()
 
     with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
         f.write(json.dumps(articles))
