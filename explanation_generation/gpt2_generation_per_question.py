@@ -80,7 +80,7 @@ for file_number in range(int(range_begin), int(range_end)):
                                                                                                 article['question'])):
             print('Skipping article #{} because it already has a meaningful generated explanation.'.format(article_id))
             continue
-        elif article['answer'] != 1:
+        elif article['answer'] != 1 or (file_number == 5 and article['answer'] != 0):
             print('Skipping article #{} because it\'s not satisfactory for question{}.'.format(article_id, file_number))
             continue
 
