@@ -20,6 +20,26 @@ def prepare_for_generation_all_together():
         f.write(train_str)
 
 
+def prepare_for_generation_all_together_satisfactory():
+    print("Loading data...")
+
+    train_set = []
+    for i in range(1, 10):
+        with open('../data/ttt/q{}_train.json'.format(i)) as train_file:
+            qi = json.load(train_file)
+            qi = [article for article in qi if article['answer'] == 1 or (article['answer'] == 0 and i == 5)]
+            train_set += qi
+
+    print("Data loading completed.")
+
+    random.Random(2017).shuffle(train_set)
+
+    train_str = generate_training_string(train_set)
+
+    with open('../data/generation_input/train_sat.txt', 'w') as f:
+        f.write(train_str)
+
+
 def generate_training_string(articles):
     train_str = ''
     for article in articles:
@@ -54,4 +74,4 @@ def prepare_for_generation_per_question_satisfactory():
 
 
 if __name__ == "__main__":
-    prepare_for_generation_per_question_satisfactory()
+    prepare_for_generation_all_together_satisfactory()
