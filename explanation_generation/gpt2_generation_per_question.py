@@ -67,8 +67,8 @@ data_points_summarized = 0
 for file_number in range(int(range_begin), int(range_end)):
     print('fine-tuning a gpt-2 model for file {} {} data...'.format(file_number, split))
     session = gpt2.start_tf_sess()
-    # gpt2.finetune(session, TRAINING_DATA_PATH.format(file_number), model_name=MODEL_NAME, steps=1000, run_name='q{}_sat'.format(file_number))
-    gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
+    gpt2.finetune(session, TRAINING_DATA_PATH.format(file_number), model_name=MODEL_NAME, steps=1000, run_name='q{}_sat'.format(file_number))
+    # gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
     print('processing file {} {} data...'.format(file_number, split))
     with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
         articles = json.load(test_file)
