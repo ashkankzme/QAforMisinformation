@@ -62,7 +62,7 @@ def prepare_for_generation_per_question_satisfactory():
 
         print("Data loading completed.")
 
-        train_set_sat = [article for article in train_set if article['answer'] == 1 or (article['answer'] == 0 and i == 5)]
+        train_set_sat = [article for article in train_set if (article['answer'] == 1 and i != 5) or (article['answer'] == 0 and i == 5)]
         random.Random(2017).shuffle(train_set_sat)
 
         train_str = generate_training_string(train_set_sat)
@@ -74,4 +74,4 @@ def prepare_for_generation_per_question_satisfactory():
 
 
 if __name__ == "__main__":
-    prepare_for_generation_all_together_satisfactory()
+    prepare_for_generation_per_question_satisfactory()
