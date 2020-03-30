@@ -231,8 +231,8 @@ for batch in prediction_dataloader:
     true_labels += [a for a in label_ids.flatten()]
 
     for i, label in enumerate(predictions):
-        index = input_ids_map[b_input_ids[i]]
-        test_set[index]['answer_binary_xlnet'] = label
+        index = input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]
+        test_set[index]['answer_binary_xlnet'] = int(label)
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
