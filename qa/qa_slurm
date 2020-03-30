@@ -7,7 +7,7 @@
 #SBATCH --mail-user=ashkank@umich.edu
 #SBATCH --mail-type=BEGIN,END
 #SBATCH --time=44:00:00
-#SBATCH --account=mihalcea
+#SBATCH --account=mihalcea1
 #SBATCH --gres=gpu:2
 #SBATCH --partition=gpu
 #SBATCH --output=/home/ashkank/logs/%x-%j.log
