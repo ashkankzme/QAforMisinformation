@@ -3,10 +3,10 @@
 
 #“#SBATCH” directives that convey submission options:
 
-#SBATCH --job-name=extractive_qa
+#SBATCH --job-name=qa-binary
 #SBATCH --mail-user=ashkank@umich.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --time=48:00:00
+#SBATCH --time=60:00:00
 #SBATCH --account=mihalcea
 #SBATCH --gres=gpu:2
 #SBATCH --partition=gpu
@@ -20,8 +20,13 @@ source .bashrc
 cd QAforMisinformation
 conda activate QAforMisinfo
 cd qa/
-python qa_long_doc_extractive_method.py 6 20
-python qa_long_doc_extractive_method.py 7 20
-python qa_long_doc_extractive_method.py 8 20
-python qa_long_doc_extractive_method.py 9 20
-python qa_long_doc_extractive_method.py 10 20
+python qa_xlnet_long_doc.py 1
+python qa_xlnet_long_doc.py 2
+python qa_xlnet_long_doc.py 3
+python qa_xlnet_long_doc.py 4
+python qa_xlnet_long_doc.py 5
+python qa_xlnet_long_doc.py 6
+python qa_xlnet_long_doc.py 7
+python qa_xlnet_long_doc.py 8
+python qa_xlnet_long_doc.py 9
+python qa_xlnet_long_doc.py 10
