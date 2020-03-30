@@ -9,16 +9,18 @@ from transformers import AdamW
 from tqdm import tqdm, trange
 import numpy as np
 
+file_number = sys.argv[1]
+
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = torch.cuda.device_count()
 print("GPU name: " + torch.cuda.get_device_name(0))
 
 print("Loading data...")
 
-with open('../data/ttt/q{}_train.json'.format(sys.argv[1])) as train_file:
+with open('../data/ttt/q{}_train.json'.format(file_number)) as train_file:
     train_set = json.load(train_file)
 
-with open('../data/ttt/q{}_test.json'.format(sys.argv[1])) as test_file:
+with open('../data/ttt/q{}_test.json'.format(file_number)) as test_file:
     test_set = json.load(test_file)
 
 print("Data loading completed.")
@@ -27,8 +29,8 @@ print("Data loading completed.")
 sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
 sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
 
-labels_train = [article['answer'] for article in train_set]
-labels_test = [article['answer'] for article in test_set]
+labels_train = [article['answer'] if article['answer'] == 1 else 0 for article in train_set]
+labels_test = [article['answer'] if article['answer'] == 1 else 0 for article in test_set]
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
@@ -65,6 +67,11 @@ input_ids_test = [tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts_te
 input_ids_train = pad_sequences(input_ids_train, maxlen=MAX_LEN, dtype="long", truncating="post", padding="post")
 input_ids_test = pad_sequences(input_ids_test, maxlen=MAX_LEN, dtype="long", truncating="post", padding="post")
 
+# remembering how input ids map to original input for inference
+input_ids_map = {}
+for i, point in enumerate(input_ids_test):
+    input_ids_map[tuple(point)] = i
+
 # Create attention masks
 attention_masks_train = []
 
@@ -93,8 +100,8 @@ train_labels = torch.tensor(train_labels)
 train_masks = torch.tensor(train_masks)
 
 # Select a batch size for training. For fine-tuning with XLNet, the authors recommend a batch size of 32, 48, or 128. We will use 32 here to avoid memory issues.
-batch_size = 33
-small_batch_size = 3
+batch_size = 32
+small_batch_size = 4
 
 # Create an iterator of our data with torch DataLoader. This helps save on memory during training because, unlike a for loop,
 # with an iterator the entire dataset does not need to be loaded into memory
@@ -176,14 +183,14 @@ for epoch in trange(epochs, desc="Epoch"):
         i += 1
 
     print("Train loss: {}".format(tr_loss / nb_tr_steps))
-    if (epoch + 1) % epochs == 0:
-        # SAVING THE MODEL
-        model_path = '../saved_models/whole_doc_q{}_epoch{}.pt'.format(sys.argv[1], epoch+1)
-        torch.save(model.state_dict(), model_path)
+    # if (epoch + 1) % epochs == 0:
+    #     # SAVING THE MODEL
+    #     model_path = '../saved_models/whole_doc_q{}_epoch{}.pt'.format(file_number, epoch+1)
+    #     torch.save(model.state_dict(), model_path)
 
 # TEST TIME!
 
-batch_size = 3
+batch_size = 4
 
 prediction_inputs = torch.tensor(input_ids_test)
 prediction_masks = torch.tensor(attention_masks_test)
@@ -223,5 +230,14 @@ for batch in prediction_dataloader:
     predictions += [a for a in np.argmax(logits, axis=1).flatten()]
     true_labels += [a for a in label_ids.flatten()]
 
+    for i, label in enumerate(predictions):
+        index = input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]
+        test_set[index]['answer_binary_xlnet'] = int(label)
+
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
+
+with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
+    f.write(json.dumps(test_set))
+
+print('Predicted labels for test portion saved.')
