@@ -6,7 +6,7 @@
 #SBATCH --job-name=qa-binary
 #SBATCH --mail-user=ashkank@umich.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --time=60:00:00
+#SBATCH --time=44:00:00
 #SBATCH --account=mihalcea
 #SBATCH --gres=gpu:2
 #SBATCH --partition=gpu
