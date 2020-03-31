@@ -29,8 +29,8 @@ print("Data loading completed.")
 sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
 sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
 
-labels_train = [article['answer'] if article['answer'] == 1 else 0 for article in train_set]
-labels_test = [article['answer'] if article['answer'] == 1 else 0 for article in test_set]
+labels_train = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in train_set]
+labels_test = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in test_set]
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
