@@ -141,7 +141,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 20
+epochs = 15
 
 # trange is a tqdm wrapper around the normal python range
 for epoch in trange(epochs, desc="Epoch"):
@@ -227,10 +227,11 @@ for batch in prediction_dataloader:
 
     eval_accuracy += tmp_eval_accuracy
     nb_eval_steps += 1
-    predictions += [a for a in np.argmax(logits, axis=1).flatten()]
+    round_predictions = [a for a in np.argmax(logits, axis=1).flatten()]
+    predictions += round_predictions
     true_labels += [a for a in label_ids.flatten()]
 
-    for i, label in enumerate(predictions):
+    for i, label in enumerate(round_predictions):
         index = input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]
         test_set[index]['answer_binary_xlnet'] = int(label)
 
