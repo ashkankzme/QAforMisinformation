@@ -7,6 +7,7 @@ from fuzzywuzzy import process
 
 import gpt_2_simple as gpt2
 import tensorflow as tf
+from keras import backend as K
 
 sys.path.insert(1, '../paragraph_ranking')
 from rank_gold_standard import biased_textrank
@@ -113,8 +114,9 @@ for file_number in range(int(range_begin), int(range_end)):
             f.write(json.dumps(articles))
         print('results for {} data of file {} saved. Data points summarized so far: {}'.format(split, file_number, data_points_summarized))
 
-        if article_id % 10 == 0:  # bug fix for slow down in generation
-            tf.reset_default_graph()
+        K.clear_session()
+        # if article_id % 10 == 0:  # bug fix for slow down in generation
+        #     tf.reset_default_graph()
 
     tf.reset_default_graph()
 
