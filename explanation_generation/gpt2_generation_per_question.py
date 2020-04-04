@@ -114,8 +114,10 @@ for file_number in range(int(range_begin), int(range_end)):
         print('results for {} data of file {} saved. Data points summarized so far: {}'.format(split, file_number, data_points_summarized))
 
         # K.clear_session()
-        # if article_id % 10 == 0:  # bug fix for slow down in generation
-        #     tf.reset_default_graph()
+        if article_id % 20 == 0:  # bug fix for slow down in generation
+            tf.reset_default_graph()
+            session = gpt2.start_tf_sess()
+            gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
 
     tf.reset_default_graph()
 
