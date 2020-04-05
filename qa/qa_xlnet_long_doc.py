@@ -26,8 +26,27 @@ with open('../data/ttt/q{}_test.json'.format(file_number)) as test_file:
 print("Data loading completed.")
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = []
+for article in train_set:
+    article_text = article['article']
+    explanation = article['explanation_gpt2_sep_sat']
+    explanation_length_ratio = len(explanation) / len(article_text) if len(article_text) > len(explanation) else len(article_text) / len(explanation)
+    if explanation_length_ratio > 0.5:
+        sentence = article_text + " [SEP] [CLS]"
+    else:
+        sentence = article_text + " [SEP] " + explanation + " [SEP] [CLS]"
+    sentences_train.append(sentence)
+
+sentences_test = []
+for article in test_set:
+    article_text = article['article']
+    explanation = article['explanation_gpt2_sep_sat']
+    explanation_length_ratio = len(explanation) / len(article_text) if len(article_text) > len(explanation) else len(article_text) / len(explanation)
+    if explanation_length_ratio > 0.5:
+        sentence = article_text + " [SEP] [CLS]"
+    else:
+        sentence = article_text + " [SEP] " + explanation + " [SEP] [CLS]"
+    sentences_test.append(sentence)
 
 labels_train = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in train_set]
 labels_test = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in test_set]
@@ -40,7 +59,7 @@ print("Tokenize the first sentence:")
 print(tokenized_texts_train[0])
 
 # Set the maximum sequence length.
-MAX_LEN = 1800
+MAX_LEN = 2000
 average_len = 0
 to_be_deleted = []
 for i, tokens in enumerate(tokenized_texts_train + tokenized_texts_test):
