@@ -252,7 +252,7 @@ for batch in prediction_dataloader:
 
     for i, label in enumerate(round_predictions):
         index = input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]
-        test_set[index]['answer_binary_xlnet'] = int(label)
+        test_set[index]['answer_binary_xlnet_exp'] = int(label)
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 print("F1 pos: {}".format(f1_score(true_labels, predictions, pos_label=1)))
