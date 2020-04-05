@@ -1,13 +1,13 @@
-import torch, json, io, sys, random
-from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
+import json
+import numpy as np
+import sys
+import torch
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score
-
-from transformers import XLNetModel, XLNetTokenizer, XLNetForSequenceClassification
+from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
+from tqdm import trange
 from transformers import AdamW
-
-from tqdm import tqdm, trange
-import numpy as np
+from transformers import XLNetTokenizer, XLNetForSequenceClassification
 
 file_number = sys.argv[1]
 
@@ -26,8 +26,27 @@ with open('../data/ttt/q{}_test.json'.format(file_number)) as test_file:
 print("Data loading completed.")
 
 # Create sentence and label lists
-sentences_train = [article['article'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['article'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = []
+for article in train_set:
+    article_text = article['article']
+    explanation = article['explanation_gpt2_sep_sat']
+    explanation_length_ratio = len(explanation) / len(article_text) if len(article_text) > len(explanation) else len(article_text) / len(explanation)
+    if explanation_length_ratio > 0.5:
+        sentence = article_text + " [SEP] [CLS]"
+    else:
+        sentence = article_text + " [SEP] " + explanation + " [SEP] [CLS]"
+    sentences_train.append(sentence)
+
+sentences_test = []
+for article in test_set:
+    article_text = article['article']
+    explanation = article['explanation_gpt2_sep_sat']
+    explanation_length_ratio = len(explanation) / len(article_text) if len(article_text) > len(explanation) else len(article_text) / len(explanation)
+    if explanation_length_ratio > 0.5:
+        sentence = article_text + " [SEP] [CLS]"
+    else:
+        sentence = article_text + " [SEP] " + explanation + " [SEP] [CLS]"
+    sentences_test.append(sentence)
 
 labels_train = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in train_set]
 labels_test = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in test_set]
@@ -40,7 +59,7 @@ print("Tokenize the first sentence:")
 print(tokenized_texts_train[0])
 
 # Set the maximum sequence length.
-MAX_LEN = 1800
+MAX_LEN = 2000
 average_len = 0
 to_be_deleted = []
 for i, tokens in enumerate(tokenized_texts_train + tokenized_texts_test):
@@ -233,9 +252,11 @@ for batch in prediction_dataloader:
 
     for i, label in enumerate(round_predictions):
         index = input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]
-        test_set[index]['answer_binary_xlnet'] = int(label)
+        test_set[index]['answer_binary_xlnet_exp'] = int(label)
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
+print("F1 pos: {}".format(f1_score(true_labels, predictions, pos_label=1)))
+print("F1 neg: {}".format(f1_score(true_labels, predictions, pos_label=0)))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
 
 with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
