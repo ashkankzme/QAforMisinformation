@@ -1,13 +1,13 @@
-import torch, json, io, sys, random
-from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
+import json
+import numpy as np
+import sys
+import torch
 from keras.preprocessing.sequence import pad_sequences
 from sklearn.metrics import f1_score
-
-from transformers import XLNetModel, XLNetTokenizer, XLNetForSequenceClassification
+from torch.utils.data import TensorDataset, DataLoader, RandomSampler, SequentialSampler
+from tqdm import trange
 from transformers import AdamW
-
-from tqdm import tqdm, trange
-import numpy as np
+from transformers import XLNetTokenizer, XLNetForSequenceClassification
 
 file_number = sys.argv[1]
 
@@ -236,6 +236,8 @@ for batch in prediction_dataloader:
         test_set[index]['answer_binary_xlnet'] = int(label)
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
+print("F1 pos: {}".format(f1_score(true_labels, predictions, pos_label=1)))
+print("F1 neg: {}".format(f1_score(true_labels, predictions, pos_label=0)))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
 
 with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
