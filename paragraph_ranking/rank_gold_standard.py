@@ -247,8 +247,8 @@ def extract_explanations_with_bert_embeddings(qid, summary_size):
 
 
 def main():
-    begin = sys.argv[1]
-    end = sys.argv[2]
+    begin = int(sys.argv[1])
+    end = int(sys.argv[2])
     for i in range(begin, end):
         extract_explanations_with_textrank(i, 5)
         extract_explanations_with_bert_embeddings(i, 5)
