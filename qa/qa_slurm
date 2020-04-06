@@ -20,4 +20,5 @@ source .bashrc
 cd QAforMisinformation
 conda activate QAforMisinfo
 cd qa/
-python qa_xlnet_long_doc.py 1
+python qa_xlnet_long_doc.py 2
+python qa_xlnet_long_doc.py 3
