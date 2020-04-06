@@ -1,5 +1,6 @@
 import json
 import math
+import sys
 from random import sample
 
 import numpy as np
@@ -246,7 +247,9 @@ def extract_explanations_with_bert_embeddings(qid, summary_size):
 
 
 def main():
-    for i in range(1, 11):
+    begin = sys.argv[1]
+    end = sys.argv[2]
+    for i in range(begin, end):
         extract_explanations_with_textrank(i, 5)
         extract_explanations_with_bert_embeddings(i, 5)
 
