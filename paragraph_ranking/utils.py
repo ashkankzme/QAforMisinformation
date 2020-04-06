@@ -82,3 +82,14 @@ def get_sentences(text):
     sentences = nltk.sent_tokenize(text)
     sentences = [s for s in sentences if s and not s.isspace()]
     return sentences
+
+
+def select_top_k_texts_preserving_order(texts, ranking, k):
+    texts_sorted = sorted(zip(texts, ranking), key=lambda item: item[1], reverse=True)
+    top_texts = texts_sorted[:k]
+    top_texts = [t[0] for t in top_texts]
+    result = []
+    for text in texts:
+        if text in top_texts:
+            result.append(text)
+    return result

@@ -4,7 +4,7 @@ from random import sample
 
 import numpy as np
 import torch
-from utils import get_paragraphs, get_sentences, get_bert_embeddings, cosine_similarity, get_xlnet_embeddings
+from utils import get_paragraphs, get_sentences, cosine_similarity, select_top_k_texts_preserving_order, get_bert_embeddings, get_xlnet_embeddings
 
 
 # takes an array/matrix as input
@@ -62,11 +62,8 @@ def get_relative_ranking(text, source_paragraphs_embeddings, rankings):
 # the ranking of each text as a score,
 # alongside the text itself.
 def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0.78):
-    print('Getting embeddings for pieces of text...')
     texts_embeddings = [get_bert_embeddings(p) for p in texts]
-    print('Retrieving embeddings done.')
 
-    print('calculating text similarities...')
     text_similarities = {}
     for i, text in enumerate(texts):
         similarities = {}
@@ -77,7 +74,6 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
         text_similarities[text] = similarities
 
     # create text rank matrix, add edges between pieces that are more than X similar
-    print('calculating textrank matrix...')
     matrix = torch.zeros((len(texts), len(texts)))
     for i, i_text in enumerate(texts):
         for j, j_text in enumerate(texts):
@@ -87,10 +83,8 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
     # matrix = rescale(matrix)
 
     # preparing to add bias
-    print('Getting bias embeddings...')
     bias_embedding = get_bert_embeddings(bias_text.strip())
 
-    print('calculating biases...')
     bias_text_similarities = torch.zeros(len(texts))
     for i, text_embedding in enumerate(texts_embeddings):
         bias_text_similarities[i] = cosine_similarity(text_embedding, bias_embedding)
@@ -198,9 +192,63 @@ def prepare_data_for_qa(qid):
         f.write(json.dumps(test))
 
 
+def extract_explanations_with_textrank(qid, summary_size):
+    with open('../data/ttt/q{}_train.json'.format(qid)) as train_file:
+        train_set = json.load(train_file)
+
+    with open('../data/ttt/q{}_test.json'.format(qid)) as test_file:
+        test_set = json.load(test_file)
+
+    for article in train_set + test_set:
+        article_text = article['article']
+        article_sentences = get_sentences(article_text)
+        question = article['question']
+
+        ranking, _ = biased_textrank(article_sentences, question)
+        top_sentences = select_top_k_texts_preserving_order(article_sentences, ranking, summary_size)
+
+        article['explanation_textrank'] = ' '.join(top_sentences)
+
+    with open('../data/ttt/q{}_train.json'.format(qid), 'w') as f:
+        f.write(json.dumps(train_set))
+
+    with open('../data/ttt/q{}_test.json'.format(qid), 'w') as f:
+        f.write(json.dumps(test_set))
+
+
+def extract_explanations_with_bert_embeddings(qid, summary_size):
+    with open('../data/ttt/q{}_train.json'.format(qid)) as train_file:
+        train_set = json.load(train_file)
+
+    with open('../data/ttt/q{}_test.json'.format(qid)) as test_file:
+        test_set = json.load(test_file)
+
+    for article in train_set + test_set:
+        article_text = article['article']
+        article_sentences = get_sentences(article_text)
+        sentence_embeddings = [get_bert_embeddings(sentence.strip()) for sentence in article_sentences]
+
+        question = article['question']
+        bias_embedding = get_bert_embeddings(question.strip())
+
+        bias_text_similarities = torch.zeros(len(article_sentences))
+        for i, sentence_embedding in enumerate(sentence_embeddings):
+            bias_text_similarities[i] = cosine_similarity(sentence_embedding, bias_embedding)
+
+        top_sentences = select_top_k_texts_preserving_order(article_sentences, bias_text_similarities, summary_size)
+        article['explanation_bert_embeddings'] = ' '.join(top_sentences)
+
+    with open('../data/ttt/q{}_train.json'.format(qid), 'w') as f:
+        f.write(json.dumps(train_set))
+
+    with open('../data/ttt/q{}_test.json'.format(qid), 'w') as f:
+        f.write(json.dumps(test_set))
+
+
 def main():
-    for i in range(8, 11):
-        prepare_data_for_qa_textrank(i)
+    for i in range(1, 11):
+        extract_explanations_with_textrank(i, 5)
+        extract_explanations_with_bert_embeddings(i, 5)
 
 
 if __name__ == "__main__":
