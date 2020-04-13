@@ -3,10 +3,10 @@
 
 #“#SBATCH” directives that convey submission options:
 
-#SBATCH --job-name=qa-binary-exp
+#SBATCH --job-name=qa-gpt
 #SBATCH --mail-user=ashkank@umich.edu
 #SBATCH --mail-type=BEGIN,END
-#SBATCH --time=05:00:00
+#SBATCH --time=10:00:00
 #SBATCH --account=mihalcea1
 #SBATCH --gres=gpu:2
 #SBATCH --partition=gpu
@@ -20,5 +20,12 @@ source .bashrc
 cd QAforMisinformation
 conda activate QAforMisinfo
 cd qa/
-python qa_xlnet_long_doc.py 2
-python qa_xlnet_long_doc.py 3
+python qa_xlnet_short_doc_no_validation.py 1
+python qa_xlnet_short_doc_no_validation.py 2
+python qa_xlnet_short_doc_no_validation.py 3
+python qa_xlnet_short_doc_no_validation.py 4
+python qa_xlnet_short_doc_no_validation.py 5
+python qa_xlnet_short_doc_no_validation.py 6
+python qa_xlnet_short_doc_no_validation.py 7
+python qa_xlnet_short_doc_no_validation.py 8
+python qa_xlnet_short_doc_no_validation.py 9
