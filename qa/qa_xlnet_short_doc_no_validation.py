@@ -9,6 +9,7 @@ from transformers import AdamW
 from tqdm import tqdm, trange
 import numpy as np
 
+file_number = sys.argv[1]
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 n_gpu = torch.cuda.device_count()
@@ -25,11 +26,11 @@ with open('../data/ttt/q{}_test.json'.format(sys.argv[1])) as test_file:
 print("Data loading completed.")
 
 # Create sentence and label lists
-sentences_train = [article['explanation_gpt2'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['explanation_gpt2'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['explanation_gpt2_sep_sat'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['explanation_gpt2_sep_sat'] + " [SEP] [CLS]" for article in test_set]
 
-labels_train = [article['answer'] for article in train_set]
-labels_test = [article['answer'] for article in test_set]
+labels_train = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in train_set]
+labels_test = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in test_set]
 
 tokenizer = XLNetTokenizer.from_pretrained('xlnet-base-cased', do_lower_case=False)
 
@@ -127,7 +128,7 @@ def flat_accuracy(preds, labels):
 
 
 # Number of training epochs (authors recommend between 2 and 4)
-epochs = 30
+epochs = 15
 
 # trange is a tqdm wrapper around the normal python range
 for _ in trange(epochs, desc="Epoch"):
@@ -206,4 +207,6 @@ for batch in prediction_dataloader:
     true_labels += [a for a in label_ids.flatten()]
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
+print("F1 pos: {}".format(f1_score(true_labels, predictions, pos_label=1)))
+print("F1 neg: {}".format(f1_score(true_labels, predictions, pos_label=0)))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
