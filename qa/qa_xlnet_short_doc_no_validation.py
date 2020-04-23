@@ -61,6 +61,11 @@ input_ids_test = [tokenizer.convert_tokens_to_ids(x) for x in tokenized_texts_te
 input_ids_train = pad_sequences(input_ids_train, maxlen=MAX_LEN, dtype="long", truncating="post", padding="post")
 input_ids_test = pad_sequences(input_ids_test, maxlen=MAX_LEN, dtype="long", truncating="post", padding="post")
 
+# remembering how input ids map to original input for inference
+input_ids_map = {}
+for i, point in enumerate(input_ids_test):
+    input_ids_map[tuple(point)] = i
+
 # Create attention masks
 attention_masks_train = []
 
@@ -203,10 +208,20 @@ for batch in prediction_dataloader:
 
     eval_accuracy += tmp_eval_accuracy
     nb_eval_steps += 1
-    predictions += [a for a in np.argmax(logits, axis=1).flatten()]
+    round_predictions = [a for a in np.argmax(logits, axis=1).flatten()]
+    predictions += round_predictions
     true_labels += [a for a in label_ids.flatten()]
+
+    for i, label in enumerate(round_predictions):
+        index = input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]
+        test_set[index]['answer_binary_gpt2'] = int(label)
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 print("F1 pos: {}".format(f1_score(true_labels, predictions, pos_label=1)))
 print("F1 neg: {}".format(f1_score(true_labels, predictions, pos_label=0)))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
+
+with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
+    f.write(json.dumps(test_set))
+
+print('Predicted labels for test portion saved.')
