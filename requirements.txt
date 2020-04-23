@@ -11,3 +11,4 @@ python-Levenshtein
 fuzzywuzzy
 reformer_pytorch
 rouge
+scipy
