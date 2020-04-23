@@ -26,8 +26,8 @@ with open('../data/ttt/q{}_test.json'.format(sys.argv[1])) as test_file:
 print("Data loading completed.")
 
 # Create sentence and label lists
-sentences_train = [article['explanation_textrank'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['explanation_textrank'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['explanation_bert_embeddings'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['explanation_bert_embeddings'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in train_set]
 labels_test = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in test_set]
@@ -214,7 +214,7 @@ for batch in prediction_dataloader:
 
     for i, label in enumerate(round_predictions):
         index = input_ids_map[tuple(b_input_ids[i].detach().cpu().numpy())]
-        test_set[index]['answer_binary_textrank'] = int(label)
+        test_set[index]['answer_binary_embedding_similarity'] = int(label)
 
 print("Test Accuracy: {}".format(eval_accuracy / nb_eval_steps))
 print("F1 pos: {}".format(f1_score(true_labels, predictions, pos_label=1)))
