@@ -221,7 +221,7 @@ print("F1 pos: {}".format(f1_score(true_labels, predictions, pos_label=1)))
 print("F1 neg: {}".format(f1_score(true_labels, predictions, pos_label=0)))
 print("F1 Macro: {}".format(f1_score(true_labels, predictions, average='macro')))
 
-with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
-    f.write(json.dumps(test_set))
-
-print('Predicted labels for test portion saved.')
+# with open('../data/ttt/q{}_test.json'.format(file_number), 'w') as f:
+#     f.write(json.dumps(test_set))
+#
+# print('Predicted labels for test portion saved.')
