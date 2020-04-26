@@ -42,6 +42,8 @@ def mcnemar_test(qid):
     ]
 
     for i, article in enumerate(test_set):
+        if 'answer_binary_gpt2' not in article:
+            continue
         gpt2_answer = article['answer_binary_gpt2']
         textrank_answer = article['answer_binary_textrank']
         embedding_similarity_answer = article['answer_binary_embedding_similarity']
@@ -53,12 +55,16 @@ def mcnemar_test(qid):
         index = find_contingency_table_idx(textrank_answer, embedding_similarity_answer, ground_truth)
         textrank_embedding_similarity_contingency_table[index[0]][index[1]] += 1
 
-    _, gpt2_textrank_pvalue = mcnemar(gpt2_textrank_contingency_table, exact=True) if element_under_k_exists(
+    gpt2_textrank_pvalue = mcnemar(gpt2_textrank_contingency_table, exact=True) if element_under_k_exists(
         gpt2_textrank_contingency_table, 25) else mcnemar(gpt2_textrank_contingency_table, exact=False, correction=True)
-    _, textrank_embedding_similarity_pvalue = mcnemar(textrank_embedding_similarity_contingency_table,
+    # gpt2_textrank_pvalue = mcnemar(gpt2_textrank_contingency_table)
+    # gpt2_textrank_pvalue = gpt2_textrank_pvalue.pvalue
+    textrank_embedding_similarity_pvalue = mcnemar(textrank_embedding_similarity_contingency_table,
                                                       exact=True) if element_under_k_exists(
         textrank_embedding_similarity_contingency_table, 25) else mcnemar(
         textrank_embedding_similarity_contingency_table, exact=False, correction=True)
+    # textrank_embedding_similarity_pvalue = mcnemar(textrank_embedding_similarity_contingency_table)
+    # textrank_embedding_similarity_pvalue = textrank_embedding_similarity_pvalue.pvalue
 
     return gpt2_textrank_pvalue, textrank_embedding_similarity_pvalue
 
