@@ -1,4 +1,5 @@
 import json, statistics
+from sklearn.metrics import cohen_kappa_score
 
 import numpy as np
 # from gpt2_generation import generated_text_is_meaningful, get_generation_prefix
@@ -172,5 +173,43 @@ def measure_annotator_match_rate():
     return statistics.mean(match_rates), statistics.stdev(match_rates)
 
 
+def measure_cohens_kappa():
+    i = 1
+    with open('../data/annotated/q{}_train.json'.format(i)) as test_file:
+        annotated_articles = json.load(test_file)
+
+    with open('../data/annotated/q{}_test.json'.format(i)) as test_file:
+        annotated_articles += json.load(test_file)
+
+    doubly_annotated_articles = []
+    for article in annotated_articles:
+        annotation_info = article['annotations_orig']
+        annotators = set()
+        for annotation in annotation_info:
+            annotators.add(annotation['annotator'])
+
+        if len(annotators) == 2:
+            article['annotators'] = list(annotators)
+            doubly_annotated_articles.append(article)
+
+    annotations1 = []
+    annotations2 = []
+    for article in doubly_annotated_articles:
+        pos_annotations1 = set([a['sentenceIndex'] for a in article['annotations_orig'] if a['annotator'] == article['annotators'][0]])
+        pos_annotations2 = set([a['sentenceIndex'] for a in article['annotations_orig'] if a['annotator'] == article['annotators'][1]])
+
+        current_annotations1 = [0] * len(article['sentences'])
+        for annotation in pos_annotations1:
+            current_annotations1[annotation] = 1
+        annotations1 += current_annotations1
+
+        current_annotations2 = [0] * len(article['sentences'])
+        for annotation in pos_annotations2:
+            current_annotations2[annotation] = 1
+        annotations2 += current_annotations2
+
+    return cohen_kappa_score(annotations1, annotations2)
+
+
 if __name__ == "__main__":
-    print(measure_annotator_match_rate())
+    print(measure_cohens_kappa())
