@@ -93,8 +93,8 @@ def biased_textrank(texts, bias_text, damping_factor=0.8, similarity_threshold=0
     bias_text_similarities = rescale(bias_text_similarities)
 
     bias = torch.tensor(bias_text_similarities)
-    scaled_matrix = damping_factor * matrix + (1 - damping_factor) * bias
-    # scaled_matrix = s * matrix + (1 - s) / len(matrix)
+    # scaled_matrix = damping_factor * matrix + (1 - damping_factor) * bias
+    scaled_matrix = damping_factor * matrix + (1 - damping_factor) / len(matrix)
 
     for row in scaled_matrix:
         row /= torch.sum(row)
