@@ -1,7 +1,11 @@
 import json
 import nltk
-from rank_gold_standard import biased_textrank
-from utils import select_top_k_texts_preserving_order
+# from rank_gold_standard import biased_textrank
+# from utils import select_top_k_texts_preserving_order
+from rouge import Rouge
+import numpy as np
+
+rouge = Rouge()
 
 
 def remove_html_tags(text):
@@ -111,14 +115,41 @@ def get_liar_data(split):
     return liar_data
 
 
-test_set = get_liar_data('test')
+def generate_textrank_explanations():
+    test_set = get_liar_data('test')
 
-for claim in test_set:
-    statements = get_sentences(claim['statements'])
-    bias = 'nothing'
-    ranking, _ = biased_textrank(statements, bias)
-    claim['generated_justification'] = ' '.join(select_top_k_texts_preserving_order(statements, ranking, 4))
+    for claim in test_set:
+        statements = get_sentences(claim['statements'])
+        bias = 'nothing'
+        ranking, _ = biased_textrank(statements, bias)
+        claim['generated_justification'] = ' '.join(select_top_k_texts_preserving_order(statements, ranking, 4))
 
-print('saving generated {} set file...'.format('test'))
-with open('../data/liar/clean_{}.json'.format('test'), 'w') as f:
-    f.write(json.dumps(test_set))
+    print('saving generated {} set file...'.format('test'))
+    with open('../data/liar/clean_{}.json'.format('test'), 'w') as f:
+        f.write(json.dumps(test_set))
+
+
+def evaluate_generated_explanations():
+    test_set = get_liar_data('test2')
+    print(len(test_set))
+    test_set = [claim for claim in test_set if len(get_sentences(claim['statements'])) > 3]
+    print(len(test_set))
+
+    rouge1 = []
+    rouge2 = []
+    rougel = []
+    for claim in test_set:
+        reference = claim['new_justification']
+        explanation = claim['generated_justification']
+        score = rouge.get_scores(explanation, reference)
+        rouge1.append(score[0]['rouge-1']['f'])
+        rouge2.append(score[0]['rouge-2']['f'])
+        rougel.append(score[0]['rouge-l']['f'])
+
+    print('Average ROUGE-1: {}'.format(np.mean(rouge1)))
+    print('Average ROUGE-2: {}'.format(np.mean(rouge2)))
+    print('Average ROUGE-l: {}'.format(np.mean(rougel)))
+
+
+if __name__ == "__main__":
+    evaluate_generated_explanations()
