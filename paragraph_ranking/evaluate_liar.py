@@ -130,7 +130,7 @@ def generate_textrank_explanations():
 
 
 def evaluate_generated_explanations():
-    test_set = get_liar_data('test2')
+    test_set = get_liar_data('test')
     print(len(test_set))
     test_set = [claim for claim in test_set if len(get_sentences(claim['statements'])) > 3]
     print(len(test_set))
@@ -140,7 +140,7 @@ def evaluate_generated_explanations():
     rougel = []
     for claim in test_set:
         reference = claim['new_justification']
-        explanation = claim['generated_justification']
+        explanation = claim['generated_justification_biased']
         score = rouge.get_scores(explanation, reference)
         rouge1.append(score[0]['rouge-1']['f'])
         rouge2.append(score[0]['rouge-2']['f'])
@@ -153,3 +153,4 @@ def evaluate_generated_explanations():
 
 if __name__ == "__main__":
     generate_textrank_explanations()
+    evaluate_generated_explanations()
