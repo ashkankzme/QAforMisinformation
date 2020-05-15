@@ -119,7 +119,7 @@ for file_number in range(int(range_begin), int(range_end)):
 #             session = gpt2.start_tf_sess()
 #             gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
 #
-#     tf.reset_default_graph()
+    tf.reset_default_graph()
 #
 #     with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
 #         f.write(json.dumps(articles))
