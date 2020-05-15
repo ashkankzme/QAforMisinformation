@@ -46,7 +46,8 @@ def generate_training_string(articles):
         if article['explanation'] == '' or article['explanation'].isspace() or len(article['explanation']) < 6:
             continue
         train_str += '<|startoftext|>' + '\n'
-        train_str += article['article'] + '\n'
+        # train_str += article['article'] + '\n'
+        train_str += article['explanation_textrank'] + '\n'
         train_str += 'QUESTION: ' + article['question'] + '\n'
         train_str += 'EXPLANATION: ' + article['explanation'] + '\n'
         train_str += '<|endoftext|>' + '\n'
@@ -54,7 +55,7 @@ def generate_training_string(articles):
 
 
 def prepare_for_generation_per_question_satisfactory():
-    for i in range(1, 11):
+    for i in range(1, 10):
         print("Loading data...")
 
         with open('../data/ttt/q{}_train.json'.format(i)) as train_file:
@@ -67,7 +68,7 @@ def prepare_for_generation_per_question_satisfactory():
 
         train_str = generate_training_string(train_set_sat)
 
-        with open('../data/generation_input/q{}_sat.txt'.format(i), 'w') as f:
+        with open('../data/generation_input/textrank/q{}_sat.txt'.format(i), 'w') as f:
             f.write(train_str)
 
         print('Training data for question{} saved.'.format(i))

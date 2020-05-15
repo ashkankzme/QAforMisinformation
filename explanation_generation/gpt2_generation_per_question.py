@@ -61,67 +61,67 @@ def get_generation_prefix(article, question):
 
 
 MODEL_NAME = '355M'
-TRAINING_DATA_PATH = '../data/generation_input/q{}_sat.txt'
+TRAINING_DATA_PATH = '../data/generation_input/textrank/q{}_sat.txt'
 
 data_points_summarized = 0
 for file_number in range(int(range_begin), int(range_end)):
     print('fine-tuning a gpt-2 model for file {} {} data...'.format(file_number, split))
     session = gpt2.start_tf_sess()
-    # gpt2.finetune(session, TRAINING_DATA_PATH.format(file_number), model_name=MODEL_NAME, steps=1000, run_name='q{}_sat'.format(file_number))
-    gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
+    gpt2.finetune(session, TRAINING_DATA_PATH.format(file_number), model_name=MODEL_NAME, steps=1000, run_name='q{}_sat_textrank'.format(file_number))
+#     gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
     print('processing file {} {} data...'.format(file_number, split))
-    with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
-        articles = json.load(test_file)
-    for article_id, article in enumerate(articles):
-        if 'explanation_gpt2_sep_sat' in article and generated_text_is_meaningful(article['explanation_gpt2_sep_sat'],
-                                                                          get_generation_prefix(article['article'],
-                                                                                                article['question'])):
-            print('Skipping article #{} because it already has a meaningful generated explanation.'.format(article_id))
-            continue
-        # elif (file_number != 5 and article['answer'] != 1) or (file_number == 5 and article['answer'] != 0):
-        #     print('Skipping article #{} because it\'s not satisfactory for question{}.'.format(article_id, file_number))
-        #     continue
-
-        summary_size = 25
-        summary_doesnt_fit = True
-        article_text = article['article']
-        while summary_doesnt_fit:
-            try:
-                print('Generating explanation for article #{} ...'.format(article_id))
-                article['explanation_gpt2_sep_sat'] = generate_explanation(article_text, article['question'], session)
-                if generated_text_is_meaningful(article['explanation_gpt2_sep_sat'], get_generation_prefix(article_text, article['question'])) or summary_size < 15:
-                    summary_doesnt_fit = False
-                    if summary_size < 15:
-                        article['explanation_gpt2_sep_sat'] = article['article']
-                else:
-                    print('Generated explanation for article #{} was not meaningful.'.format(article_id))
-                    raise ValueError('Generated explanation was gibberish (whitespace or repeating precondition text)')
-            except Exception as e:
-                print(e)
-                if summary_size == 25:  # gotta make sure we only increment this once per article at most
-                    data_points_summarized += 1
-
-                print('Running biased textrank for article #{} ...'.format(article_id))
-                ranking, texts = biased_textrank(get_sentences(article['article']), article['question'])
-                print('Biased textrank completed.')
-                top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
-                article_summary = ' '.join(top_sentences)
-                article_text = article_summary
-                summary_size -= 5
-
-        with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
-            f.write(json.dumps(articles))
-        print('results for {} data of file {} saved. Data points summarized so far: {}'.format(split, file_number, data_points_summarized))
-
-        # K.clear_session()
-        if article_id % 20 == 0:  # bug fix for slow down in generation
-            tf.reset_default_graph()
-            session = gpt2.start_tf_sess()
-            gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
-
-    tf.reset_default_graph()
-
-    with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
-        f.write(json.dumps(articles))
-
-print('all explanations generated, total summarized are: {}.'.format(data_points_summarized))
+#     with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
+#         articles = json.load(test_file)
+#     for article_id, article in enumerate(articles):
+#         if 'explanation_gpt2_sep_sat' in article and generated_text_is_meaningful(article['explanation_gpt2_sep_sat'],
+#                                                                           get_generation_prefix(article['article'],
+#                                                                                                 article['question'])):
+#             print('Skipping article #{} because it already has a meaningful generated explanation.'.format(article_id))
+#             continue
+#         # elif (file_number != 5 and article['answer'] != 1) or (file_number == 5 and article['answer'] != 0):
+#         #     print('Skipping article #{} because it\'s not satisfactory for question{}.'.format(article_id, file_number))
+#         #     continue
+#
+#         summary_size = 25
+#         summary_doesnt_fit = True
+#         article_text = article['article']
+#         while summary_doesnt_fit:
+#             try:
+#                 print('Generating explanation for article #{} ...'.format(article_id))
+#                 article['explanation_gpt2_sep_sat'] = generate_explanation(article_text, article['question'], session)
+#                 if generated_text_is_meaningful(article['explanation_gpt2_sep_sat'], get_generation_prefix(article_text, article['question'])) or summary_size < 15:
+#                     summary_doesnt_fit = False
+#                     if summary_size < 15:
+#                         article['explanation_gpt2_sep_sat'] = article['article']
+#                 else:
+#                     print('Generated explanation for article #{} was not meaningful.'.format(article_id))
+#                     raise ValueError('Generated explanation was gibberish (whitespace or repeating precondition text)')
+#             except Exception as e:
+#                 print(e)
+#                 if summary_size == 25:  # gotta make sure we only increment this once per article at most
+#                     data_points_summarized += 1
+#
+#                 print('Running biased textrank for article #{} ...'.format(article_id))
+#                 ranking, texts = biased_textrank(get_sentences(article['article']), article['question'])
+#                 print('Biased textrank completed.')
+#                 top_sentences = select_top_k_texts_preserving_order(texts, ranking, summary_size)
+#                 article_summary = ' '.join(top_sentences)
+#                 article_text = article_summary
+#                 summary_size -= 5
+#
+#         with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
+#             f.write(json.dumps(articles))
+#         print('results for {} data of file {} saved. Data points summarized so far: {}'.format(split, file_number, data_points_summarized))
+#
+#         # K.clear_session()
+#         if article_id % 20 == 0:  # bug fix for slow down in generation
+#             tf.reset_default_graph()
+#             session = gpt2.start_tf_sess()
+#             gpt2.load_gpt2(session, run_name='q{}_sat'.format(file_number))
+#
+#     tf.reset_default_graph()
+#
+#     with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
+#         f.write(json.dumps(articles))
+#
+# print('all explanations generated, total summarized are: {}.'.format(data_points_summarized))
