@@ -1,7 +1,7 @@
 import json
 import nltk
-# from rank_gold_standard import biased_textrank
-# from utils import select_top_k_texts_preserving_order
+from rank_gold_standard import biased_textrank
+from utils import select_top_k_texts_preserving_order
 from rouge import Rouge
 import numpy as np
 
@@ -120,9 +120,9 @@ def generate_textrank_explanations():
 
     for claim in test_set:
         statements = get_sentences(claim['statements'])
-        bias = 'nothing'
+        bias = claim['claim']
         ranking, _ = biased_textrank(statements, bias)
-        claim['generated_justification'] = ' '.join(select_top_k_texts_preserving_order(statements, ranking, 4))
+        claim['generated_justification_biased'] = ' '.join(select_top_k_texts_preserving_order(statements, ranking, 4))
 
     print('saving generated {} set file...'.format('test'))
     with open('../data/liar/clean_{}.json'.format('test'), 'w') as f:
@@ -152,4 +152,4 @@ def evaluate_generated_explanations():
 
 
 if __name__ == "__main__":
-    evaluate_generated_explanations()
+    generate_textrank_explanations()
