@@ -9,8 +9,8 @@ import gpt_2_simple as gpt2
 import tensorflow as tf
 
 sys.path.insert(1, '../paragraph_ranking')
-from rank_gold_standard import biased_textrank
-from utils import get_sentences
+# from rank_gold_standard import biased_textrank
+# from utils import get_sentences
 
 split = sys.argv[1]
 range_begin = sys.argv[2]
