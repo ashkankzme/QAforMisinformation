@@ -26,8 +26,8 @@ with open('../data/ttt/q{}_test.json'.format(sys.argv[1])) as test_file:
 print("Data loading completed.")
 
 # Create sentence and label lists
-sentences_train = [article['explanation_bert_embeddings'] + " [SEP] [CLS]" for article in train_set]
-sentences_test = [article['explanation_bert_embeddings'] + " [SEP] [CLS]" for article in test_set]
+sentences_train = [article['explanation_gpt2_textrank_sep_sat'] + " [SEP] [CLS]" for article in train_set]
+sentences_test = [article['explanation_gpt2_textrank_sep_sat'] + " [SEP] [CLS]" for article in test_set]
 
 labels_train = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in train_set]
 labels_test = [1 if (file_number != 5 and article['answer'] == 1) or (file_number == 5 and article['answer'] == 0) else 0 for article in test_set]
