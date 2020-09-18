@@ -61,7 +61,7 @@ def get_generation_prefix(article, question):
 
 
 MODEL_NAME = '355M'
-TRAINING_DATA_PATH = '../data/generation_input/textrank/q{}_sat.txt'
+TRAINING_DATA_PATH = '../data/generation_input/annotated_textrank/q{}_sat.txt'
 
 data_points_summarized = 0
 for file_number in range(int(range_begin), int(range_end)):
@@ -70,19 +70,25 @@ for file_number in range(int(range_begin), int(range_end)):
     # gpt2.finetune(session, TRAINING_DATA_PATH.format(file_number), model_name=MODEL_NAME, steps=400, run_name='q{}_sat_textrank'.format(file_number))
     gpt2.load_gpt2(session, run_name='q{}_sat_textrank'.format(file_number))
     print('processing file {} {} data...'.format(file_number, split))
-    with open('../data/ttt/q{}_{}.json'.format(file_number, split)) as test_file:
+    with open('../data/annotated_data_processed/q{}_{}.json'.format(file_number, split)) as test_file:
         articles = json.load(test_file)
     for article_id, article in enumerate(articles):
-        article_text = article['explanation_textrank']
+        article_text = []
+        for index in article['annotations'] if article['annotations'] != None else []:
+            article_text.append(article['sentences'][index])
+        article_text = ' '.join(article_text)
 
         if 'explanation_gpt2_textrank_sep_sat' in article and generated_text_is_meaningful(article['explanation_gpt2_textrank_sep_sat'],
                                                                           get_generation_prefix(article_text,
                                                                                                 article['question'])):
             print('Skipping article #{} because it already has a meaningful generated explanation.'.format(article_id))
             continue
-        # elif (file_number != 5 and article['answer'] != 1) or (file_number == 5 and article['answer'] != 0):
-        #     print('Skipping article #{} because it\'s not satisfactory for question{}.'.format(article_id, file_number))
-        #     continue
+        elif (file_number != 5 and article['answer'] != 1) or (file_number == 5 and article['answer'] != 0):
+            print('Skipping article #{} because it\'s not satisfactory for question {}.'.format(article_id, file_number))
+            continue
+        elif len(article_text) == 0:
+            print('Skipping article #{} because it doesn\'t have annotated sentences for question {}.'.format(article_id, file_number))
+            continue
 
         summary_size = 4
         summary_doesnt_fit = True
@@ -110,7 +116,7 @@ for file_number in range(int(range_begin), int(range_end)):
                 article_text = article_summary
                 summary_size -= 1
 
-        with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
+        with open('../data/annotated_data_processed/q{}_{}.json'.format(file_number, split), 'w') as f:
             f.write(json.dumps(articles))
         print('results for {} data of file {} saved. Data points summarized so far: {}'.format(split, file_number, data_points_summarized))
 
@@ -122,7 +128,7 @@ for file_number in range(int(range_begin), int(range_end)):
 
     tf.reset_default_graph()
 
-    with open('../data/ttt/q{}_{}.json'.format(file_number, split), 'w') as f:
+    with open('../data/annotated_data_processed/q{}_{}.json'.format(file_number, split), 'w') as f:
         f.write(json.dumps(articles))
 
 print('all explanations generated, total summarized are: {}.'.format(data_points_summarized))
