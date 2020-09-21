@@ -1,6 +1,6 @@
 import json
 
-from statsmodels.stats.contingency_tables import mcnemar
+# from statsmodels.stats.contingency_tables import mcnemar
 from scipy import stats
 import numpy as np
 
@@ -13,7 +13,6 @@ def get_accuracies():
             'textrank': [0] * 10,
             'embedding_similarity': [0] * 10
         }
-        accuracies
 
     acc_line_prefix = 'Test Accuracy: '
     f1_pos_line_prefix = 'F1 pos: '
@@ -29,7 +28,10 @@ def get_accuracies():
             'textrank_f1_neg': [0] * 10,
             'embedding_similarity_acc': [0] * 10,
             'embedding_similarity_f1_pos': [0] * 10,
-            'embedding_similarity_f1_neg': [0] * 10
+            'embedding_similarity_f1_neg': [0] * 10,
+            'textrank_gpt2_acc': [0] * 10,
+            'textrank_gpt2_f1_pos': [0] * 10,
+            'textrank_gpt2_f1_neg': [0] * 10
         }
 
         for run_idx in range(1, 11):
@@ -62,6 +64,16 @@ def get_accuracies():
             qi_run['embedding_similarity_f1_pos'][run_idx - 1] = be_f1_pos
             be_f1_neg = [float(line.split(f1_neg_line_prefix, 1)[1]) for line in be if line.startswith(f1_neg_line_prefix)][0]
             qi_run['embedding_similarity_f1_neg'][run_idx - 1] = be_f1_neg
+
+            with open('../data/qa_runs/downstream_results{}/tr-gpt{}.txt'.format(run_idx, qid), "r") as myfile:
+                textrank_gpt2 = myfile.readlines()
+            textrank_gpt2 = [line.strip() for line in textrank_gpt2]
+            textrank_gpt2_acc = [float(line.split(acc_line_prefix, 1)[1]) for line in textrank_gpt2 if line.startswith(acc_line_prefix)][0]
+            qi_run['textrank_gpt2_acc'][run_idx-1] = textrank_gpt2_acc
+            textrank_gpt2_f1_pos = [float(line.split(f1_pos_line_prefix, 1)[1]) for line in textrank_gpt2 if line.startswith(f1_pos_line_prefix)][0]
+            qi_run['textrank_gpt2_f1_pos'][run_idx - 1] = textrank_gpt2_f1_pos
+            textrank_gpt2_f1_neg = [float(line.split(f1_neg_line_prefix, 1)[1]) for line in textrank_gpt2 if line.startswith(f1_neg_line_prefix)][0]
+            qi_run['textrank_gpt2_f1_neg'][run_idx - 1] = textrank_gpt2_f1_neg
 
         accuracies.append(qi_run)
 
@@ -139,47 +151,65 @@ def acc_results_t_test():
     avg_acc = {
         'gpt2': 0,
         'textrank': 0,
-        'embedding_similarity': 0
+        'embedding_similarity': 0,
+        'textrank_gpt2': 0
     }
     avg_f1_pos = {
         'gpt2': 0,
         'textrank': 0,
-        'embedding_similarity': 0
+        'embedding_similarity': 0,
+        'textrank_gpt2': 0
     }
     avg_f1_neg = {
         'gpt2': 0,
         'textrank': 0,
-        'embedding_similarity': 0
+        'embedding_similarity': 0,
+        'textrank_gpt2': 0
     }
 
     for i, qi in enumerate(accuracies):
         gpt2_acc = qi['gpt2_acc']
         textrank_acc = qi['textrank_acc']
         embedding_similarity_acc = qi['embedding_similarity_acc']
+        textrank_gpt2_acc = qi['textrank_gpt2_acc']
         _, gpt2_textrank_acc_pvalue = stats.ttest_ind(gpt2_acc, textrank_acc)
         _, textrank_embedding_similarity_acc_pvalue = stats.ttest_ind(textrank_acc, embedding_similarity_acc)
-        # print('Q{}, ACC: GPT-2/TextRank: {}, TextRank/EmbeddingSimilarity: {}'.format(i+1, gpt2_textrank_acc_pvalue, textrank_embedding_similarity_acc_pvalue))
+        _, textrank_gpt2_gpt2_acc_pvalue = stats.ttest_ind(textrank_gpt2_acc, gpt2_acc)
+        print('Q{}, ACC: GPT-2/TextRank: {}, TextRank/EmbeddingSimilarity: {}, TextRank+GPT-2/GPT-2: {}'.format(i+1, gpt2_textrank_acc_pvalue < 0.05, textrank_embedding_similarity_acc_pvalue < 0.05, textrank_gpt2_gpt2_acc_pvalue < 0.05))
         gpt2_f1_pos = qi['gpt2_f1_pos']
         textrank_f1_pos = qi['textrank_f1_pos']
         embedding_similarity_f1_pos = qi['embedding_similarity_f1_pos']
+        textrank_gpt2_f1_pos = qi['textrank_gpt2_f1_pos']
         _, gpt2_textrank_f1_pos_pvalue = stats.ttest_ind(gpt2_f1_pos, textrank_f1_pos)
         _, textrank_embedding_similarity_f1_pos_pvalue = stats.ttest_ind(textrank_f1_pos, embedding_similarity_f1_pos)
-        # print('Q{}, F1 Pos: GPT-2/TextRank: {}, TextRank/EmbeddingSimilarity: {}'.format(i + 1, gpt2_textrank_f1_pos_pvalue, textrank_embedding_similarity_f1_pos_pvalue))
+        _, textrank_gpt2_gpt2_f1_pos_pvalue = stats.ttest_ind(textrank_gpt2_f1_pos, gpt2_f1_pos)
+        print('Q{}, F1 Pos: GPT-2/TextRank: {}, TextRank/EmbeddingSimilarity: {}, TextRank+GPT-2/GPT-2: {}'.format(i + 1, gpt2_textrank_f1_pos_pvalue < 0.05, textrank_embedding_similarity_f1_pos_pvalue < 0.05, textrank_gpt2_gpt2_f1_pos_pvalue < 0.05))
         gpt2_f1_neg = qi['gpt2_f1_neg']
         textrank_f1_neg = qi['textrank_f1_neg']
         embedding_similarity_f1_neg = qi['embedding_similarity_f1_neg']
+        textrank_gpt2_f1_neg = qi['textrank_gpt2_f1_neg']
         _, gpt2_textrank_f1_neg_pvalue = stats.ttest_ind(gpt2_f1_neg, textrank_f1_neg)
         _, textrank_embedding_similarity_f1_neg_pvalue = stats.ttest_ind(textrank_f1_neg, embedding_similarity_f1_neg)
-        # print('Q{}, F1 Neg: GPT-2/TextRank: {}, TextRank/EmbeddingSimilarity: {}'.format(i + 1, gpt2_textrank_f1_neg_pvalue, textrank_embedding_similarity_f1_neg_pvalue))
+        _, textrank_gpt2_gpt2_f1_neg_pvalue = stats.ttest_ind(textrank_gpt2_f1_neg, gpt2_f1_neg)
+        print('Q{}, F1 Neg: GPT-2/TextRank: {}, TextRank/EmbeddingSimilarity: {}, TextRank+GPT-2/GPT-2: {}'.format(i + 1, gpt2_textrank_f1_neg_pvalue < 0.05, textrank_embedding_similarity_f1_neg_pvalue < 0.05, textrank_gpt2_gpt2_f1_neg_pvalue < 0.05))
         avg_acc['gpt2'] += np.mean(gpt2_acc)/9
         avg_acc['textrank'] += np.mean(textrank_acc)/9
         avg_acc['embedding_similarity'] += np.mean(embedding_similarity_acc)/9
+        avg_acc['textrank_gpt2'] += np.mean(textrank_gpt2_acc) / 9
         avg_f1_pos['gpt2'] += np.mean(gpt2_f1_pos) / 9
         avg_f1_pos['textrank'] += np.mean(textrank_f1_pos) / 9
         avg_f1_pos['embedding_similarity'] += np.mean(embedding_similarity_f1_pos) / 9
+        avg_f1_pos['textrank_gpt2'] += np.mean(textrank_gpt2_f1_pos) / 9
         avg_f1_neg['gpt2'] += np.mean(gpt2_f1_neg) / 9
         avg_f1_neg['textrank'] += np.mean(textrank_f1_neg) / 9
         avg_f1_neg['embedding_similarity'] += np.mean(embedding_similarity_f1_neg) / 9
+        avg_f1_neg['textrank_gpt2'] += np.mean(textrank_gpt2_f1_neg) / 9
+        # print('{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}'.format(
+        #     np.mean(gpt2_acc), np.mean(gpt2_f1_pos), np.mean(gpt2_f1_neg),
+        #     np.mean(textrank_acc), np.mean(textrank_f1_pos), np.mean(textrank_f1_neg),
+        #     np.mean(textrank_gpt2_acc), np.mean(textrank_gpt2_f1_pos), np.mean(textrank_gpt2_f1_neg),
+        #     np.mean(embedding_similarity_acc), np.mean(embedding_similarity_f1_pos), np.mean(embedding_similarity_f1_neg),
+        # ))
 
     print(avg_acc)
     print(avg_f1_pos)
