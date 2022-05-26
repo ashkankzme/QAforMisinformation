@@ -3,7 +3,7 @@ nltk==3.4.5
 numpy==1.17.1
 tqdm==4.36.1
 #tensorflow-gpu==1.14
-tensorflow==1.15rc2
+tensorflow==2.7.2
 keras==2.2.5
 scikit-learn==0.21.3
 gpt-2-simple
